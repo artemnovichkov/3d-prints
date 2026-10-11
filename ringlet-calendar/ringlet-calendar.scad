@@ -127,8 +127,21 @@ module pegs() {
         translate([pos(g, i)[0], pos(g, i)[1], plate_t]) peg();
 }
 
+// valign = "center" centres each label on its own glyph box, so labels with
+// descenders (jan, may) or ascenders (feb, apr) jump. Sit labels on the
+// baseline instead and centre on x-height (lowercase) or cap height (digits, capitals).
+// Ratios measured for Nunito Bold; close enough for most Google Fonts.
+x_height = 0.69;
+cap_height = 0.99;
+
+function is_tall(c) = let(o = ord(c))
+    (o >= 48 && o <= 57) || (o >= 65 && o <= 90) || (o >= 1024 && o <= 1071);
+function has_tall(t) = len([for (c = t) if (is_tall(c)) c]) > 0;
+
 module label_2d(t) {
-    text(t, size = fit_size(t), font = font, halign = "center", valign = "center");
+    s = fit_size(t);
+    translate([0, -s * (has_tall(t) ? cap_height : x_height) / 2])
+        text(t, size = s, font = font, halign = "center", valign = "baseline");
 }
 
 // z0 / h: where the text solid starts and how tall it is
