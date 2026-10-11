@@ -4,5 +4,6 @@
   "objects": [
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},
     {"name": "Rings", "parts": {"rings": 2}}
-  ]
+  ],
+  "preview_skip": ["labels"]
 }

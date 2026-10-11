@@ -12,6 +12,7 @@ Reads <project>/build.json:
     {"name": "Rings", "parts": {"rings": 2}}
   ]
 }
+"preview_skip" lists parts left out of the STL preview (default: none).
 Each part is exported from <project>/<project>.scad with -D part="<part>" and assigned
 to a 1-based filament. Parts of one object print as a single multi-part object.
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
@@ -110,6 +111,19 @@ def export(scad: Path, part: str, out: Path) -> trimesh.Trimesh:
            "-D", f'part="{part}"', "-o", str(out), str(scad)]
     subprocess.run(cmd, check=True, capture_output=True)
     return trimesh.load(out, force="mesh")
+
+
+def preview(objects: list[dict], skip: list[str]) -> trimesh.Trimesh:
+    """Objects side by side as one mesh, without the skipped parts (e.g. flush inlays,
+    which would fill their pockets and hide the text in a colourless STL)."""
+    meshes, x = [], 0.0
+    for obj in objects:
+        mesh = trimesh.util.concatenate([m for p, _, m in obj["parts"] if p not in skip])
+        low = mesh.bounds[0]
+        mesh.apply_translation([x - low[0], 0, -low[2]])
+        meshes.append(mesh)
+        x = mesh.bounds[1][0] + SPACING
+    return trimesh.util.concatenate(meshes)
 
 
 def mesh_xml(object_id: int, mesh: trimesh.Trimesh) -> list[str]:
@@ -226,8 +240,6 @@ def main() -> None:
     models.mkdir(exist_ok=True)
 
     with tempfile.TemporaryDirectory() as tmp:
-        print(f"→ {name}.stl")
-        export(scad, "all", models / f"{name}.stl")
         objects = []
         for obj in config["objects"]:
             parts = []
@@ -235,6 +247,8 @@ def main() -> None:
                 print(f"→ part {part} (filament {filament})")
                 parts.append((part, filament, export(scad, part, Path(tmp) / f"{part}.stl")))
             objects.append({"name": obj["name"], "parts": parts})
+        print(f"→ {name}.stl")
+        preview(objects, config.get("preview_skip", [])).export(models / f"{name}.stl")
         print(f"→ {name}.3mf")
         (models / f"{name}.3mf").write_bytes(build_3mf(objects, config.get("printer", "P2S"), config["filaments"], name))
 
