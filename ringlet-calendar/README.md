@@ -14,8 +14,11 @@ The whole model is parametric. Change the language, the first day of the week, p
 
 | File | What it is |
 |---|---|
+| [`models/ringlet-calendar.stl`](models/ringlet-calendar.stl) | Whole model as one mesh, opens in GitHub's 3D viewer |
+| [`models/ringlet-calendar.3mf`](models/ringlet-calendar.3mf) | Ready-to-print Bambu Studio project: base and labels as one two-colour object, rings next to it |
 | `ringlet-calendar.scad` | OpenSCAD source. Upload it to the MakerWorld Parametric Model Maker or open it in OpenSCAD 2021.01+ |
 | `ringlet-calendar.f3d` | Original Autodesk Fusion design with user parameters |
+| `build.json` | Parts and filaments used to build the 3MF |
 | `images/` | Renders used in this README |
 
 ## Parameters
@@ -42,7 +45,8 @@ The grid pitch and plate size are derived from the values above. With the defaul
 
 ## Printing
 
-- **Two colours.** Export `base` and `labels` separately, import both into Bambu Studio, and when asked choose to load them as a single object with multiple parts. Assign a filament to each part.
+- **Two colours, default settings.** Open `models/ringlet-calendar.3mf`, pick your printer and filaments, print.
+- **Two colours, custom settings.** Export `base` and `labels` separately, import both into Bambu Studio, and when asked choose to load them as a single object with multiple parts. Assign a filament to each part.
 - **One colour.** Set `label_style = raised` and add a filament change at the first layer of the text.
 - **Rings.** Print one ring and a small test first. If it is too tight, increase `gap` by 0.05 mm; if it falls off, decrease it.
 - Suggested settings: 0.2 mm layers, 0.4 mm nozzle, 15 % infill, no supports.

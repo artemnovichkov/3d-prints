@@ -19,10 +19,18 @@ project-name/
 ├── README.md          description, parameters, print settings
 ├── project-name.scad  OpenSCAD source (if parametric)
 ├── project-name.f3d   Autodesk Fusion source
+├── build.json         parts and filaments for the 3MF
+├── models/
+│   ├── project-name.stl   single mesh, previews in 3D on GitHub
+│   └── project-name.3mf   Bambu Studio project, parts and colours assigned
 └── images/
 ```
 
-Generated meshes (`.stl`, `.3mf`) are attached to [Releases](../../releases) rather than committed.
+`models/` is generated from the `.scad` source (needs [OpenSCAD](https://openscad.org), `brew install --cask openscad@snapshot`):
+
+```sh
+python3 scripts/build-models.py project-name
+```
 
 ## Claude Code setup
 
