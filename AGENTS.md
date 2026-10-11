@@ -63,10 +63,10 @@ Use a full render: in preview mode, flush inlays z-fight and show up as black pa
 OS=/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
 # hero, perspective
 $OS --backend=manifold --render --colorscheme=Tomorrow --imgsize=1600,1100 --projection=p \
-    --camera=80,72,0,52,0,28,420 -o images/hero.png <project>.scad
+    --camera=2.85,-8.5,0,52,0,28,420 -o images/hero.png <project>.scad
 # top view, orthographic, auto-framed
 $OS --backend=manifold --render --colorscheme=Tomorrow --imgsize=1000,1150 --projection=o \
     --camera=0,0,0,0,0,0,0 --viewall --autocenter -D 'language="ru"' -o images/top-ru.png <project>.scad
 ```
 
-The hero camera (translation and distance) is tuned for a plate of roughly 134 × 161 mm, so adjust it for other sizes.
+The hero camera (translation and distance) is tuned for a plate of roughly 134 × 161 mm with the layout centred on the origin, so adjust it for other sizes.

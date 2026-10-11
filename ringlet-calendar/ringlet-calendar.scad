@@ -182,6 +182,10 @@ module rings(x0) {
 }
 
 // ---------- output ----------
-if (part == "all" || part == "base")   color(base_color) base();
-if (part == "all" || part == "labels") color(text_color) labels();
-if (part == "all" || part == "rings")  color(ring_color) rings(part == "all" ? plate_w + 5 : 0);
+// centre the layout on the origin: MakerWorld puts the origin in the middle of the bed
+layout_w = plate_w + 5 + ring_od;
+translate([-layout_w / 2, -plate_l / 2, 0]) {
+    if (part == "all" || part == "base")   color(base_color) base();
+    if (part == "all" || part == "labels") color(text_color) labels();
+    if (part == "all" || part == "rings")  color(ring_color) rings(plate_w + 5);
+}
