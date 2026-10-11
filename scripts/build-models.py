@@ -9,12 +9,14 @@ Reads <project>/build.json:
   "filaments": ["#3f7a46", "#f2f2f2"],
   "objects": [
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},
-    {"name": "Rings", "parts": {"rings": 2}}
-  ]
+    {"name": "Rings", "parts": {"rings": 2}, "plate": 2}
+  ],
+  "preview_skip": ["labels"]
 }
 "preview_skip" lists parts left out of the STL preview (default: none).
 Each part is exported from <project>/<project>.scad with -D part="<part>" and assigned
 to a 1-based filament. Parts of one object print as a single multi-part object.
+"plate" puts an object on that build plate (default 1).
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
 filament plus per_filament_keys.json, the keys holding a block of N values per filament.
 Needs OpenSCAD.
@@ -22,6 +24,7 @@ Needs OpenSCAD.
 
 import io
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -37,6 +40,7 @@ OPENSCAD_CANDIDATES = ["openscad", "/Applications/OpenSCAD.app/Contents/MacOS/Op
 OBJECT_PATH = "3D/Objects/object_1.model"
 PROJECT_VERSION = "02.08.02.60"
 SPACING = 5.0
+PLATE_STRIDE = 1.2
 FLUSH_MM3 = "280"
 NAMESPACES = (
     'xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" '
@@ -93,6 +97,12 @@ def project_settings(printer: str, colours: list[str]) -> dict:
     return settings
 
 
+def bed_size(settings: dict) -> tuple[float, float]:
+    points = [[float(v) for v in p.split("x")] for p in settings["printable_area"]]
+    xs, ys = zip(*points)
+    return max(xs) - min(xs), max(ys) - min(ys)
+
+
 def bed_centre(settings: dict) -> tuple[float, float]:
     points = [[float(v) for v in p.split("x")] for p in settings["printable_area"]]
     xs, ys = zip(*points)
@@ -139,59 +149,68 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
     """objects: [{"name", "parts": [(part_name, filament, mesh)]}], meshes in scad coordinates."""
     settings = project_settings(printer, filaments)
     bed_x, bed_y = bed_centre(settings)
+    bed_w, bed_h = bed_size(settings)
+    plates = sorted({o["plate"] for o in objects})
+    columns = math.ceil(math.sqrt(len(plates)))
 
-    # Lay objects out left to right, centred on the bed.
-    boxes = [trimesh.util.concatenate([m for _, _, m in o["parts"]]).bounds for o in objects]
-    widths = [b[1][0] - b[0][0] for b in boxes]
-    x = bed_x - (sum(widths) + SPACING * (len(objects) - 1)) / 2
-
-    mesh_lines, root_objects, items, config_objects, instances = [], [], [], [], []
-    next_id = 1
-    for index, (obj, (low, high), width) in enumerate(zip(objects, boxes, widths)):
-        centre = (low + high) / 2
-        component_ids = []
-        config_parts = []
-        for part_name, filament, mesh in obj["parts"]:
-            moved = mesh.copy()
-            moved.apply_translation(-centre)
-            mesh_lines += mesh_xml(next_id, moved)
-            component_ids.append(next_id)
-            config_parts.append(
-                f'    <part id="{next_id}" subtype="normal_part">\n'
-                f'      <metadata key="name" value="{escape(part_name)}"/>\n'
-                '      <metadata key="matrix" value="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1"/>\n'
-                f'      <metadata key="extruder" value="{filament}"/>\n'
-                "    </part>"
+    mesh_lines, root_objects, items, config_objects = [], [], [], []
+    plate_instances: dict[int, list[str]] = {p: [] for p in plates}
+    next_id, index = 1, 0
+    for plate_index, plate in enumerate(plates):
+        # Bambu Studio lays plates out in a grid, one bed plus a fifth apart.
+        plate_x = (plate_index % columns) * bed_w * PLATE_STRIDE
+        plate_y = -(plate_index // columns) * bed_h * PLATE_STRIDE
+        on_plate = [o for o in objects if o["plate"] == plate]
+        # Lay objects out left to right, centred on the bed.
+        boxes = [trimesh.util.concatenate([m for _, _, m in o["parts"]]).bounds for o in on_plate]
+        widths = [b[1][0] - b[0][0] for b in boxes]
+        x = plate_x + bed_x - (sum(widths) + SPACING * (len(on_plate) - 1)) / 2
+        for obj, (low, high), width in zip(on_plate, boxes, widths):
+            centre = (low + high) / 2
+            component_ids = []
+            config_parts = []
+            for part_name, filament, mesh in obj["parts"]:
+                moved = mesh.copy()
+                moved.apply_translation(-centre)
+                mesh_lines += mesh_xml(next_id, moved)
+                component_ids.append(next_id)
+                config_parts.append(
+                    f'    <part id="{next_id}" subtype="normal_part">\n'
+                    f'      <metadata key="name" value="{escape(part_name)}"/>\n'
+                    '      <metadata key="matrix" value="1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1"/>\n'
+                    f'      <metadata key="extruder" value="{filament}"/>\n'
+                    "    </part>"
+                )
+                next_id += 1
+            object_id = 1000 + index
+            components = "\n".join(
+                f'    <component p:path="/{OBJECT_PATH}" objectid="{cid}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>'
+                for cid in component_ids
             )
-            next_id += 1
-        object_id = 1000 + index
-        components = "\n".join(
-            f'    <component p:path="/{OBJECT_PATH}" objectid="{cid}" transform="1 0 0 0 1 0 0 0 1 0 0 0"/>'
-            for cid in component_ids
-        )
-        root_objects.append(
-            f'  <object id="{object_id}" type="model">\n   <components>\n{components}\n   </components>\n  </object>'
-        )
-        tx, ty, tz = x + width / 2, bed_y, (high[2] - low[2]) / 2
-        items.append(
-            f'  <item objectid="{object_id}" transform="1 0 0 0 1 0 0 0 1 {tx:.4f} {ty:.4f} {tz:.4f}" printable="1"/>'
-        )
-        first_filament = obj["parts"][0][1]
-        config_objects.append(
-            f'  <object id="{object_id}">\n'
-            f'    <metadata key="name" value="{escape(obj["name"])}"/>\n'
-            f'    <metadata key="extruder" value="{first_filament}"/>\n'
-            + "\n".join(config_parts)
-            + "\n  </object>"
-        )
-        instances.append(
-            "    <model_instance>\n"
-            f'      <metadata key="object_id" value="{object_id}"/>\n'
-            '      <metadata key="instance_id" value="0"/>\n'
-            f'      <metadata key="identify_id" value="{index + 1}"/>\n'
-            "    </model_instance>"
-        )
-        x += width + SPACING
+            root_objects.append(
+                f'  <object id="{object_id}" type="model">\n   <components>\n{components}\n   </components>\n  </object>'
+            )
+            tx, ty, tz = x + width / 2, plate_y + bed_y, (high[2] - low[2]) / 2
+            items.append(
+                f'  <item objectid="{object_id}" transform="1 0 0 0 1 0 0 0 1 {tx:.4f} {ty:.4f} {tz:.4f}" printable="1"/>'
+            )
+            first_filament = obj["parts"][0][1]
+            config_objects.append(
+                f'  <object id="{object_id}">\n'
+                f'    <metadata key="name" value="{escape(obj["name"])}"/>\n'
+                f'    <metadata key="extruder" value="{first_filament}"/>\n'
+                + "\n".join(config_parts)
+                + "\n  </object>"
+            )
+            plate_instances[plate].append(
+                "    <model_instance>\n"
+                f'      <metadata key="object_id" value="{object_id}"/>\n'
+                '      <metadata key="instance_id" value="0"/>\n'
+                f'      <metadata key="identify_id" value="{index + 1}"/>\n'
+                "    </model_instance>"
+            )
+            x += width + SPACING
+            index += 1
 
     object_model = "\n".join([
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -210,11 +229,17 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
     ])
     model_settings = "\n".join([
         '<?xml version="1.0" encoding="UTF-8"?>', "<config>", *config_objects,
-        "  <plate>",
-        '    <metadata key="plater_id" value="1"/>',
-        '    <metadata key="plater_name" value=""/>',
-        '    <metadata key="locked" value="false"/>',
-        *instances, "  </plate>", "</config>", "",
+        *[
+            "\n".join([
+                "  <plate>",
+                f'    <metadata key="plater_id" value="{plate_index + 1}"/>',
+                '    <metadata key="plater_name" value=""/>',
+                '    <metadata key="locked" value="false"/>',
+                *plate_instances[plate], "  </plate>",
+            ])
+            for plate_index, plate in enumerate(plates)
+        ],
+        "</config>", "",
     ])
 
     buffer = io.BytesIO()
@@ -246,7 +271,7 @@ def main() -> None:
             for part, filament in obj["parts"].items():
                 print(f"→ part {part} (filament {filament})")
                 parts.append((part, filament, export(scad, part, Path(tmp) / f"{part}.stl")))
-            objects.append({"name": obj["name"], "parts": parts})
+            objects.append({"name": obj["name"], "plate": obj.get("plate", 1), "parts": parts})
         print(f"→ {name}.stl")
         preview(objects, config.get("preview_skip", [])).export(models / f"{name}.stl")
         print(f"→ {name}.3mf")

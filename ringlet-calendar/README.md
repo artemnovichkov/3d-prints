@@ -15,7 +15,7 @@ The whole model is parametric. Change the language, the first day of the week, p
 | File | What it is |
 |---|---|
 | [`models/ringlet-calendar.stl`](models/ringlet-calendar.stl) | Base with engraved labels and rings, opens in GitHub's 3D viewer |
-| [`models/ringlet-calendar.3mf`](models/ringlet-calendar.3mf) | Ready-to-print Bambu Studio project: base and labels as one two-colour object, rings next to it |
+| [`models/ringlet-calendar.3mf`](models/ringlet-calendar.3mf) | Ready-to-print Bambu Studio project: plate 1 is the two-colour calendar, plate 2 the rings |
 | `ringlet-calendar.scad` | OpenSCAD source. Upload it to the MakerWorld Parametric Model Maker or open it in OpenSCAD 2021.01+ |
 | `ringlet-calendar.f3d` | Original Autodesk Fusion design with user parameters |
 | `build.json` | Parts and filaments used to build the 3MF |
