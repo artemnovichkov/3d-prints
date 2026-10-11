@@ -49,7 +49,7 @@ The grid pitch and plate size are derived from the values above. With the defaul
 <!-- print-info -->
 | Plate | Contents | Filament | Time | Weight |
 |---|---|---|---|---|
-| 1 | Ringlet | green 64.1 g, white 0.6 g | 1 h 46 min | 64.8 g |
+| 1 | Ringlet | green 62.9 g, white 0.6 g | 1 h 43 min | 63.5 g |
 | 2 | Rings | white 0.5 g | 8 min | 0.5 g |
 
 Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.

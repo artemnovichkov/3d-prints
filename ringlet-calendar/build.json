@@ -9,6 +9,7 @@
     {"name": "Rings", "parts": {"rings": 2}, "plate": 2}
   ],
   "preview_skip": ["labels"],
+  "settings": {"enable_prime_tower": "0"},
   "variants": {
     "no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "pause_above": "base"}
   }

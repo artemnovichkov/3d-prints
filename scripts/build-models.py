@@ -25,6 +25,7 @@ to a 1-based filament. Parts of one object print as a single multi-part object.
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
 filament plus per_filament_keys.json, the keys holding a block of N values per filament.
 A filament is a {"colour", "name"} object or just a "#RRGGBB" colour.
+"settings" (optional) overrides Bambu Studio print (process) settings, e.g. {"enable_prime_tower": "0"}.
 
 When Bambu Studio is installed, the 3MF is sliced and the table between
 <!-- print-info --> and <!-- /print-info --> in <project>/README.md is rewritten with
@@ -184,10 +185,15 @@ def pauses_xml(pauses: dict[int, float], plates: list[int]) -> str:
 
 
 def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str,
-              pause_above: str | None = None) -> bytes:
+              pause_above: str | None = None, overrides: dict | None = None) -> bytes:
     """objects: [{"name", "parts": [(part_name, filament, mesh)]}], meshes in scad coordinates.
     pause_above: part name; adds a pause at the first layer above its top on its plate."""
     settings = project_settings(printer, filaments)
+    settings.update(overrides or {})
+    if overrides:
+        # Bambu Studio's GUI reloads every key not listed here from the system profile.
+        # Slot 0 is the print (process) profile, where these overrides live.
+        settings["different_settings_to_system"][0] = ";".join(sorted(overrides))
     bed_x, bed_y = bed_centre(settings)
     bed_w, bed_h = bed_size(settings)
     plates = sorted({o["plate"] for o in objects})
@@ -384,7 +390,7 @@ def main() -> None:
         preview(objects, config.get("preview_skip", [])).export(models / f"{name}.stl")
         print(f"→ {name}.3mf")
         model = models / f"{name}.3mf"
-        model.write_bytes(build_3mf(objects, printer, colours, name))
+        model.write_bytes(build_3mf(objects, printer, colours, name, overrides=config.get("settings")))
     report(project, model, names)
 
     for variant, spec in config.get("variants", {}).items():
@@ -393,7 +399,8 @@ def main() -> None:
             objects = export_objects(tmp, spec.get("defines"), spec.get("parts"))
             model = models / f"{name}-{variant}.3mf"
             print(f"→ {model.name}")
-            model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("pause_above")))
+            model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("pause_above"),
+                                         config.get("settings")))
         report(project, model, names, variant)
 
 
