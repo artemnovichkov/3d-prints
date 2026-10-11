@@ -1,4 +1,5 @@
 {
+  "printer": "P2S",
   "filaments": ["#3f7a46", "#f2f2f2"],
   "objects": [
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},

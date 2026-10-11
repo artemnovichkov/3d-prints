@@ -19,7 +19,7 @@ project-name/
 ├── README.md          description, parameters, print settings
 ├── project-name.scad  OpenSCAD source (if parametric)
 ├── project-name.f3d   Autodesk Fusion source
-├── build.json         parts and filaments for the 3MF
+├── build.json         printer, parts and filaments for the 3MF
 ├── models/
 │   ├── project-name.stl   single mesh, previews in 3D on GitHub
 │   └── project-name.3mf   Bambu Studio project, parts and colours assigned
@@ -31,6 +31,8 @@ project-name/
 ```sh
 python3 scripts/build-models.py project-name
 ```
+
+The 3MF uses Bambu Studio settings from `scripts/templates/<printer>/` (P2S by default).
 
 ## Claude Code setup
 
