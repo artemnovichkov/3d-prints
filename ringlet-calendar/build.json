@@ -8,5 +8,8 @@
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},
     {"name": "Rings", "parts": {"rings": 2}, "plate": 2}
   ],
-  "preview_skip": ["labels"]
+  "preview_skip": ["labels"],
+  "variants": {
+    "no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "pause_above": "base"}
+  }
 }

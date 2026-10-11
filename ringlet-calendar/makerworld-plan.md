@@ -33,7 +33,7 @@ Lead with what it lacks: fully parametric (any language, font, Mon/Sun week star
    - [x] Labels centred on baseline + x-height / cap height instead of `valign = "center"` (labels with descenders jumped).
    - [x] Layout centred on origin (PMM bed centre), .scad + .f3d.
 2. Rebuild: `python3 scripts/build-models.py ringlet-calendar`, update renders in `images/`, commit `models/`.
-3. [x] EN render, centring, parameter groups OK in PMM. [ ] Check RU labels. Check `.scad` in PMM: Nunito available, render time OK, `part` dropdown works. Optionally `color()` on final bodies / `mw_plate_N()` (costs STL download).
+3. [x] EN/RU render, parts, centring, parameter groups OK in PMM. Check `.scad` in PMM: Nunito available, render time OK, `part` dropdown works. Optionally `color()` on final bodies / `mw_plate_N()` (costs STL download).
 4. Print each planned profile, take real photos (cover in desk context, close-up of inlay text, ring on peg, hands moving a ring, size reference).
 5. Render extra images: cover 1600×1200, EN / RU / Sunday variants, customizer screenshot.
 6. Write `makerworld.md`: title, EN description, tags, categories, licence, profile names and summaries.
@@ -45,6 +45,7 @@ Lead with what it lacks: fully parametric (any language, font, Mon/Sun week star
 - English · Monday · 2 plates (calendar + rings)
 - English · Sunday · 2 plates
 - Russian · Monday · 2 plates
+- No AMS · raised text, pause at first text layer (`models/ringlet-calendar-no-ams.3mf`)
 
 ### Draft title
 

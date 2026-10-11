@@ -17,6 +17,11 @@ Reads <project>/build.json:
 Each part is exported from <project>/<project>.scad with -D part="<part>" and assigned
 to a 1-based filament. Parts of one object print as a single multi-part object.
 "plate" puts an object on that build plate (default 1).
+"variants" (optional) builds extra 3MFs, models/<name>-<variant>.3mf, e.g. for printers without AMS:
+  "variants": {"no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "pause_above": "base"}}
+  "defines" are passed to OpenSCAD as -D, "parts" overrides part filaments, and "pause_above" adds
+  a pause (to swap filament by hand) at the first layer above the top of that part.
+  A README section between <!-- print-info:<variant> --> and <!-- /print-info:<variant> --> gets its print info.
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
 filament plus per_filament_keys.json, the keys holding a block of N values per filament.
 A filament is a {"colour", "name"} object or just a "#RRGGBB" colour.
@@ -44,7 +49,6 @@ import trimesh
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "scripts/templates"
 BAMBU_CLI = "/Applications/BambuStudio.app/Contents/MacOS/BambuStudio"
-PRINT_INFO = re.compile(r"(<!-- print-info -->\n).*?(<!-- /print-info -->)", re.S)
 OPENSCAD_CANDIDATES = ["openscad", "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"]
 OBJECT_PATH = "3D/Objects/object_1.model"
 PROJECT_VERSION = "02.08.02.60"
@@ -125,9 +129,11 @@ def openscad() -> str:
     sys.exit("OpenSCAD not found: brew install --cask openscad@snapshot")
 
 
-def export(scad: Path, part: str, out: Path) -> trimesh.Trimesh:
-    cmd = [openscad(), "--backend=manifold", "--export-format", "binstl",
-           "-D", f'part="{part}"', "-o", str(out), str(scad)]
+def export(scad: Path, part: str, out: Path, defines: dict | None = None) -> trimesh.Trimesh:
+    cmd = [openscad(), "--backend=manifold", "--export-format", "binstl", "-D", f'part="{part}"']
+    for key, value in (defines or {}).items():
+        cmd += ["-D", f"{key}={json.dumps(value)}"]
+    cmd += ["-o", str(out), str(scad)]
     subprocess.run(cmd, check=True, capture_output=True)
     return trimesh.load(out, force="mesh")
 
@@ -154,8 +160,33 @@ def mesh_xml(object_id: int, mesh: trimesh.Trimesh) -> list[str]:
     return lines
 
 
-def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str) -> bytes:
-    """objects: [{"name", "parts": [(part_name, filament, mesh)]}], meshes in scad coordinates."""
+def pause_z(settings: dict, top: float) -> float:
+    """top_z of the first layer printed above height `top`."""
+    first, layer = float(settings["initial_layer_print_height"]), float(settings["layer_height"])
+    below = first + max(0, math.ceil((top - first) / layer - 1e-6)) * layer
+    return round(below + layer, 4)
+
+
+def pauses_xml(pauses: dict[int, float], plates: list[int]) -> str:
+    """Metadata/custom_gcode_per_layer.xml: a print pause per plate (type 1 = PausePrint)."""
+    lines = ['<?xml version="1.0" encoding="utf-8"?>', "<custom_gcodes_per_layer>"]
+    for plate_index, plate in enumerate(plates):
+        if plate not in pauses:
+            continue
+        lines += [
+            "<plate>",
+            f'<plate_info id="{plate_index + 1}"/>',
+            f'<layer top_z="{pauses[plate]}" type="1" extruder="1" color="" extra="" gcode="M400 U1"/>',
+            '<mode value="SingleExtruder"/>',
+            "</plate>",
+        ]
+    return "\n".join(lines + ["</custom_gcodes_per_layer>", ""])
+
+
+def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str,
+              pause_above: str | None = None) -> bytes:
+    """objects: [{"name", "parts": [(part_name, filament, mesh)]}], meshes in scad coordinates.
+    pause_above: part name; adds a pause at the first layer above its top on its plate."""
     settings = project_settings(printer, filaments)
     bed_x, bed_y = bed_centre(settings)
     bed_w, bed_h = bed_size(settings)
@@ -260,6 +291,12 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
         archive.writestr(OBJECT_PATH, object_model)
         archive.writestr("Metadata/model_settings.config", model_settings)
         archive.writestr("Metadata/project_settings.config", json.dumps(settings, indent=4))
+        if pause_above:
+            pauses = {
+                o["plate"]: pause_z(settings, mesh.bounds[1][2] - min(m.bounds[0][2] for _, _, m in o["parts"]))
+                for o in objects for part, _, mesh in o["parts"] if part == pause_above
+            }
+            archive.writestr("Metadata/custom_gcode_per_layer.xml", pauses_xml(pauses, plates))
     return buffer.getvalue()
 
 
@@ -294,12 +331,26 @@ def print_info(model: Path, names: list[str]) -> str | None:
     return "\n".join(rows) + "\n"
 
 
-def update_readme(readme: Path, table: str) -> bool:
+def update_readme(readme: Path, table: str, variant: str = "") -> bool:
+    tag = f"print-info:{variant}" if variant else "print-info"
+    pattern = re.compile(rf"(<!-- {re.escape(tag)} -->\n).*?(<!-- /{re.escape(tag)} -->)", re.S)
     text = readme.read_text() if readme.exists() else ""
-    if not PRINT_INFO.search(text):
+    if not pattern.search(text):
         return False
-    readme.write_text(PRINT_INFO.sub(lambda m: m.group(1) + table + m.group(2), text))
+    readme.write_text(pattern.sub(lambda m: m.group(1) + table + m.group(2), text))
     return True
+
+
+def report(project: Path, model: Path, names: list[str], variant: str = "") -> None:
+    print(f"→ slicing {model.name} for print info")
+    table = print_info(model, names)
+    tag = f"print-info:{variant}" if variant else "print-info"
+    if table is None:
+        print("  Bambu Studio not found, README print info not updated")
+    elif not update_readme(project / "README.md", table, variant):
+        print(f"  no <!-- {tag} --> markers in README.md, table:\n" + table)
+    else:
+        print(table)
 
 
 def main() -> None:
@@ -312,29 +363,38 @@ def main() -> None:
     models = project / "models"
     models.mkdir(exist_ok=True)
 
-    with tempfile.TemporaryDirectory() as tmp:
+    printer = config.get("printer", "P2S")
+    filaments = [f if isinstance(f, dict) else {"colour": f, "name": f} for f in config["filaments"]]
+    colours, names = [f["colour"] for f in filaments], [f["name"] for f in filaments]
+
+    def export_objects(tmp: str, defines: dict | None = None, overrides: dict | None = None) -> list[dict]:
         objects = []
         for obj in config["objects"]:
             parts = []
             for part, filament in obj["parts"].items():
+                filament = (overrides or {}).get(part, filament)
                 print(f"→ part {part} (filament {filament})")
-                parts.append((part, filament, export(scad, part, Path(tmp) / f"{part}.stl")))
+                parts.append((part, filament, export(scad, part, Path(tmp) / f"{part}.stl", defines)))
             objects.append({"name": obj["name"], "plate": obj.get("plate", 1), "parts": parts})
+        return objects
+
+    with tempfile.TemporaryDirectory() as tmp:
+        objects = export_objects(tmp)
         print(f"→ {name}.stl")
         preview(objects, config.get("preview_skip", [])).export(models / f"{name}.stl")
         print(f"→ {name}.3mf")
-        filaments = [f if isinstance(f, dict) else {"colour": f, "name": f} for f in config["filaments"]]
         model = models / f"{name}.3mf"
-        model.write_bytes(build_3mf(objects, config.get("printer", "P2S"), [f["colour"] for f in filaments], name))
+        model.write_bytes(build_3mf(objects, printer, colours, name))
+    report(project, model, names)
 
-    print("→ slicing for print info")
-    table = print_info(model, [f["name"] for f in filaments])
-    if table is None:
-        print("  Bambu Studio not found, README print info not updated")
-    elif not update_readme(project / "README.md", table):
-        print("  no <!-- print-info --> markers in README.md, table:\n" + table)
-    else:
-        print(table)
+    for variant, spec in config.get("variants", {}).items():
+        print(f"== variant {variant}")
+        with tempfile.TemporaryDirectory() as tmp:
+            objects = export_objects(tmp, spec.get("defines"), spec.get("parts"))
+            model = models / f"{name}-{variant}.3mf"
+            print(f"→ {model.name}")
+            model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("pause_above")))
+        report(project, model, names, variant)
 
 
 if __name__ == "__main__":
