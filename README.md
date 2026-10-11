@@ -24,6 +24,21 @@ project-name/
 
 Generated meshes (`.stl`, `.3mf`) are attached to [Releases](../../releases) rather than committed.
 
+## Claude Code setup
+
+The repo ships with config for [Claude Code](https://claude.com/claude-code):
+
+- `.mcp.json` — Autodesk Fusion MCP server (`http://127.0.0.1:27182/mcp`, Fusion must be running)
+- `skills-lock.json` — [bambu-studio-ai](https://github.com/heyixuan2/bambu-studio-ai) skill
+
+After cloning:
+
+```sh
+npx skills experimental_install
+python3 -m pip install --user --break-system-packages -r .claude/skills/bambu-studio-ai/requirements.txt
+python3 .claude/skills/bambu-studio-ai/scripts/doctor.py
+```
+
 ## Licence
 
 Unless a project says otherwise, everything here is licensed under [CC BY-NC-SA 4.0](LICENSE).

@@ -1,3 +1,9 @@
 .DS_Store
 *.gcode
 *.gcode.3mf
+
+# Claude Code: local settings, skills restored from skills-lock.json
+.claude/settings.local.json
+.claude/skills/
+.agents/
+bambu-output/

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "bambu-studio-ai": {
+      "source": "heyixuan2/bambu-studio-ai",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "2ae29eaecbdc13d573a5528a2160c6637a15ba35abff1c2494fd0a6f0ff9fb47"
+    }
+  }
+}
