@@ -32,7 +32,7 @@ project-name/
 python3 scripts/build-models.py project-name
 ```
 
-The 3MF uses Bambu Studio settings from `scripts/templates/<printer>/` (P2S by default).
+The 3MF uses Bambu Studio settings from `scripts/templates/<printer>/` (P2S by default). If Bambu Studio is installed, the script also slices the 3MF and refreshes the print time and filament table between `<!-- print-info -->` markers in the project README.
 
 ## Claude Code setup
 

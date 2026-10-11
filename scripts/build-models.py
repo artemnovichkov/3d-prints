@@ -6,7 +6,7 @@ Usage: python3 scripts/build-models.py <project-folder>
 Reads <project>/build.json:
 {
   "printer": "P2S",
-  "filaments": ["#3f7a46", "#f2f2f2"],
+  "filaments": [{"colour": "#3f7a46", "name": "green"}, {"colour": "#f2f2f2", "name": "white"}],
   "objects": [
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},
     {"name": "Rings", "parts": {"rings": 2}, "plate": 2}
@@ -19,12 +19,19 @@ to a 1-based filament. Parts of one object print as a single multi-part object.
 "plate" puts an object on that build plate (default 1).
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
 filament plus per_filament_keys.json, the keys holding a block of N values per filament.
+A filament is a {"colour", "name"} object or just a "#RRGGBB" colour.
+
+When Bambu Studio is installed, the 3MF is sliced and the table between
+<!-- print-info --> and <!-- /print-info --> in <project>/README.md is rewritten with
+time, weight and filaments per plate.
 Needs OpenSCAD.
 """
 
 import io
 import json
 import math
+import re
+import xml.etree.ElementTree as ET
 import shutil
 import subprocess
 import sys
@@ -36,6 +43,8 @@ import trimesh
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATES = ROOT / "scripts/templates"
+BAMBU_CLI = "/Applications/BambuStudio.app/Contents/MacOS/BambuStudio"
+PRINT_INFO = re.compile(r"(<!-- print-info -->\n).*?(<!-- /print-info -->)", re.S)
 OPENSCAD_CANDIDATES = ["openscad", "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"]
 OBJECT_PATH = "3D/Objects/object_1.model"
 PROJECT_VERSION = "02.08.02.60"
@@ -254,6 +263,45 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
     return buffer.getvalue()
 
 
+def duration(seconds: int) -> str:
+    hours, minutes = divmod(round(seconds / 60), 60)
+    return f"{hours} h {minutes} min" if hours else f"{minutes} min"
+
+
+def print_info(model: Path, names: list[str]) -> str | None:
+    """Slice the 3MF with Bambu Studio and return a Markdown table per plate."""
+    if not Path(BAMBU_CLI).exists():
+        return None
+    with tempfile.TemporaryDirectory() as tmp:
+        cmd = [BAMBU_CLI, "--slice", "0", "--outputdir", tmp, "--export-3mf", "sliced.3mf", str(model)]
+        subprocess.run(cmd, check=True, capture_output=True)
+        with zipfile.ZipFile(Path(tmp) / "sliced.3mf") as archive:
+            info = ET.fromstring(archive.read("Metadata/slice_info.config"))
+            settings = json.loads(archive.read("Metadata/project_settings.config"))
+    rows = ["| Plate | Contents | Filament | Time | Weight |", "|---|---|---|---|---|"]
+    for plate in info.iter("plate"):
+        meta = {m.get("key"): m.get("value") for m in plate.findall("metadata")}
+        contents = ", ".join(o.get("name") for o in plate.findall("object"))
+        used = ", ".join(
+            f'{names[int(f.get("id")) - 1]} {float(f.get("used_g")):.1f} g' for f in plate.findall("filament")
+        )
+        rows.append(
+            f'| {meta["index"]} | {contents} | {used} | {duration(int(meta["prediction"]))} | {float(meta["weight"]):.1f} g |'
+        )
+    filament = settings["filament_settings_id"][0].split(" @")[0]
+    process = settings["print_settings_id"].split(" @")[0]
+    rows += ["", f'Sliced for {settings["printer_settings_id"]}, {process}, {filament}. Times differ on other printers.']
+    return "\n".join(rows) + "\n"
+
+
+def update_readme(readme: Path, table: str) -> bool:
+    text = readme.read_text() if readme.exists() else ""
+    if not PRINT_INFO.search(text):
+        return False
+    readme.write_text(PRINT_INFO.sub(lambda m: m.group(1) + table + m.group(2), text))
+    return True
+
+
 def main() -> None:
     if len(sys.argv) != 2:
         sys.exit(__doc__)
@@ -275,7 +323,18 @@ def main() -> None:
         print(f"→ {name}.stl")
         preview(objects, config.get("preview_skip", [])).export(models / f"{name}.stl")
         print(f"→ {name}.3mf")
-        (models / f"{name}.3mf").write_bytes(build_3mf(objects, config.get("printer", "P2S"), config["filaments"], name))
+        filaments = [f if isinstance(f, dict) else {"colour": f, "name": f} for f in config["filaments"]]
+        model = models / f"{name}.3mf"
+        model.write_bytes(build_3mf(objects, config.get("printer", "P2S"), [f["colour"] for f in filaments], name))
+
+    print("→ slicing for print info")
+    table = print_info(model, [f["name"] for f in filaments])
+    if table is None:
+        print("  Bambu Studio not found, README print info not updated")
+    elif not update_readme(project / "README.md", table):
+        print("  no <!-- print-info --> markers in README.md, table:\n" + table)
+    else:
+        print(table)
 
 
 if __name__ == "__main__":

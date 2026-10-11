@@ -45,6 +45,15 @@ The grid pitch and plate size are derived from the values above. With the defaul
 
 ## Printing
 
+<!-- print-info -->
+| Plate | Contents | Filament | Time | Weight |
+|---|---|---|---|---|
+| 1 | Ringlet | green 64.1 g, white 0.6 g | 1 h 46 min | 64.8 g |
+| 2 | Rings | white 0.5 g | 8 min | 0.5 g |
+
+Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.
+<!-- /print-info -->
+
 - **Two colours, default settings.** Open `models/ringlet-calendar.3mf`, pick your printer and filaments, print.
 - **Two colours, custom settings.** Export `base` and `labels` separately, import both into Bambu Studio, and when asked choose to load them as a single object with multiple parts. Assign a filament to each part.
 - **One colour.** Set `label_style = raised` and add a filament change at the first layer of the text.

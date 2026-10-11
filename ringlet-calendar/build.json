@@ -1,6 +1,9 @@
 {
   "printer": "P2S",
-  "filaments": ["#3f7a46", "#f2f2f2"],
+  "filaments": [
+    {"colour": "#3f7a46", "name": "green"},
+    {"colour": "#f2f2f2", "name": "white"}
+  ],
   "objects": [
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},
     {"name": "Rings", "parts": {"rings": 2}, "plate": 2}
