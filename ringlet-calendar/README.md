@@ -6,9 +6,9 @@ A reusable desk calendar: slip one ring over the weekday, one over the date and 
 
 The whole model is parametric. Change the language, the first day of the week, peg size, ring clearance or font, and the layout rebuilds itself.
 
-| English, week starts on Monday | Russian, week starts on Sunday |
-|---|---|
-| ![English](images/top-en.png) | ![Russian](images/top-ru-sun.png) |
+| English, week starts on Monday | English, week starts on Sunday | Russian, week starts on Monday |
+|---|---|---|
+| ![English, Monday](images/top-en.png) | ![English, Sunday](images/top-en-sun.png) | ![Russian, Monday](images/top-ru.png) |
 
 ## Files
 
