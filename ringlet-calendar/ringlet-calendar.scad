@@ -58,9 +58,9 @@ ring_h = 2; // [1:0.5:6]
 ring_chamfer = 0.3; // [0:0.1:0.8]
 
 /* [Colours (preview only)] */
-base_color = "#3f7a46";
-text_color = "#f2f2f2";
-ring_color = "#f2f2f2";
+base_color = "#8E9089";
+text_color = "#000000";
+ring_color = "#FF671F";
 
 /* [Hidden] */
 $fn = 64;

@@ -18,9 +18,11 @@ Each part is exported from <project>/<project>.scad with -D part="<part>" and as
 to a 1-based filament. Parts of one object print as a single multi-part object.
 "plate" puts an object on that build plate (default 1).
 "variants" (optional) builds extra 3MFs, models/<name>-<variant>.3mf, e.g. for printers without AMS:
-  "variants": {"no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "pause_above": "base"}}
-  "defines" are passed to OpenSCAD as -D, "parts" overrides part filaments, and "pause_above" adds
-  a pause (to swap filament by hand) at the first layer above the top of that part.
+  "variants": {"no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1},
+                          "change_above": "base", "change_to": 2}}
+  "defines" are passed to OpenSCAD as -D, "parts" overrides part filaments, and "change_above" adds
+  a filament change to "change_to" at the first layer above the top of that part. Bambu Studio
+  previews the layers above it in that filament; without AMS the printer stops for a manual swap.
   A README section between <!-- print-info:<variant> --> and <!-- /print-info:<variant> --> gets its print info.
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
 filament plus per_filament_keys.json, the keys holding a block of N values per filament.
@@ -161,33 +163,34 @@ def mesh_xml(object_id: int, mesh: trimesh.Trimesh) -> list[str]:
     return lines
 
 
-def pause_z(settings: dict, top: float) -> float:
+def change_z(settings: dict, top: float) -> float:
     """top_z of the first layer printed above height `top`."""
     first, layer = float(settings["initial_layer_print_height"]), float(settings["layer_height"])
     below = first + max(0, math.ceil((top - first) / layer - 1e-6)) * layer
     return round(below + layer, 4)
 
 
-def pauses_xml(pauses: dict[int, float], plates: list[int]) -> str:
-    """Metadata/custom_gcode_per_layer.xml: a print pause per plate (type 1 = PausePrint)."""
+def changes_xml(changes: dict[int, float], plates: list[int], filament: int, colour: str) -> str:
+    """Metadata/custom_gcode_per_layer.xml: a filament change per plate, as Bambu Studio saves
+    "Change Filament" from the layer slider (type 2 = ToolChange, mode MultiAsSingle)."""
     lines = ['<?xml version="1.0" encoding="utf-8"?>', "<custom_gcodes_per_layer>"]
     for plate_index, plate in enumerate(plates):
-        if plate not in pauses:
+        if plate not in changes:
             continue
         lines += [
             "<plate>",
             f'<plate_info id="{plate_index + 1}"/>',
-            f'<layer top_z="{pauses[plate]}" type="1" extruder="1" color="" extra="" gcode="M400 U1"/>',
-            '<mode value="SingleExtruder"/>',
+            f'<layer top_z="{changes[plate]}" type="2" extruder="{filament}" color="{colour}" extra="" gcode="tool_change"/>',
+            '<mode value="MultiAsSingle"/>',
             "</plate>",
         ]
     return "\n".join(lines + ["</custom_gcodes_per_layer>", ""])
 
 
 def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str,
-              pause_above: str | None = None, overrides: dict | None = None) -> bytes:
+              change_above: str | None = None, change_to: int = 2, overrides: dict | None = None) -> bytes:
     """objects: [{"name", "parts": [(part_name, filament, mesh)]}], meshes in scad coordinates.
-    pause_above: part name; adds a pause at the first layer above its top on its plate."""
+    change_above: part name; switches to filament change_to at the first layer above its top on its plate."""
     settings = project_settings(printer, filaments)
     settings.update(overrides or {})
     if overrides:
@@ -297,12 +300,13 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
         archive.writestr(OBJECT_PATH, object_model)
         archive.writestr("Metadata/model_settings.config", model_settings)
         archive.writestr("Metadata/project_settings.config", json.dumps(settings, indent=4))
-        if pause_above:
-            pauses = {
-                o["plate"]: pause_z(settings, mesh.bounds[1][2] - min(m.bounds[0][2] for _, _, m in o["parts"]))
-                for o in objects for part, _, mesh in o["parts"] if part == pause_above
+        if change_above:
+            changes = {
+                o["plate"]: change_z(settings, mesh.bounds[1][2] - min(m.bounds[0][2] for _, _, m in o["parts"]))
+                for o in objects for part, _, mesh in o["parts"] if part == change_above
             }
-            archive.writestr("Metadata/custom_gcode_per_layer.xml", pauses_xml(pauses, plates))
+            archive.writestr("Metadata/custom_gcode_per_layer.xml",
+                             changes_xml(changes, plates, change_to, filaments[change_to - 1].upper()))
     return buffer.getvalue()
 
 
@@ -399,8 +403,8 @@ def main() -> None:
             objects = export_objects(tmp, spec.get("defines"), spec.get("parts"))
             model = models / f"{name}-{variant}.3mf"
             print(f"→ {model.name}")
-            model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("pause_above"),
-                                         config.get("settings")))
+            model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("change_above"),
+                                         spec.get("change_to", 2), config.get("settings")))
         report(project, model, names, variant)
 
 

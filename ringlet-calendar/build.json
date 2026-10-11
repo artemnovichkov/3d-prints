@@ -1,16 +1,17 @@
 {
   "printer": "P2S",
   "filaments": [
-    {"colour": "#3f7a46", "name": "green"},
-    {"colour": "#f2f2f2", "name": "white"}
+    {"colour": "#8E9089", "name": "gray"},
+    {"colour": "#000000", "name": "black"},
+    {"colour": "#FF671F", "name": "orange"}
   ],
   "objects": [
     {"name": "Ringlet", "parts": {"base": 1, "labels": 2}},
-    {"name": "Rings", "parts": {"rings": 2}, "plate": 2}
+    {"name": "Rings", "parts": {"rings": 3}, "plate": 2}
   ],
   "preview_skip": ["labels"],
   "settings": {"enable_prime_tower": "0"},
   "variants": {
-    "no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "pause_above": "base"}
+    "no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "change_above": "base", "change_to": 2}
   }
 }
