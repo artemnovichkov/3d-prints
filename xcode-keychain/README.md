@@ -59,7 +59,7 @@ Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times dif
 - **Parts and colours:** `base` black, `grid` and `grip` blue, `head` gray.
 - 0.4 mm nozzle, 0.20 mm layers, PLA, no supports.
 - The grid is a 0.4 mm flush inlay, so the top layers of the tile change colour on every layer. Keep the prime tower on so the blue doesn't smear into the black.
-- **NFC:** the base has a Ø26 × 0.6 mm pocket for a Ø25 mm NFC sticker (NTAG213/215/216) at 1–1.6 mm. The printer pauses at Z 1.8 mm: drop the sticker in, press it flat, resume. Program the tag before or after, e.g. with a Shortcuts automation that opens Xcode.
+- **NFC:** the base has a Ø26 × 0.6 mm pocket for a Ø25 mm NFC sticker (NTAG213/215/216) at 1–1.6 mm. The printer pauses at Z 1.8 mm: drop the sticker in, press it flat, resume. Bambu Lab NFC tags (0.85 mm) are too thick for the pocket. If the next layer doesn't stick, wipe a little glue stick over the sticker first. Program the tag before or after, e.g. with a Shortcuts automation that opens Xcode.
 - **Custom colours:** open `models/xcode-keychain.3mf` and change the filament of each part (`base`, `grid`, `head`, `grip`).
 
 Xcode is a trademark of Apple Inc. This is fan art, not affiliated with or endorsed by Apple.

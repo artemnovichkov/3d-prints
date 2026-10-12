@@ -1,31 +1,34 @@
 # MakerWorld listing
 
-- **Name:** Xcode Icon Keychain
-- **Category:** Fashion → Keychains
-- **Tags:** xcode, keychain, key chain, nfc, nfc tag, apple, ios developer, swift, developer gift, programmer, app icon, hammer, multicolor, ams, gift
+- **Name:** Xcode Icon Keychain (+ NFC version)
+- **Category:** Tools → Gadgets
+- **Tags:** xcode, keychain, ios developer, swift, swiftui, apple, macos, iphone, developer gift, programmer gift, coder, software engineer, app icon, hammer, nfc, nfc keychain, nfc 25mm, ntag215, shortcuts, multicolor, ams
 - **BOM (filaments):** Bambu PLA Basic Black 10101 (tile), Gray 10103 (hammer head), Blue 10601 (grid, grip)
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
-- **Profiles:** *Standard* `models/xcode-keychain.3mf`, *NFC* `models/xcode-keychain-nfc.3mf` (extra: Ø25 mm NFC sticker, NTAG213/215/216)
+- **Profiles:**
+  - *Xcode Keychain (AMS)*: `models/xcode-keychain.3mf`, picture `images/photo-desk.jpg`
+  - *Xcode Keychain with NFC (AMS + pause)*: `models/xcode-keychain-nfc.3mf`, picture `images/photo-hand.jpg`. Extra: 25 mm NFC sticker (NTAG213/215/216)
 - **Pictures:** `images/photo-desk.jpg` (cover), `images/photo-hand.jpg`, `images/hero.png`
-- **Profile pictures:** *Standard* `images/photo-desk.jpg`, *NFC* `images/photo-hand.jpg`
 
 ## Description
 
-A keychain for iOS and macOS developers, shaped like the Xcode app icon: a rounded blueprint tile with a blue grid and a raised hammer. Build, run, and carry it on your keys 🔨
+I spend most of my day in Xcode, so I wanted its icon on my keys. A black tile with a flush blue grid and a raised hammer, about 3.5 cm across. It prints in 30 minutes and weighs 7.5 g.
 
-✨ **Features**
-- 🎨 Four parts, three colours, printed in one go with AMS
-- 🟦 Flush grid inlay: the top of the tile stays smooth
-- 🔨 Rounded, raised hammer that's nice to the touch
-- 📡 Optional NFC version: a sticker hidden inside the tile, tap your phone to run a Shortcut
-- 📏 34.6 × 34.6 × 4.6 mm, about 30 min and 7.5 g
+**Two profiles**
+- **Xcode Keychain**: the regular one.
+- **Xcode Keychain with NFC**: a 25 mm NFC sticker hidden inside the tile. Write a Shortcut or a link to it and tap your iPhone, e.g. to open your portfolio or start a Focus mode.
 
-🖨️ **Printing**
-- 0.4 mm nozzle, 0.20 mm layers, PLA, no supports.
-- Black tile, blue grid and grip, gray hammer head. Swap the colours in the slicer as you like.
-- *NFC* profile: the printer pauses at Z 1.8 mm. Drop a Ø25 mm NFC sticker into the pocket, press it flat and resume.
-- Keep the prime tower on: the grid changes colour on every top layer and the tower stops the blue from smearing.
+**Printing**
+- AMS, PLA, 0.4 mm nozzle, 0.2 mm layers, no supports.
+- Black tile, blue grid and grip, gray hammer head. Swap the colours in the slicer if you like.
+- Keep the prime tower on. The grid changes colour on every top layer of the tile, and without the tower blue gets smeared into the black.
 
-📸 Printed one? Post a make, I'd love to see your colours. If you like the model, a Boost helps a lot 🚀
+**NFC version**
+- The printer pauses at layer 9 (Z 1.8 mm). Put the sticker in the round pocket, press it flat and resume.
+- The pocket is 26 × 0.6 mm and fits regular 25 mm NTAG213/215/216 stickers. Bambu Lab NFC tags (0.85 mm) are too thick.
+- If the next layer doesn't stick to the sticker, wipe a little glue stick over it before resuming.
+- You can write the tag before or after printing, with the Shortcuts app or NFC Tools.
 
-Xcode is a trademark of Apple Inc. This is fan art, not affiliated with or endorsed by Apple.
+Printed one? Post a make, I'd like to see your colours.
+
+Fan art. Xcode is a trademark of Apple Inc., and this model is not affiliated with or endorsed by Apple.
