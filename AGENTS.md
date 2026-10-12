@@ -55,6 +55,15 @@ Use `ringlet-calendar/` as the reference project.
 - Keep parts that print in different colours at different heights on separate plates. For example, white rings beside a green base force a filament change on every layer the two have in common.
 - Generated G-code (`*.gcode`, `*.gcode.3mf`) is gitignored. Licence: CC BY-NC-SA 4.0 unless a project says otherwise.
 
+## Publishing on MakerWorld
+
+Keep the listing (name, category, tags, BOM, profiles, pictures, description) in `<project>/makerworld.md`, and add the MakerWorld link to the project README and the root README table once it's published.
+
+- Upload `models/<project>.3mf`. MakerWorld lists plates from the plate thumbnails and slice info that Bambu Studio writes; `build-models.py` keeps them.
+- A `.f3d` raw file is rejected without favourite user parameters (MakerWorld turns them into a customizer). Link the GitHub folder in the description instead.
+- At least 3 real-life photos are required, plus a 4:3 cover (3:4 app cover optional). Strip EXIF/GPS from phone photos (`sips` to JPEG, then re-save with Pillow).
+- The model form takes one print profile; add the others after publishing via ⋮ → Add Print Profile on the model page.
+
 ## Rendering README images
 
 Use a full render: in preview mode, flush inlays z-fight and show up as black patches.

@@ -1,5 +1,7 @@
 # MakerWorld listing
 
+Published: https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version (model 3428461, 2026-10-12)
+
 - **Name:** Xcode Icon Keychain (+ NFC version)
 - **Category:** Tools → Gadgets
 - **Tags:** xcode, keychain, ios developer, swift, swiftui, apple, macos, iphone, developer gift, programmer gift, coder, software engineer, app icon, hammer, nfc, nfc keychain, nfc 25mm, ntag215, shortcuts, multicolor, ams
@@ -8,7 +10,9 @@
 - **Profiles:**
   - *Xcode Keychain (AMS)*: `models/xcode-keychain.3mf`, picture `images/photo-desk.jpg`
   - *Xcode Keychain with NFC (AMS + pause)*: `models/xcode-keychain-nfc.3mf`, picture `images/photo-hand.jpg`. Extra: 25 mm NFC sticker (NTAG213/215/216)
-- **Pictures:** `images/photo-desk.jpg` (cover), `images/photo-hand.jpg`, `images/photo-keys.jpg`, `images/hero.png`
+- **Pictures:** covers 4:3 and 3:4 cropped from `images/photo-desk.jpg`; real-life photos `photo-desk.jpg`, `photo-hand.jpg`, `photo-keys.jpg`; model picture `hero.png`
+- **Raw files:** none. MakerWorld accepts a `.f3d` only with favourite user parameters (for its customizer), so the source is linked to GitHub instead
+- **NFC profile:** added after the model was published, via ⋮ → Add Print Profile on the model page
 
 ## Description
 
@@ -30,5 +34,7 @@ I spend most of my day in Xcode, so I wanted its icon on my keys. A black tile w
 - You can write the tag before or after printing, with the Shortcuts app or NFC Tools.
 
 Printed one? Post a make, I'd like to see your colours.
+
+Fusion source and build scripts are on GitHub: https://github.com/artemnovichkov/3d-prints/tree/main/xcode-keychain
 
 Fan art. Xcode is a trademark of Apple Inc., and this model is not affiliated with or endorsed by Apple.
