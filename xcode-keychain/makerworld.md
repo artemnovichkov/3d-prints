@@ -3,7 +3,7 @@
 - **Name:** Xcode Icon Keychain (+ NFC version)
 - **Category:** Tools → Gadgets
 - **Tags:** xcode, keychain, ios developer, swift, swiftui, apple, macos, iphone, developer gift, programmer gift, coder, software engineer, app icon, hammer, nfc, nfc keychain, nfc 25mm, ntag215, shortcuts, multicolor, ams
-- **BOM (filaments):** Bambu PLA Basic Black 10101 (tile), Gray 10103 (hammer head), Blue 10601 (grid, grip)
+- **BOM (filaments):** Bambu PLA Basic Black 10101 (tile), Gray 10103 (hammer head), Blue 10601 (grid, grip), 1 kg refills. Other parts: NFC sticker NTAG213/215/216, 25 mm, up to 0.6 mm thick (NFC profile only)
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 - **Profiles:**
   - *Xcode Keychain (AMS)*: `models/xcode-keychain.3mf`, picture `images/photo-desk.jpg`
