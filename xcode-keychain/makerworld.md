@@ -7,6 +7,7 @@
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 - **Profiles:** *Standard* `models/xcode-keychain.3mf`, *NFC* `models/xcode-keychain-nfc.3mf` (extra: Ø25 mm NFC sticker, NTAG213/215/216)
 - **Pictures:** `images/photo-desk.jpg` (cover), `images/photo-hand.jpg`, `images/hero.png`
+- **Profile pictures:** *Standard* `images/photo-desk.jpg`, *NFC* `images/photo-hand.jpg`
 
 ## Description
 
