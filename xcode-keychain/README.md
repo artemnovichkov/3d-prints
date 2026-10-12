@@ -2,7 +2,7 @@
 
 A keychain shaped like the Xcode app icon: a rounded blueprint tile with a flush blue grid and a raised hammer on top. Prints in one go with an AMS, no supports.
 
-**[Print it on MakerWorld](https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version)**, with ready-made profiles for the regular and NFC versions.
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version)
 
 ![Xcode Icon Keychain on a shelf](images/photo-desk.jpg)
 
