@@ -5,7 +5,7 @@
 - **Tags:** xcode, keychain, key chain, apple, ios developer, swift, developer gift, programmer, app icon, hammer, multicolor, ams, gift
 - **BOM (filaments):** Bambu PLA Basic Black 10101 (tile), Gray 10103 (hammer head), Blue 10601 (grid, grip)
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
-- **Files:** `models/xcode-keychain.3mf` (print profile), `parts/*.stl` (raw parts)
+- **Files:** `models/xcode-keychain.3mf` (print profile)
 - **Pictures:** `images/photo-desk.jpg` (cover), `images/photo-hand.jpg`, `images/hero.png`
 
 ## Description
