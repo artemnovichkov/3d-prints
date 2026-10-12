@@ -8,5 +8,8 @@
   "objects": [
     {"name": "Xcode Keychain", "parts": {"base": 1, "grid": 3, "head": 2, "grip": 3}}
   ],
-  "preview_skip": ["grid"]
+  "preview_skip": ["grid"],
+  "variants": {
+    "nfc": {"sources": {"base": "base-nfc"}, "pause_above": 1.6}
+  }
 }

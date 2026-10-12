@@ -25,6 +25,9 @@ to a 1-based filament. Without a .scad (e.g. a Fusion-only project), parts are r
   a filament change to "change_to" at the first layer above the top of that part. Bambu Studio
   previews the layers above it in that filament; without AMS the printer stops for a manual swap.
   A README section between <!-- print-info:<variant> --> and <!-- /print-info:<variant> --> gets its print info.
+  "sources" swaps part meshes in STL projects, e.g. {"base": "base-nfc"} loads parts/base-nfc.stl as "base".
+  "pause_above" pauses each plate at the first layer above that height (mm from the plate), e.g. to drop
+  an NFC sticker into a pocket whose top is at that height.
 "printer" picks scripts/templates/<printer>/ (default P2S): Bambu Studio settings for one
 filament plus per_filament_keys.json, the keys holding a block of N values per filament.
 A filament is a {"colour", "name"} object or just a "#RRGGBB" colour.
@@ -171,27 +174,23 @@ def change_z(settings: dict, top: float) -> float:
     return round(below + layer, 4)
 
 
-def changes_xml(changes: dict[int, float], plates: list[int], filament: int, colour: str) -> str:
-    """Metadata/custom_gcode_per_layer.xml: a filament change per plate, as Bambu Studio saves
-    "Change Filament" from the layer slider (type 2 = ToolChange, mode MultiAsSingle)."""
+def changes_xml(changes: dict[int, list[str]], plates: list[int]) -> str:
+    """Metadata/custom_gcode_per_layer.xml: <layer> lines per plate, as Bambu Studio saves the layer
+    slider's "Change Filament" (type 2 = ToolChange) and "Add Pause" (type 1), mode MultiAsSingle."""
     lines = ['<?xml version="1.0" encoding="utf-8"?>', "<custom_gcodes_per_layer>"]
     for plate_index, plate in enumerate(plates):
         if plate not in changes:
             continue
-        lines += [
-            "<plate>",
-            f'<plate_info id="{plate_index + 1}"/>',
-            f'<layer top_z="{changes[plate]}" type="2" extruder="{filament}" color="{colour}" extra="" gcode="tool_change"/>',
-            '<mode value="MultiAsSingle"/>',
-            "</plate>",
-        ]
+        lines += ["<plate>", f'<plate_info id="{plate_index + 1}"/>', *changes[plate], '<mode value="MultiAsSingle"/>', "</plate>"]
     return "\n".join(lines + ["</custom_gcodes_per_layer>", ""])
 
 
 def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str,
-              change_above: str | None = None, change_to: int = 2, overrides: dict | None = None) -> bytes:
+              change_above: str | None = None, change_to: int = 2, overrides: dict | None = None,
+              pause_above: float | None = None) -> bytes:
     """objects: [{"name", "parts": [(part_name, filament, mesh)]}], meshes in scad coordinates.
-    change_above: part name; switches to filament change_to at the first layer above its top on its plate."""
+    change_above: part name; switches to filament change_to at the first layer above its top on its plate.
+    pause_above: height in mm; pauses every plate at the first layer above it."""
     settings = project_settings(printer, filaments)
     settings.update(overrides or {})
     if overrides:
@@ -301,13 +300,22 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
         archive.writestr(OBJECT_PATH, object_model)
         archive.writestr("Metadata/model_settings.config", model_settings)
         archive.writestr("Metadata/project_settings.config", json.dumps(settings, indent=4))
+        changes: dict[int, list[str]] = {}
         if change_above:
-            changes = {
-                o["plate"]: change_z(settings, mesh.bounds[1][2] - min(m.bounds[0][2] for _, _, m in o["parts"]))
-                for o in objects for part, _, mesh in o["parts"] if part == change_above
-            }
-            archive.writestr("Metadata/custom_gcode_per_layer.xml",
-                             changes_xml(changes, plates, change_to, filaments[change_to - 1].upper()))
+            colour = filaments[change_to - 1].upper()
+            for o in objects:
+                for part, _, mesh in o["parts"]:
+                    if part == change_above:
+                        z = change_z(settings, mesh.bounds[1][2] - min(m.bounds[0][2] for _, _, m in o["parts"]))
+                        changes.setdefault(o["plate"], []).append(
+                            f'<layer top_z="{z}" type="2" extruder="{change_to}" color="{colour}" extra="" gcode="tool_change"/>')
+        if pause_above is not None:
+            z = change_z(settings, pause_above)
+            for plate in plates:
+                changes.setdefault(plate, []).append(
+                    f'<layer top_z="{z}" type="1" extruder="1" color="" extra="" gcode="M400 U1"/>')
+        if changes:
+            archive.writestr("Metadata/custom_gcode_per_layer.xml", changes_xml(changes, plates))
     return buffer.getvalue()
 
 
@@ -378,7 +386,8 @@ def main() -> None:
     filaments = [f if isinstance(f, dict) else {"colour": f, "name": f} for f in config["filaments"]]
     colours, names = [f["colour"] for f in filaments], [f["name"] for f in filaments]
 
-    def export_objects(tmp: str, defines: dict | None = None, overrides: dict | None = None) -> list[dict]:
+    def export_objects(tmp: str, defines: dict | None = None, overrides: dict | None = None,
+                       sources: dict | None = None) -> list[dict]:
         objects = []
         for obj in config["objects"]:
             parts = []
@@ -388,7 +397,8 @@ def main() -> None:
                 if scad.exists():
                     mesh = export(scad, part, Path(tmp) / f"{part}.stl", defines)
                 else:
-                    mesh = trimesh.load(project / "parts" / f"{part}.stl", force="mesh")
+                    source = (sources or {}).get(part, part)
+                    mesh = trimesh.load(project / "parts" / f"{source}.stl", force="mesh")
                 parts.append((part, filament, mesh))
             objects.append({"name": obj["name"], "plate": obj.get("plate", 1), "parts": parts})
         return objects
@@ -405,11 +415,11 @@ def main() -> None:
     for variant, spec in config.get("variants", {}).items():
         print(f"== variant {variant}")
         with tempfile.TemporaryDirectory() as tmp:
-            objects = export_objects(tmp, spec.get("defines"), spec.get("parts"))
+            objects = export_objects(tmp, spec.get("defines"), spec.get("parts"), spec.get("sources"))
             model = models / f"{name}-{variant}.3mf"
             print(f"→ {model.name}")
             model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("change_above"),
-                                         spec.get("change_to", 2), config.get("settings")))
+                                         spec.get("change_to", 2), config.get("settings"), spec.get("pause_above")))
         report(project, model, names, variant)
 
 
