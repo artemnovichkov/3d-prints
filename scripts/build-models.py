@@ -325,7 +325,9 @@ def duration(seconds: int) -> str:
 
 
 def print_info(model: Path, names: list[str]) -> str | None:
-    """Slice the 3MF with Bambu Studio and return a Markdown table per plate."""
+    """Slice the 3MF with Bambu Studio and return a Markdown table per plate.
+    The 3MF is replaced by Bambu Studio's own export without the G-code: it adds the plate
+    thumbnails and slice info that MakerWorld needs to list the plates of a print profile."""
     if not Path(BAMBU_CLI).exists():
         return None
     with tempfile.TemporaryDirectory() as tmp:
@@ -334,6 +336,10 @@ def print_info(model: Path, names: list[str]) -> str | None:
         with zipfile.ZipFile(Path(tmp) / "sliced.3mf") as archive:
             info = ET.fromstring(archive.read("Metadata/slice_info.config"))
             settings = json.loads(archive.read("Metadata/project_settings.config"))
+            with zipfile.ZipFile(model, "w", zipfile.ZIP_DEFLATED) as project:
+                for item in archive.infolist():
+                    if not re.fullmatch(r"Metadata/plate_\d+\.gcode(\.md5)?", item.filename):
+                        project.writestr(item.filename, archive.read(item))
     rows = ["| Plate | Contents | Filament | Time | Weight |", "|---|---|---|---|---|"]
     for plate in info.iter("plate"):
         meta = {m.get("key"): m.get("value") for m in plate.findall("metadata")}
