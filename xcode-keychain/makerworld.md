@@ -8,7 +8,7 @@
 - **Profiles:**
   - *Xcode Keychain (AMS)*: `models/xcode-keychain.3mf`, picture `images/photo-desk.jpg`
   - *Xcode Keychain with NFC (AMS + pause)*: `models/xcode-keychain-nfc.3mf`, picture `images/photo-hand.jpg`. Extra: 25 mm NFC sticker (NTAG213/215/216)
-- **Pictures:** `images/photo-desk.jpg` (cover), `images/photo-hand.jpg`, `images/hero.png`
+- **Pictures:** `images/photo-desk.jpg` (cover), `images/photo-hand.jpg`, `images/photo-keys.jpg`, `images/hero.png`
 
 ## Description
 
