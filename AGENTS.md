@@ -22,7 +22,7 @@ python3 scripts/build-models.py <project-folder>
 
 The script reads `<project>/build.json` and `<project>/<project>.scad`, then:
 
-1. Exports every part listed in `build.json` with `openscad --backend=manifold -D part="<part>"`.
+1. Exports every part listed in `build.json` with `openscad --backend=manifold -D part="<part>"`. Without a `.scad` (Fusion-only projects such as `xcode-keychain/`), it reads `<project>/parts/<part>.stl` instead: export one STL per Fusion body there.
 2. Writes `models/<project>.stl`. It is one mesh, placed objects side by side, without the parts in `preview_skip`, and GitHub shows it in its 3D viewer.
 3. Writes `models/<project>.3mf`, a Bambu Studio project. Each object becomes a multi-part object with a filament assigned to each part, and `"plate": N` puts objects on separate plates.
 4. Slices the 3MF with the Bambu Studio CLI and rewrites the table between `<!-- print-info -->` and `<!-- /print-info -->` in the project README.

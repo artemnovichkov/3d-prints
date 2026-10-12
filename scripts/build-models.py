@@ -15,7 +15,8 @@ Reads <project>/build.json:
 }
 "preview_skip" lists parts left out of the STL preview (default: none).
 Each part is exported from <project>/<project>.scad with -D part="<part>" and assigned
-to a 1-based filament. Parts of one object print as a single multi-part object.
+to a 1-based filament. Without a .scad (e.g. a Fusion-only project), parts are read from
+<project>/parts/<part>.stl instead, exported from the Fusion design one STL per body. Parts of one object print as a single multi-part object.
 "plate" puts an object on that build plate (default 1).
 "variants" (optional) builds extra 3MFs, models/<name>-<variant>.3mf, e.g. for printers without AMS:
   "variants": {"no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1},
@@ -32,7 +33,7 @@ A filament is a {"colour", "name"} object or just a "#RRGGBB" colour.
 When Bambu Studio is installed, the 3MF is sliced and the table between
 <!-- print-info --> and <!-- /print-info --> in <project>/README.md is rewritten with
 time, weight and filaments per plate.
-Needs OpenSCAD.
+Needs OpenSCAD for .scad projects.
 """
 
 import io
@@ -384,7 +385,11 @@ def main() -> None:
             for part, filament in obj["parts"].items():
                 filament = (overrides or {}).get(part, filament)
                 print(f"→ part {part} (filament {filament})")
-                parts.append((part, filament, export(scad, part, Path(tmp) / f"{part}.stl", defines)))
+                if scad.exists():
+                    mesh = export(scad, part, Path(tmp) / f"{part}.stl", defines)
+                else:
+                    mesh = trimesh.load(project / "parts" / f"{part}.stl", force="mesh")
+                parts.append((part, filament, mesh))
             objects.append({"name": obj["name"], "plate": obj.get("plate", 1), "parts": parts})
         return objects
 

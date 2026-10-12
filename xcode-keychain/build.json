@@ -1,0 +1,12 @@
+{
+  "printer": "P2S",
+  "filaments": [
+    {"colour": "#000000", "name": "black"},
+    {"colour": "#8E9089", "name": "gray"},
+    {"colour": "#0A2989", "name": "blue"}
+  ],
+  "objects": [
+    {"name": "Xcode Keychain", "parts": {"base": 1, "grid": 3, "head": 2, "grip": 3}}
+  ],
+  "preview_skip": ["grid"]
+}

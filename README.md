@@ -9,6 +9,7 @@ Printed on a Bambu Lab printer. Finished models are also published on [MakerWorl
 | | Project | Description |
 |---|---|---|
 | <img src="ringlet-calendar/images/hero.png" width="200"> | [Ringlet](ringlet-calendar) | Customizable perpetual ring calendar |
+| <img src="xcode-keychain/images/hero.png" width="200"> | [Xcode Icon Keychain](xcode-keychain) | Multicolour keychain shaped like the Xcode icon |
 
 ## Repository layout
 
@@ -19,6 +20,7 @@ project-name/
 ├── README.md          description, parameters, print settings
 ├── project-name.scad  OpenSCAD source (if parametric)
 ├── project-name.f3d   Autodesk Fusion source
+├── parts/             one STL per Fusion body (Fusion-only projects, no .scad)
 ├── build.json         printer, parts and filaments for the 3MF
 ├── models/
 │   ├── project-name.stl   single mesh, previews in 3D on GitHub
@@ -26,7 +28,7 @@ project-name/
 └── images/
 ```
 
-`models/` is generated from the `.scad` source (needs [OpenSCAD](https://openscad.org), `brew install --cask openscad@snapshot`):
+`models/` is generated from the `.scad` source, or from `parts/*.stl` when there is none (needs [OpenSCAD](https://openscad.org), `brew install --cask openscad@snapshot`):
 
 ```sh
 python3 scripts/build-models.py project-name
