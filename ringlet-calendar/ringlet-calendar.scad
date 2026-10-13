@@ -4,8 +4,6 @@
 // Compatible with OpenSCAD 2021.01 (MakerWorld Parametric Model Maker)
 
 /* [What to generate] */
-// Which part to render. Export "base" and "labels" separately for two-colour printing
-part = "all"; // [all:Everything, base:Base only, labels:Labels only, rings:Rings only]
 // How many marker rings
 ring_count = 3; // [1:1:6]
 
@@ -65,6 +63,11 @@ text_color = "#000000"; // color
 ring_color = "#FF671F"; // color
 
 /* [Hidden] */
+// What the top level renders: "plates" renders nothing, because MakerWorld
+// Parametric Model Maker builds its plates from mw_plate_N() below and would
+// add any top-level geometry to every plate. Locally pass -D part="all"
+// (or "base", "labels", "rings") to see or export the model.
+part = "plates";
 $fn = 64;
 eps = 0.01;
 cols = 7;
