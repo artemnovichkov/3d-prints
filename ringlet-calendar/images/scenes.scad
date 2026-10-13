@@ -10,10 +10,6 @@ scene_day = 4;    // fri with week_start = "mon"
 scene_date = 12;  // 13
 scene_month = 9;  // oct
 
-module ring_on(g, i) {
-    translate([pos(g, i)[0], pos(g, i)[1], plate_t]) ring();
-}
-
 translate([-plate_w / 2, -plate_l / 2, 0]) {
     color(base_color) base();
     color(text_color) labels();

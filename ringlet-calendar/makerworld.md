@@ -18,7 +18,7 @@ A reusable desk calendar with no batteries and no pages to tear off. Slip one ri
 - 🖨️ AMS and no-AMS versions
 
 🛠️ **Customize it**
-Press **Customize** to open it in Parametric Model Maker. Pick a language (English, Russian or custom labels), the first day of the week, font and text size, then export. The `part` option exports the base, labels and rings separately if you want to assign colours yourself.
+Press **Customize** to open it in Parametric Model Maker. Pick a language (English, Russian or custom labels), the first day of the week, font and text size, then generate. You get a ready 3MF with colours assigned: the calendar on plate 1, the rings on plate 2.
 
 🖨️ **Printing**
 - Plate 1: calendar base with inlaid labels. Plate 2: rings, printed separately so the base doesn't need a filament change on every layer.

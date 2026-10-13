@@ -60,9 +60,9 @@ ring_h = 2; // [1:0.5:6]
 ring_chamfer = 0.3; // [0:0.1:0.8]
 
 /* [Colours (preview only)] */
-base_color = "#EFE255";
-text_color = "#000000";
-ring_color = "#FF671F";
+base_color = "#EFE255"; // color
+text_color = "#000000"; // color
+ring_color = "#FF671F"; // color
 
 /* [Hidden] */
 $fn = 64;
@@ -178,6 +178,11 @@ module ring() {
     }
 }
 
+// a ring worn on peg i of group g (plate coordinates)
+module ring_on(g, i) {
+    translate([pos(g, i)[0], pos(g, i)[1], plate_t]) ring();
+}
+
 module rings(x0) {
     for (i = [0:ring_count - 1])
         translate([x0 + ring_od / 2, ring_od / 2 + i * (ring_od + 3), 0]) ring();
@@ -190,4 +195,32 @@ translate([-layout_w / 2, -plate_l / 2, 0]) {
     if (part == "all" || part == "base")   color(base_color) base();
     if (part == "all" || part == "labels") color(text_color) labels();
     if (part == "all" || part == "rings")  color(ring_color) rings(plate_w + 5);
+}
+
+// ---------- MakerWorld Parametric Model Maker ----------
+// PMM calls these itself and builds a multi-plate 3MF; don't call them here.
+// Plate 1: base with labels. Plate 2: rings, so the base needs no filament
+// change on the layers the rings share with it.
+module mw_plate_1() {
+    translate([-plate_w / 2, -plate_l / 2, 0]) {
+        color(base_color) base();
+        color(text_color) labels();
+    }
+}
+
+module mw_plate_2() {
+    rows = ceil(ring_count / 3);
+    translate([-1.5 * ring_od - 3, -rows * (ring_od + 3) / 2, 0])
+        for (i = [0:ring_count - 1])
+            translate([(i % 3) * (ring_od + 3) + ring_od / 2, floor(i / 3) * (ring_od + 3) + ring_od / 2, 0])
+                color(ring_color) ring();
+}
+
+// preview only: rings set to fri, 13, oct
+module mw_assembly_view() {
+    translate([-plate_w / 2, -plate_l / 2, 0]) {
+        color(base_color) base();
+        color(text_color) labels();
+        color(ring_color) { ring_on(0, 4); ring_on(1, 12); ring_on(2, 9); }
+    }
 }
