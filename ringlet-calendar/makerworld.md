@@ -8,23 +8,25 @@
 
 ## Description
 
-A reusable desk calendar with no batteries and no pages to tear off. Slip one ring over the weekday, one over the date and one over the month, and it works every year.
+A desk calendar you set by hand: one ring on the weekday, one on the date, one on the month. No pages, no batteries, and it works every year. The plate is 147 × 176 mm, prints in about 3 hours and weighs 80 g. The text is inlaid flush into the pegs, so the rings slide over it.
 
-✨ **Features**
-- 🔁 Perpetual: weekdays, 1–31 and months on one plate
-- 🎨 Flush two-colour labels: the text is inlaid into the pegs, so the top stays smooth
-- 🌍 Fully customizable: any language, Monday or Sunday week start, your own labels and font
-- 📐 Adjustable fit: peg size and ring clearance are parameters
-- 🖨️ AMS and no-AMS versions
+**Customize**
 
-🛠️ **Customize it**
-Press **Customize** to open it in Parametric Model Maker. Pick a language (English, Russian or custom labels), the first day of the week, font and text size, then generate. You get a ready 3MF with colours assigned: the calendar on plate 1, the rings on plate 2.
+Open it in Parametric Model Maker to change the language (English, Russian or your own labels), the first day of the week, the font, and the text and peg size. You get a 3MF with colours assigned: the calendar on plate 1, the rings on plate 2.
 
-🖨️ **Printing**
-- Plate 1: calendar base with inlaid labels. Plate 2: rings, printed separately so the base doesn't need a filament change on every layer.
-- 0.4 mm nozzle, 0.12 mm layers for crisp text, PLA, no supports.
-- Keep the prime tower on: it wipes the nozzle after each colour change, so the text does not smear.
-- No AMS? Use the *No AMS* profile: the text is raised and the printer stops at the first text layer so you can swap filament.
-- Print one ring first. Too tight: increase `gap` by 0.05 mm. Too loose: decrease it.
+**Printing**
+- AMS, PLA, 0.4 mm nozzle, 0.12 mm layers, no supports.
+- Yellow base, black text, orange rings. Swap the colours in the slicer if you like.
+- The rings print on their own plate. Next to the base they would force a filament change on every layer the two share.
+- Keep the prime tower on, otherwise black gets smeared into the yellow around the text.
 
-📸 Printed one? Post a make, I'd love to see your colours and languages. If you like the model, a Boost helps a lot 🚀
+**No AMS**
+- Use the No AMS profile: the text is raised instead of inlaid.
+- The printer pauses at the first text layer (Z 7.16 mm). Load the text filament and resume.
+
+**Fit**
+- The rings have 0.15 mm clearance, snug enough to stay on when the calendar leans against a wall.
+- Print one ring first. If it doesn't go on, raise `gap` by 0.05 mm in the customizer; if it falls off, lower it.
+
+Printed one? Post a make, I'd like to see your colours and languages.
+OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/ringlet-calendar).
