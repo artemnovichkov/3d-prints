@@ -14,6 +14,9 @@ Reads <project>/build.json:
   "preview_skip": ["labels"]
 }
 "preview_skip" lists parts left out of the STL preview (default: none).
+An object's "ranges" (optional) are Bambu Studio height range modifiers: print settings for a band of
+its layers, e.g. "ranges": [{"from_z": 41.2, "settings": {"fuzzy_skin": "external"}}] gives the layers
+from 41.2 mm above the bottom of the object to its top a fuzzy skin. "to_z" defaults to the top.
 Each part is exported from <project>/<project>.scad with -D part="<part>" and assigned
 to a 1-based filament. Without a .scad (e.g. a Fusion-only project), parts are read from
 <project>/parts/<part>.stl instead, exported from the Fusion design one STL per body. Parts of one object print as a single multi-part object.
@@ -202,7 +205,7 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
     plates = sorted({o["plate"] for o in objects})
     columns = math.ceil(math.sqrt(len(plates)))
 
-    mesh_lines, root_objects, items, config_objects = [], [], [], []
+    mesh_lines, root_objects, items, config_objects, ranges = [], [], [], [], []
     plate_instances: dict[int, list[str]] = {p: [] for p in plates}
     next_id, index = 1, 0
     for plate_index, plate in enumerate(plates):
@@ -251,6 +254,16 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
                 + "\n".join(config_parts)
                 + "\n  </object>"
             )
+            # height range modifiers refer to objects by their 1-based order in model_settings.config
+            height = high[2] - low[2]
+            for r in obj.get("ranges", []):
+                options = {"extruder": "0", "layer_height": settings["layer_height"], **r["settings"]}
+                ranges.append(
+                    f' <object id="{index + 1}">\n'
+                    f'  <range min_z="{r["from_z"]}" max_z="{r.get("to_z", round(height + 0.01, 2))}">\n'
+                    + "".join(f'   <option opt_key="{k}">{escape(str(v))}</option>\n' for k, v in options.items())
+                    + "  </range>\n </object>"
+                )
             plate_instances[plate].append(
                 "    <model_instance>\n"
                 f'      <metadata key="object_id" value="{object_id}"/>\n'
@@ -300,6 +313,9 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
         archive.writestr(OBJECT_PATH, object_model)
         archive.writestr("Metadata/model_settings.config", model_settings)
         archive.writestr("Metadata/project_settings.config", json.dumps(settings, indent=4))
+        if ranges:
+            archive.writestr("Metadata/layer_config_ranges.xml", "\n".join(
+                ['<?xml version="1.0" encoding="utf-8"?>', "<objects>", *ranges, "</objects>", ""]))
         changes: dict[int, list[str]] = {}
         if change_above:
             colour = filaments[change_to - 1].upper()
@@ -352,6 +368,9 @@ def print_info(model: Path, names: list[str]) -> str | None:
         )
     filament = settings["filament_settings_id"][0].split(" @")[0]
     process = settings["print_settings_id"].split(" @")[0]
+    layer = f'{float(settings["layer_height"]):.2f}mm'
+    if not process.startswith(layer):
+        process += f" with {layer} layers"
     rows += ["", f'Sliced for {settings["printer_settings_id"]}, {process}, {filament}. Times differ on other printers.']
     return "\n".join(rows) + "\n"
 
@@ -406,7 +425,8 @@ def main() -> None:
                     source = (sources or {}).get(part, part)
                     mesh = trimesh.load(project / "parts" / f"{source}.stl", force="mesh")
                 parts.append((part, filament, mesh))
-            objects.append({"name": obj["name"], "plate": obj.get("plate", 1), "parts": parts})
+            objects.append({"name": obj["name"], "plate": obj.get("plate", 1), "parts": parts,
+                            "ranges": obj.get("ranges", [])})
         return objects
 
     with tempfile.TemporaryDirectory() as tmp:

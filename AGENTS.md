@@ -50,7 +50,8 @@ Use `ringlet-calendar/` as the reference project.
 ```
 
 - The `.scad` file must stay compatible with OpenSCAD 2021.01 so that it works in the MakerWorld Parametric Model Maker. Use Customizer comments (`/* [Group] */`, `// [a:A, b:B]` ranges), and Google Fonts names for fonts.
-- The `.scad` file exposes a `part` parameter (`all` plus one value per printable body). `build.json` refers to those part names.
+- The `.scad` file has a `part` parameter (`all` plus one value per printable body). `build.json` refers to those part names.
+- For multi-plate output in MakerWorld Parametric Model Maker, define `mw_plate_1()`, `mw_plate_2()`, … and optionally `mw_assembly_view()`, and never call them yourself. PMM adds any top-level geometry to every plate and to the assembly view, so put `part` under `/* [Hidden] */` with a default that renders nothing (e.g. `"plates"`), and pass `-D part="all"` for local renders. Such scripts can't offer STL download in PMM.
 - Two-colour text is an inlay: a `labels` body fills pockets cut into `base`, flush with its top. A colourless STL of `base` and `labels` merged hides the text, so add `labels` to `preview_skip` and the preview shows the text engraved.
 - Keep parts that print in different colours at different heights on separate plates. For example, white rings beside a green base force a filament change on every layer the two have in common.
 - Generated G-code (`*.gcode`, `*.gcode.3mf`) is gitignored. Licence: CC BY-NC-SA 4.0 unless a project says otherwise.
@@ -72,22 +73,22 @@ Use a full render: in preview mode, flush inlays z-fight and show up as black pa
 OS=/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
 # hero, perspective
 $OS --backend=manifold --render --colorscheme=Tomorrow --imgsize=1600,1100 --projection=p \
-    --camera=2.85,-8.5,0,52,0,28,420 -o images/hero.png <project>.scad
+    --camera=2.85,-8.5,0,52,0,28,462 -D 'part="all"' -o images/hero.png <project>.scad
 # top view, orthographic, auto-framed
 $OS --backend=manifold --render --colorscheme=Tomorrow --imgsize=1000,1150 --projection=o \
-    --camera=0,0,0,0,0,0,0 --viewall --autocenter -D 'language="ru"' -o images/top-ru.png <project>.scad
+    --camera=0,0,0,0,0,0,0 --viewall --autocenter -D 'part="all"' -D 'language="ru"' -o images/top-ru.png <project>.scad
 ```
 
-The hero camera (translation and distance) is tuned for a plate of roughly 134 × 161 mm with the layout centred on the origin, so adjust it for other sizes.
+The hero camera (translation and distance) is tuned for a plate of roughly 147 × 176 mm with the layout centred on the origin, so adjust it for other sizes.
 
 `<project>/images/scenes.scad` (if present) includes the model and shows it in use, e.g. rings set to a date. It renders the MakerWorld covers and pictures, takes the same `-D` overrides, and centres the plate on the origin:
 
 ```sh
 # 4:3 cover / picture, 3:4 app cover, close-up
 $OS --backend=manifold --render --colorscheme=Tomorrow --projection=p --imgsize=1600,1200 \
-    --camera=0,-8,0,52,0,28,420 -o images/cover-4x3.png images/scenes.scad
-$OS ... --imgsize=1200,1600 --camera=-6,-4,0,38,0,12,540 -o images/cover-3x4.png images/scenes.scad
-$OS ... --imgsize=1600,1200 --camera=28,22,4,50,0,20,150 -o images/closeup.png images/scenes.scad
+    --camera=0,-8,0,52,0,28,462 -o images/cover-4x3.png images/scenes.scad
+$OS ... --imgsize=1200,1600 --camera=-6,-4,0,38,0,12,594 -o images/cover-3x4.png images/scenes.scad
+$OS ... --imgsize=1600,1200 --camera=31,24,4,50,0,20,165 -o images/closeup.png images/scenes.scad
 ```
 
 In zsh, don't keep the shared flags in a `$VAR`: zsh does not split it into separate arguments.

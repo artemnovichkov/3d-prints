@@ -10,3 +10,9 @@ bambu-output/
 
 # STLs exported from Fusion for build-models.py, regenerate from the .f3d
 */parts/
+
+# Local plans and research notes
+plans/
+
+# Python bytecode
+__pycache__/
