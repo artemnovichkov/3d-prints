@@ -26,7 +26,7 @@ The whole model is parametric. Change the language, the first day of the week, p
 
 | Group | Parameter | Default | Notes |
 |---|---|---|---|
-| Output | `part` | `all` | `all`, `base`, `labels`, `rings` |
+| Output | `part` | `plates` | Hidden in the Customizer. `plates` renders nothing at the top level, because MakerWorld builds its plates from `mw_plate_1()` (base, labels) and `mw_plate_2()` (rings). Pass `-D part="all"` (or `base`, `labels`, `rings`) locally |
 | | `ring_count` | `3` | Weekday, date and month |
 | Labels | `language` | `en` | `en`, `ru` or `custom` |
 | | `week_start` | `mon` | `mon` or `sun` |
