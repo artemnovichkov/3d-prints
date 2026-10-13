@@ -2,6 +2,8 @@
 
 A reusable desk calendar: slip one ring over the weekday, one over the date and one over the month. No batteries, no pages to tear off, works every year.
 
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3434752-ringlet-customizable-perpetual-ring-calendar)
+
 ![Ringlet calendar on a shelf with books](images/photos/photo-shelf.jpg)
 
 The whole model is parametric. Change the language, the first day of the week, peg size, ring clearance or font, and the layout rebuilds itself.

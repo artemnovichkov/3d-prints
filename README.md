@@ -8,7 +8,7 @@ Printed on a Bambu Lab printer. Finished models are also published on [MakerWorl
 
 | | Project | Description |
 |---|---|---|
-| <img src="ringlet-calendar/images/hero.png" width="200"> | [Ringlet](ringlet-calendar) | Customizable perpetual ring calendar |
+| <img src="ringlet-calendar/images/hero.png" width="200"> | [Ringlet](ringlet-calendar) | Customizable perpetual ring calendar. [MakerWorld](https://makerworld.com/en/models/3434752-ringlet-customizable-perpetual-ring-calendar) |
 | <img src="xcode-keychain/images/hero.png" width="200"> | [Xcode Icon Keychain](xcode-keychain) | Multicolour keychain shaped like the Xcode icon, with an optional NFC tag. [MakerWorld](https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version) |
 
 ## Repository layout
