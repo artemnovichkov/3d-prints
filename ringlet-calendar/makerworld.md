@@ -20,10 +20,6 @@ Open it in Parametric Model Maker to change the language (English, Russian or yo
 - The rings print on their own plate. Next to the base they would force a filament change on every layer the two share.
 - Keep the prime tower on, otherwise black gets smeared into the yellow around the text.
 
-**No AMS**
-- Use the No AMS profile: the text is raised instead of inlaid.
-- The printer pauses at the first text layer (Z 7.16 mm). Load the text filament and resume.
-
 **Fit**
 - The rings have 0.15 mm clearance, snug enough to stay on when the calendar leans against a wall.
 - Print one ring first. If it doesn't go on, raise `gap` by 0.05 mm in the customizer; if it falls off, lower it.
