@@ -1,7 +1,7 @@
 {
   "printer": "P2S",
   "filaments": [
-    {"colour": "#8E9089", "name": "gray"},
+    {"colour": "#F4EE2A", "name": "yellow"},
     {"colour": "#000000", "name": "black"},
     {"colour": "#FF671F", "name": "orange"}
   ],
@@ -10,7 +10,7 @@
     {"name": "Rings", "parts": {"rings": 3}, "plate": 2}
   ],
   "preview_skip": ["labels"],
-  "settings": {"enable_prime_tower": "0"},
+  "settings": {"layer_height": "0.12", "wall_generator": "arachne"},
   "variants": {
     "no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1}, "change_above": "base", "change_to": 2}
   }

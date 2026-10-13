@@ -32,27 +32,28 @@ The whole model is parametric. Change the language, the first day of the week, p
 | | `week_start` | `mon` | `mon` or `sun` |
 | | `custom_days`, `custom_months` | — | Comma-separated lists, used when `language = custom` |
 | | `font` | `Nunito:style=Bold` | Any Google Fonts name works on MakerWorld |
-| | `text_size` | `3.5` mm | Long labels shrink automatically |
+| | `text_size` | `4.25` mm | Weekdays and months. Long labels shrink automatically |
+| | `date_size` | `6` mm | Dates 1–31 |
 | | `label_style` | `inlay` | `inlay` (flush, two colours) or `raised` |
 | | `text_depth` | `0.4` mm | Inlay depth or raised height |
-| Pegs | `peg_d` / `peg_h` | `12` / `4` mm | |
+| Pegs | `peg_d` / `peg_h` | `14` / `4` mm | |
 | | `peg_chamfer` | `0.4` mm | Helps the ring slide on |
 | | `peg_spacing` | `1.7` mm | Free space between a worn ring and the next peg |
 | Plate | `plate_t`, `margin`, `group_gap`, `corner_r` | `3`, `10`, `5`, `5` mm | |
-| Rings | `gap` | `0.3` mm | Ring-to-peg clearance. Tune this for your printer |
+| Rings | `gap` | `0.15` mm | Ring-to-peg clearance: snug enough that rings stay on when the calendar is tilted. Tune this for your printer |
 | | `ring_wall` / `ring_h` / `ring_chamfer` | `1.5` / `2` / `0.3` mm | |
 
-The grid pitch and plate size are derived from the values above. With the defaults the plate is 134 × 161 mm and fits any Bambu Lab printer, including the A1 mini.
+The grid pitch and plate size are derived from the values above. With the defaults the plate is 147 × 176 mm and fits any Bambu Lab printer, including the A1 mini (just).
 
 ## Printing
 
 <!-- print-info -->
 | Plate | Contents | Filament | Time | Weight |
 |---|---|---|---|---|
-| 1 | Ringlet | gray 62.9 g, black 0.6 g | 1 h 43 min | 63.5 g |
-| 2 | Rings | orange 0.5 g | 8 min | 0.5 g |
+| 1 | Ringlet | yellow 78.3 g, black 1.4 g | 2 h 58 min | 79.7 g |
+| 2 | Rings | orange 0.5 g | 9 min | 0.5 g |
 
-Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.
+Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard with 0.12mm layers, Bambu PLA Basic. Times differ on other printers.
 <!-- /print-info -->
 
 Without AMS (`models/ringlet-calendar-no-ams.3mf`):
@@ -60,17 +61,17 @@ Without AMS (`models/ringlet-calendar-no-ams.3mf`):
 <!-- print-info:no-ams -->
 | Plate | Contents | Filament | Time | Weight |
 |---|---|---|---|---|
-| 1 | Ringlet | gray 63.9 g, black 0.4 g | 1 h 38 min | 64.4 g |
-| 2 | Rings | orange 0.5 g | 8 min | 0.5 g |
+| 1 | Ringlet | yellow 78.7 g, black 0.7 g | 2 h 44 min | 79.4 g |
+| 2 | Rings | orange 0.5 g | 9 min | 0.5 g |
 
-Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.
+Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard with 0.12mm layers, Bambu PLA Basic. Times differ on other printers.
 <!-- /print-info:no-ams -->
 
 - **Two colours, default settings.** Open `models/ringlet-calendar.3mf`, pick your printer and filaments, print.
 - **Two colours, custom settings.** Export `base` and `labels` separately, import both into Bambu Studio, and when asked choose to load them as a single object with multiple parts. Assign a filament to each part.
-- **Two colours without AMS.** Open `models/ringlet-calendar-no-ams.3mf`. The text is raised, and a filament change at the first text layer (Z 7.2 mm with default settings) stops the printer: swap to the text filament and resume. Bambu Studio previews the text in that colour. For custom settings, set `label_style = raised` and add a filament change at the first layer above the pegs.
+- **Two colours without AMS.** Open `models/ringlet-calendar-no-ams.3mf`. The text is raised, and a filament change at the first text layer (Z 7.16 mm with default settings) stops the printer: swap to the text filament and resume. Bambu Studio previews the text in that colour. For custom settings, set `label_style = raised` and add a filament change at the first layer above the pegs.
 - **Rings.** Print one ring and a small test first. If it is too tight, increase `gap` by 0.05 mm; if it falls off, decrease it.
-- Suggested settings: 0.2 mm layers, 0.4 mm nozzle, 15 % infill, no supports.
+- Suggested settings: 0.12 mm layers for crisp text, 0.4 mm nozzle, 15 % infill, no supports, prime tower on so the text colour does not smear.
 
 ## Licence
 

@@ -3,7 +3,7 @@
 - **Name:** Ringlet – Customizable Perpetual Ring Calendar
 - **Category:** Household → Decor
 - **Tags:** calendar, perpetual calendar, desk calendar, ring calendar, customizable, parametric, openscad, office, home decor, minimalist, gift, multicolor, desk accessories, office desk organizer
-- **BOM (filaments):** Bambu PLA Basic Gray 10103 (base), Black 10101 (labels), Orange 10300 (rings), 1 kg refills
+- **BOM (filaments):** Bambu PLA Basic Yellow 10400 (base), Black 10101 (labels), Orange 10300 (rings), 1 kg refills
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 
 ## Description
@@ -22,8 +22,8 @@ Press **Customize** to open it in Parametric Model Maker. Pick a language (Engli
 
 🖨️ **Printing**
 - Plate 1: calendar base with inlaid labels. Plate 2: rings, printed separately so the base doesn't need a filament change on every layer.
-- 0.4 mm nozzle, 0.2 mm layers, PLA, no supports.
-- Ironing on top surfaces gives smooth pegs and crisper text.
+- 0.4 mm nozzle, 0.12 mm layers for crisp text, PLA, no supports.
+- Keep the prime tower on: it wipes the nozzle after each colour change, so the text does not smear.
 - No AMS? Use the *No AMS* profile: the text is raised and the printer stops at the first text layer so you can swap filament.
 - Print one ring first. Too tight: increase `gap` by 0.05 mm. Too loose: decrease it.
 

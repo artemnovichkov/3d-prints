@@ -20,8 +20,10 @@ custom_days = "mo,tu,we,th,fr,sa,su";
 custom_months = "1,2,3,4,5,6,7,8,9,10,11,12";
 // Font name (Google Fonts names work on MakerWorld)
 font = "Nunito:style=Bold";
-// Text height, mm
-text_size = 3.5; // [2.5:0.25:7]
+// Weekday and month text height, mm
+text_size = 4.25; // [2.5:0.25:7]
+// Date (1–31) text height, mm
+date_size = 6; // [2.5:0.25:9]
 // Inlay: flush text for 2-colour print. Raised: text stands above the peg
 label_style = "inlay"; // [inlay:Inlay (flush), raised:Raised]
 // Inlay depth or raised height, mm
@@ -29,7 +31,7 @@ text_depth = 0.4; // [0.2:0.1:1.2]
 
 /* [Pegs] */
 // Peg diameter, mm
-peg_d = 12; // [8:0.5:20]
+peg_d = 14; // [8:0.5:20]
 // Peg height above the plate, mm
 peg_h = 4; // [2:0.5:8]
 // Chamfer on the top edge of each peg, mm
@@ -49,7 +51,7 @@ corner_r = 5; // [0:1:15]
 
 /* [Rings] */
 // Clearance between ring and peg (tune for your printer), mm
-gap = 0.3; // [0.1:0.05:0.8]
+gap = 0.15; // [0.05:0.05:0.8]
 // Ring wall thickness, mm
 ring_wall = 1.5; // [0.8:0.1:3]
 // Ring height, mm
@@ -106,7 +108,7 @@ function pos(g, i) =
      margin + peg_d / 2 + row_from_bottom * pitch + gaps_below * group_gap];
 
 // shrink long labels so they stay inside the peg
-function fit_size(t) = len(t) <= 3 ? text_size : text_size * 3 / len(t);
+function fit_size(t, size) = len(t) <= 3 ? size : size * 3 / len(t);
 
 // ---------- geometry ----------
 module plate() {
@@ -138,8 +140,8 @@ function is_tall(c) = let(o = ord(c))
     (o >= 48 && o <= 57) || (o >= 65 && o <= 90) || (o >= 1024 && o <= 1071);
 function has_tall(t) = len([for (c = t) if (is_tall(c)) c]) > 0;
 
-module label_2d(t) {
-    s = fit_size(t);
+module label_2d(t, size) {
+    s = fit_size(t, size);
     translate([0, -s * (has_tall(t) ? cap_height : x_height) / 2])
         text(t, size = s, font = font, halign = "center", valign = "baseline");
 }
@@ -148,7 +150,7 @@ module label_2d(t) {
 module labels_at(z0, h) {
     for (g = [0:len(groups) - 1], i = [0:len(groups[g]) - 1])
         translate([pos(g, i)[0], pos(g, i)[1], z0])
-            linear_extrude(h) label_2d(groups[g][i]);
+            linear_extrude(h) label_2d(groups[g][i], g == 1 ? date_size : text_size);
 }
 
 module labels() {
