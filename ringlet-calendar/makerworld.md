@@ -3,7 +3,7 @@
 - **Name:** Ringlet – Customizable Perpetual Ring Calendar
 - **Category:** Household → Decor
 - **Tags:** calendar, perpetual calendar, desk calendar, ring calendar, customizable, parametric, openscad, office, home decor, minimalist, gift, multicolor, desk accessories, office desk organizer
-- **BOM (filaments):** Bambu PLA Basic Yellow 10400 (base), Black 10101 (labels), Orange 10300 (rings), 1 kg refills
+- **BOM (filaments):** Bambu PLA Lite Yellow (base), Black (labels), Orange (rings)
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 
 ## Description

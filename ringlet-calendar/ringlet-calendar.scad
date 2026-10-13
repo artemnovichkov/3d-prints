@@ -60,7 +60,7 @@ ring_h = 2; // [1:0.5:6]
 ring_chamfer = 0.3; // [0:0.1:0.8]
 
 /* [Colours (preview only)] */
-base_color = "#8E9089";
+base_color = "#EFE255";
 text_color = "#000000";
 ring_color = "#FF671F";
 

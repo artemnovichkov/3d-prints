@@ -1,7 +1,7 @@
 {
   "printer": "P2S",
   "filaments": [
-    {"colour": "#F4EE2A", "name": "yellow"},
+    {"colour": "#EFE255", "name": "yellow"},
     {"colour": "#000000", "name": "black"},
     {"colour": "#FF671F", "name": "orange"}
   ],
