@@ -20,7 +20,8 @@ from 41.2 mm above the bottom of the object to its top a fuzzy skin. "to_z" defa
 Each part is exported from <project>/<project>.scad with -D part="<part>" and assigned
 to a 1-based filament. Without a .scad (e.g. a Fusion-only project), parts are read from
 <project>/parts/<part>.stl instead, exported from the Fusion design one STL per body. Parts of one object print as a single multi-part object.
-"plate" puts an object on that build plate (default 1).
+"plate" puts an object on that build plate (default 1). Objects on a plate go left to right and wrap
+into even rows when the bed is full.
 "variants" (optional) builds extra 3MFs, models/<name>-<variant>.3mf, e.g. for printers without AMS:
   "variants": {"no-ams": {"defines": {"label_style": "raised"}, "parts": {"labels": 1},
                           "change_above": "base", "change_to": 2}}
@@ -161,6 +162,34 @@ def preview(objects: list[dict], skip: list[str]) -> trimesh.Trimesh:
     return trimesh.util.concatenate(meshes)
 
 
+def layout(boxes: list, bed_w: float) -> list[tuple[float, float]]:
+    """Centres of objects relative to the bed centre: left to right, wrapping to a new row
+    (top to bottom) when the bed is full, rows filled evenly (2 × 2, not 3 + 1), rows and
+    the whole block centred."""
+    def fill(cap: int) -> list[list[int]]:
+        rows: list[list[int]] = [[]]
+        for i, (low, high) in enumerate(boxes):
+            row = rows[-1]
+            width = sum(boxes[j][1][0] - boxes[j][0][0] + SPACING for j in row) + high[0] - low[0]
+            if row and (len(row) == cap or width > bed_w - 2 * SPACING):
+                rows.append([])
+            rows[-1].append(i)
+        return rows
+    rows = fill(len(boxes))
+    rows = fill(math.ceil(len(boxes) / len(rows)))
+    depths = [max(boxes[j][1][1] - boxes[j][0][1] for j in row) for row in rows]
+    y = (sum(depths) + SPACING * (len(rows) - 1)) / 2
+    offsets: list[tuple[float, float]] = [(0.0, 0.0)] * len(boxes)
+    for row, depth in zip(rows, depths):
+        widths = [boxes[j][1][0] - boxes[j][0][0] for j in row]
+        x = -(sum(widths) + SPACING * (len(row) - 1)) / 2
+        for j, width in zip(row, widths):
+            offsets[j] = (x + width / 2, y - depth / 2)
+            x += width + SPACING
+        y -= depth + SPACING
+    return offsets
+
+
 def mesh_xml(object_id: int, mesh: trimesh.Trimesh) -> list[str]:
     lines = [f'  <object id="{object_id}" type="model">', "   <mesh>", "    <vertices>"]
     lines += [f'     <vertex x="{x:.5f}" y="{y:.5f}" z="{z:.5f}"/>' for x, y, z in mesh.vertices]
@@ -213,11 +242,9 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
         plate_x = (plate_index % columns) * bed_w * PLATE_STRIDE
         plate_y = -(plate_index // columns) * bed_h * PLATE_STRIDE
         on_plate = [o for o in objects if o["plate"] == plate]
-        # Lay objects out left to right, centred on the bed.
         boxes = [trimesh.util.concatenate([m for _, _, m in o["parts"]]).bounds for o in on_plate]
-        widths = [b[1][0] - b[0][0] for b in boxes]
-        x = plate_x + bed_x - (sum(widths) + SPACING * (len(on_plate) - 1)) / 2
-        for obj, (low, high), width in zip(on_plate, boxes, widths):
+        offsets = layout(boxes, bed_w)
+        for obj, (low, high), (dx, dy) in zip(on_plate, boxes, offsets):
             centre = (low + high) / 2
             component_ids = []
             config_parts = []
@@ -242,7 +269,7 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
             root_objects.append(
                 f'  <object id="{object_id}" type="model">\n   <components>\n{components}\n   </components>\n  </object>'
             )
-            tx, ty, tz = x + width / 2, plate_y + bed_y, (high[2] - low[2]) / 2
+            tx, ty, tz = plate_x + bed_x + dx, plate_y + bed_y + dy, (high[2] - low[2]) / 2
             items.append(
                 f'  <item objectid="{object_id}" transform="1 0 0 0 1 0 0 0 1 {tx:.4f} {ty:.4f} {tz:.4f}" printable="1"/>'
             )
@@ -271,7 +298,6 @@ def build_3mf(objects: list[dict], printer: str, filaments: list[str], name: str
                 f'      <metadata key="identify_id" value="{index + 1}"/>\n'
                 "    </model_instance>"
             )
-            x += width + SPACING
             index += 1
 
     object_model = "\n".join([

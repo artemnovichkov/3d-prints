@@ -92,3 +92,7 @@ $OS ... --imgsize=1600,1200 --camera=31,24,4,50,0,20,165 -o images/closeup.png i
 ```
 
 In zsh, don't keep the shared flags in a `$VAR`: zsh does not split it into separate arguments.
+
+### Shadow pendants
+
+`scripts/shadow-sim.py <stl> <png> --angle 30 --lamp 400` traces the wall shadow of a flat slat pendant (e.g. `halloween-pumpkins/`) lit by a point lamp, to tune slats and render README images without printing.

@@ -1,0 +1,11 @@
+{
+  "printer": "P2S",
+  "filaments": [{"colour": "#FF671F", "name": "orange"}],
+  "objects": [
+    {"name": "BOO / EEK", "parts": {"boo-eek": 1}},
+    {"name": "BAT / CAT", "parts": {"bat-cat": 1}},
+    {"name": "RIP / BYE", "parts": {"rip-bye": 1}},
+    {"name": "OMG / RUN", "parts": {"omg-run": 1}}
+  ],
+  "settings": {"wall_generator": "arachne"}
+}
