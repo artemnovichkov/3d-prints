@@ -1,9 +1,9 @@
 # MakerWorld listing
 
-- **Name:** Shadow Pumpkins – Two Words in One Shadow
+- **Name:** Halloween Shadow Pumpkins | Two-Word Illusion
 - **Category:** Household → Decor
 - **Contest:** [Halloween 2026 Design Contest](https://makerworld.com/en/contests/166), ends 21 Oct UTC. Upload by 20 Oct, then contest page → Join the Contest → Compete. Fits "The Pumpkiniest Pumpkin" and "Best Home Decor".
-- **Tags:** halloween, pumpkin, shadow, shadow art, illusion, optical illusion, pendant, ornament, hanging decor, halloween decor, boo, spooky, single color, no supports, no AMS, MWHalloween2026
+- **Tags:** halloween, pumpkin, shadow, shadow art, illusion, optical illusion, pendant, ornament, hanging decor, halloween decor, boo, spooky, single color, no supports, no AMS, MWHalloween2026, halloween2026, shadow illusion, shadow caster, wall shadow, silhouette, jack o lantern, pumpkin ornament, halloween ornament, customizable, custom text, parametric, anamorphic, fast print, fall decor
 - **BOM (filaments):** Bambu PLA Basic Orange 10300, 7.7 g for all four. Any colour works: only the shadow matters.
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 - **Upload:** `models/halloween-pumpkins.3mf` + `halloween-pumpkins.scad` (Parametric Model Maker, custom words).
@@ -47,3 +47,4 @@ Each pumpkin is a grid of thin slats split lengthwise. Inside a word one half of
 Open it in Parametric Model Maker and type your own two words. Three or four capitals read best; longer words shrink to fit the pumpkin. Or try [ShadowSays](https://shadowsays.vercel.app), my free web app for shadow pendants: type two words, pick a shape and preview the shadow in 3D.
 
 Printed one? Post a make with a photo of the shadow, and tag it #shadowsays. 🦇
+OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/halloween-pumpkins).
