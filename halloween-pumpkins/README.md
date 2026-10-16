@@ -19,7 +19,7 @@ Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the l
 |---|---|
 | [`models/halloween-pumpkins.stl`](models/halloween-pumpkins.stl) | All four pumpkins, opens in GitHub's 3D viewer |
 | [`models/halloween-pumpkins.3mf`](models/halloween-pumpkins.3mf) | Ready-to-print Bambu Studio project: four pumpkins on one plate |
-| `halloween-pumpkins.scad` | OpenSCAD source: words, font, slats, pumpkin size. `part = "custom"` makes a pumpkin with your own words |
+| `halloween-pumpkins.scad` | OpenSCAD source: words, font, slats, pumpkin size. Opens on your own words, ready for the MakerWorld Parametric Model Maker |
 | `halloween-pumpkins.f3d` | Autodesk Fusion design: the four pumpkins as bodies |
 | `build.json` | Objects and filament used to build the 3MF |
 | `images/` | Simulated shadows used in this README |
@@ -35,10 +35,11 @@ python3 ../scripts/shadow-sim.py boo-eek.stl boo.png --angle 30 --lamp 400
 
 | Group | Parameter | Default | Notes |
 |---|---|---|---|
-| Output | `part` | `all` | `all`, one pumpkin (`boo-eek`, `bat-cat`, `rip-bye`, `omg-run`) or `custom` |
-| Custom words | `left_text` / `right_text` | `BOO` / `EEK` | Shown with light from the left / right. Three or four letters fit |
+| Your words | `part` | `custom` | `custom` (the two words below), one preset pumpkin (`boo-eek`, `bat-cat`, `rip-bye`, `omg-run`) or `all` |
+| | `left_text` / `right_text` | `BOO` / `EEK` | Shown with light from the left / right. Three or four capitals read best |
 | Text | `font` | `Nunito:style=Black` | A heavy font reads best |
 | | `text_size`, `bold`, `text_offset` | `18`, `0.6`, `0` mm | |
+| | `text_max_w` | `60` mm | Longer words shrink to this width, both words to the same size. Widths are measured for Nunito Black |
 | Slats | `slat_w` / `gap_w` | `1.2` / `0.8` mm | |
 | | `low_h` / `high_h` | `0.6` / `1.6` mm | The words show between about 27° and 34° |
 | | `spine_w` | `0.5` mm | Slat width away from the words, `0` for full slats |

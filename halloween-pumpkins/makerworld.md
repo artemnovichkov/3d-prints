@@ -44,6 +44,6 @@ Each pumpkin is a grid of thin slats split lengthwise. Inside a word one half of
 - Print flat. Arachne walls are on in the 3MF, so the 0.5 mm slats print as single lines. A clean first layer matters.
 
 ✏️ **Make your own words**
-Open it in Parametric Model Maker and type your own two words (three or four letters fit best). Or try [ShadowSays](https://shadowsays.vercel.app), my free web app for shadow pendants: type two words, pick a shape and preview the shadow in 3D.
+Open it in Parametric Model Maker and type your own two words. Three or four capitals read best; longer words shrink to fit the pumpkin. Or try [ShadowSays](https://shadowsays.vercel.app), my free web app for shadow pendants: type two words, pick a shape and preview the shadow in 3D.
 
 Printed one? Post a make with a photo of the shadow, and tag it #shadowsays. 🦇
