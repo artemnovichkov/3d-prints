@@ -6,11 +6,28 @@ Printed on a Bambu Lab printer. Finished models are also published on [MakerWorl
 
 ## Projects
 
-| | Project | Description |
-|---|---|---|
-| <img src="ringlet-calendar/images/photos/photo-shelf.jpg" width="200"> | [Ringlet](ringlet-calendar) | Customizable perpetual ring calendar. [MakerWorld](https://makerworld.com/en/models/3434752-ringlet-customizable-perpetual-ring-calendar) |
-| <img src="xcode-keychain/images/photo-desk.jpg" width="200"> | [Xcode Icon Keychain](xcode-keychain) | Multicolour keychain shaped like the Xcode icon, with an optional NFC tag. [MakerWorld](https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version) |
-| <img src="halloween-pumpkins/images/photos/photo-garland-boo.jpg" width="200"> | [Shadow Pumpkins](halloween-pumpkins) | Halloween pendants whose shadow shows one word with light from the left and another from the right. [MakerWorld](https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion) |
+<table>
+<tr>
+<td width="33%" valign="top">
+<a href="ringlet-calendar"><img src="ringlet-calendar/images/photos/photo-shelf.jpg" alt="Ringlet" width="100%"></a>
+<h3><a href="ringlet-calendar">Ringlet</a></h3>
+Customizable perpetual ring calendar.<br><br>
+<a href="https://makerworld.com/en/models/3434752-ringlet-customizable-perpetual-ring-calendar">MakerWorld</a>
+</td>
+<td width="33%" valign="top">
+<a href="xcode-keychain"><img src="xcode-keychain/images/photo-desk.jpg" alt="Xcode Icon Keychain" width="100%"></a>
+<h3><a href="xcode-keychain">Xcode Icon Keychain</a></h3>
+Multicolour keychain shaped like the Xcode icon, with an optional NFC tag.<br><br>
+<a href="https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version">MakerWorld</a>
+</td>
+<td width="33%" valign="top">
+<a href="halloween-pumpkins"><img src="halloween-pumpkins/images/photos/photo-garland-boo.jpg" alt="Shadow Pumpkins" width="100%"></a>
+<h3><a href="halloween-pumpkins">Shadow Pumpkins</a></h3>
+Halloween pendants whose shadow shows one word with light from the left and another from the right.<br><br>
+<a href="https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion">MakerWorld</a>
+</td>
+</tr>
+</table>
 
 ## Repository layout
 
