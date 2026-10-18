@@ -8,9 +8,9 @@ Printed on a Bambu Lab printer. Finished models are also published on [MakerWorl
 
 | | Project | Description |
 |---|---|---|
-| <img src="ringlet-calendar/images/hero.png" width="200"> | [Ringlet](ringlet-calendar) | Customizable perpetual ring calendar. [MakerWorld](https://makerworld.com/en/models/3434752-ringlet-customizable-perpetual-ring-calendar) |
-| <img src="xcode-keychain/images/hero.png" width="200"> | [Xcode Icon Keychain](xcode-keychain) | Multicolour keychain shaped like the Xcode icon, with an optional NFC tag. [MakerWorld](https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version) |
-| <img src="halloween-pumpkins/images/boo-eek.jpg" width="200"> | [Shadow Pumpkins](halloween-pumpkins) | Halloween pendants whose shadow shows one word with light from the left and another from the right. [MakerWorld](https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion) |
+| <img src="ringlet-calendar/images/photos/photo-shelf.jpg" width="200"> | [Ringlet](ringlet-calendar) | Customizable perpetual ring calendar. [MakerWorld](https://makerworld.com/en/models/3434752-ringlet-customizable-perpetual-ring-calendar) |
+| <img src="xcode-keychain/images/photo-desk.jpg" width="200"> | [Xcode Icon Keychain](xcode-keychain) | Multicolour keychain shaped like the Xcode icon, with an optional NFC tag. [MakerWorld](https://makerworld.com/en/models/3428461-xcode-icon-keychain-nfc-version) |
+| <img src="halloween-pumpkins/images/photos/photo-garland-boo.jpg" width="200"> | [Shadow Pumpkins](halloween-pumpkins) | Halloween pendants whose shadow shows one word with light from the left and another from the right. [MakerWorld](https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion) |
 
 ## Repository layout
 

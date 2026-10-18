@@ -4,9 +4,15 @@ Flat pumpkin pendants that hide two words each. Light one from the left and its 
 
 [![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion)
 
-![BOO with light from the left, EEK with light from the right](images/boo-eek.jpg)
+![A garland of pumpkins: the light moves and the words in the shadows change](images/cover-4x3.gif)
 
 Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the left is blocked by the right half of the slat to the left of each gap, so raising the right halves inside a word turns that word solid in the shadow. The left halves do the same for light from the right.
+
+| Same pumpkin, light from each side | Two stem holes for a garland string |
+|---|---|
+| ![BOO with light from the left, EEK with light from the right](images/photos/photo-boo-eek.jpg) | ![Pumpkin in hand, close-up](images/photos/photo-closeup.jpg) |
+
+Simulated shadows of all four pairs:
 
 | Pair | Light from the left · from the right |
 |---|---|
@@ -24,7 +30,7 @@ Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the l
 | `halloween-pumpkins.scad` | OpenSCAD source: words, font, slats, pumpkin size. Opens on your own words, ready for the MakerWorld Parametric Model Maker |
 | `halloween-pumpkins.f3d` | Autodesk Fusion design: the four pumpkins as bodies |
 | `build.json` | Objects and filament used to build the 3MF |
-| `images/` | Simulated shadows used in this README |
+| `images/` | Photos, GIF and video of the printed garland (`cover-*`, `video.mp4`, `photos/`), simulated shadows of each pair |
 
 The pumpkin follows the one in [ShadowSays](https://shadowsays.vercel.app), a web app for shadow illusion pendants. The images come from `scripts/shadow-sim.py`, which traces the shadow of an STL lit by a lamp 40 cm away at 30°:
 
