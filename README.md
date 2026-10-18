@@ -4,6 +4,13 @@ Source files for things I design and print: parametric OpenSCAD scripts, Autodes
 
 Printed on a Bambu Lab printer. Finished models are also published on [MakerWorld](https://makerworld.com/).
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/artemnovichkov/artemnovichkov/print-heatmap/print-heatmap-dark.svg">
+  <img alt="3D printing heatmap" src="https://raw.githubusercontent.com/artemnovichkov/artemnovichkov/print-heatmap/print-heatmap-light.svg">
+</picture>
+
+Print activity from the Bambu Cloud history, updated daily by [print-heatmap](https://github.com/artemnovichkov/print-heatmap).
+
 ## Projects
 
 <table>
