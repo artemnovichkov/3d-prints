@@ -1,5 +1,7 @@
 # MakerWorld listing
 
+Published: https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion
+
 - **Name:** Halloween Shadow Pumpkins | Two-Word Illusion
 - **Category:** Household → Decor
 - **Contest:** [Halloween 2026 Design Contest](https://makerworld.com/en/contests/166), ends 21 Oct UTC. Upload by 20 Oct, then contest page → Join the Contest → Compete. Fits "The Pumpkiniest Pumpkin" and "Best Home Decor".

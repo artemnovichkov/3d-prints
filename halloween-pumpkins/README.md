@@ -2,6 +2,8 @@
 
 Flat pumpkin pendants that hide two words each. Light one from the left and its shadow on the wall says BOO; move the light to the right and it says EEK.
 
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion)
+
 ![BOO with light from the left, EEK with light from the right](images/boo-eek.jpg)
 
 Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the left is blocked by the right half of the slat to the left of each gap, so raising the right halves inside a word turns that word solid in the shadow. The left halves do the same for light from the right.
