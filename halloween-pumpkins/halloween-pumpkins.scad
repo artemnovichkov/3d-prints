@@ -4,7 +4,7 @@
 // Every slat is split lengthwise. Light from the left is blocked by the right half of the slat
 // to the left of each gap, so raising the right halves inside a word turns that word solid in
 // the shadow. The left halves do the same for light from the right.
-// Geometry follows the ShadowSays pumpkin (shadowsays.vercel.app), with the slats retuned.
+// Geometry follows the ShadowSays pumpkin (shadowsays.vercel.app).
 
 /* [Your words] */
 // Pick "Your words" to use the two words below
@@ -32,7 +32,7 @@ gap_w = 0.8;
 low_h = 0.6;
 high_h = 1.6;
 // Away from the words a slat is only this wide: a brighter shadow around the words. 0 = full slats
-spine_w = 0.5;
+spine_w = 0;
 
 /* [Pumpkin] */
 width = 76;
@@ -42,6 +42,12 @@ frame_h = 1.2;
 ribs = true;
 rib_w = 1.2;
 hole_d = 4;
+
+/* [Hanging] */
+// Two small stem holes: a garland string goes in through one and out through the other, so the pumpkin hangs flat along it and sways. One hole: for a hook or nail
+hang = "garland"; // [garland:Two holes, single:One hole]
+// Garland hole size, mm. The holes sit this far apart
+garland_hole_d = 2.4; // [1.5:0.1:3]
 
 /* [Hidden] */
 layer = "";
@@ -93,8 +99,14 @@ module frame_2d() {
                 body(-frame_w);
             }
         }
-        translate([0, body_top + stem_hole * k]) circle(d = hole_d, $fn = 48);
+        holes_2d();
     }
+}
+
+module holes_2d() {
+    translate([0, body_top + stem_hole * k])
+        if (hang == "single") circle(d = hole_d, $fn = 48);
+        else for (s = [-1, 1]) translate([s * garland_hole_d, 0]) circle(d = garland_hole_d, $fn = 48);
 }
 
 // side 0: left halves, 1: right halves
@@ -138,12 +150,12 @@ module high_2d(left, right) {
 // layer: "" = the 3D pendant; "frame", "low" or "high" = that layer in 2D, e.g. as DXF for Fusion
 module pendant(left, right) {
     if (layer == "frame") frame_2d();
-    else if (layer == "low") low_2d(left, right);
-    else if (layer == "high") high_2d(left, right);
+    else if (layer == "low") difference() { low_2d(left, right); holes_2d(); }
+    else if (layer == "high") difference() { high_2d(left, right); holes_2d(); }
     else {
         linear_extrude(frame_h) frame_2d();
-        linear_extrude(low_h) low_2d(left, right);
-        linear_extrude(high_h) high_2d(left, right);
+        linear_extrude(low_h) difference() { low_2d(left, right); holes_2d(); }
+        linear_extrude(high_h) difference() { high_2d(left, right); holes_2d(); }
     }
 }
 

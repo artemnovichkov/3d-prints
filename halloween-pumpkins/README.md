@@ -4,7 +4,7 @@ Flat pumpkin pendants that hide two words each. Light one from the left and its 
 
 ![BOO with light from the left, EEK with light from the right](images/boo-eek.jpg)
 
-Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the left is blocked by the right half of the slat to the left of each gap, so raising the right halves inside a word turns that word solid in the shadow. The left halves do the same for light from the right. Away from the words a slat is a single 0.5 mm line, which keeps the rest of the shadow bright and the words easy to read.
+Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the left is blocked by the right half of the slat to the left of each gap, so raising the right halves inside a word turns that word solid in the shadow. The left halves do the same for light from the right.
 
 | Pair | Light from the left · from the right |
 |---|---|
@@ -24,7 +24,7 @@ Each pumpkin is a grid of thin vertical slats split lengthwise. Light from the l
 | `build.json` | Objects and filament used to build the 3MF |
 | `images/` | Simulated shadows used in this README |
 
-The pumpkin follows the one in [ShadowSays](https://shadowsays.vercel.app), a web app for shadow illusion pendants, with thin slats away from the words. The images come from `scripts/shadow-sim.py`, which traces the shadow of an STL lit by a lamp 40 cm away at 30°:
+The pumpkin follows the one in [ShadowSays](https://shadowsays.vercel.app), a web app for shadow illusion pendants. The images come from `scripts/shadow-sim.py`, which traces the shadow of an STL lit by a lamp 40 cm away at 30°:
 
 ```sh
 openscad --backend=manifold -D 'part="boo-eek"' -o boo-eek.stl halloween-pumpkins.scad
@@ -42,24 +42,26 @@ python3 ../scripts/shadow-sim.py boo-eek.stl boo.png --angle 30 --lamp 400
 | | `text_max_w` | `60` mm | Longer words shrink to this width, both words to the same size. Widths are measured for Nunito Black |
 | Slats | `slat_w` / `gap_w` | `1.2` / `0.8` mm | |
 | | `low_h` / `high_h` | `0.6` / `1.6` mm | The words show between about 27° and 34° |
-| | `spine_w` | `0.5` mm | Slat width away from the words, `0` for full slats |
+| | `spine_w` | `0` mm | Slat width away from the words, e.g. `0.5` for a brighter shadow around them. `0` = full slats, sturdier |
 | Pumpkin | `width` | `76` mm | |
 | | `frame_w`, `frame_h`, `ribs`, `rib_w`, `hole_d` | `1.2`, `1.2`, on, `1.2`, `4` mm | |
+| Hanging | `hang` | `garland` | `garland`: two small stem holes for a string; `single`: one `hole_d` hole for a hook or nail |
+| | `garland_hole_d` | `2.4` mm | Garland hole size, also the distance between them |
 
 ## Printing
 
-76 × 62 mm with the stem, 1.6 mm thick. One colour, PLA, 0.4 mm nozzle, 0.2 mm layers, no supports. The 3MF turns on the Arachne wall generator so the 0.5 mm slats print as single lines.
+76 × 62 mm with the stem, 1.6 mm thick. One colour, PLA, 0.4 mm nozzle, 0.2 mm layers, no supports. The 3MF turns on the Arachne wall generator for the thin slat halves.
 
 <!-- print-info -->
 | Plate | Contents | Filament | Time | Weight |
 |---|---|---|---|---|
-| 1 | BOO / EEK, BAT / CAT, RIP / BYE, OMG / RUN | orange 7.7 g | 41 min | 7.7 g |
+| 1 | BOO / EEK, BAT / CAT, RIP / BYE, OMG / RUN | orange 9.6 g | 44 min | 9.6 g |
 
 Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.
 <!-- /print-info -->
 
 ## Hanging
 
-Thread a string through the hole in the stem and hang the pumpkin 5–10 cm from a wall. In a dark room, light it from the side with a phone flashlight or a candle at least 40 cm away, about 30° off the line straight at the wall. Move the light to the other side to flip the word. The closer the lamp, the more the angle changes across the pumpkin, and the edges of the word blur.
+Thread a thin string in through one stem hole and out through the other: the pumpkin hangs flat along the string instead of turning edge-on to the wall, and sways a little, so the word flickers. For a hook or nail, print with `hang = "single"`. Hang it 5–10 cm from a wall. In a dark room, light it from the side with a phone flashlight or a candle at least 40 cm away, about 30° off the line straight at the wall. Move the light to the other side to flip the word. The closer the lamp, the more the angle changes across the pumpkin, and the edges of the word blur.
 
 Make your own words at [shadowsays.vercel.app](https://shadowsays.vercel.app). Printed one? Post it with #shadowsays.
