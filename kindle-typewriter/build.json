@@ -1,0 +1,12 @@
+{
+  "printer": "P2S",
+  "filaments": [
+    {"colour": "#DE4343", "name": "coral"},
+    {"colour": "#000000", "name": "black"}
+  ],
+  "objects": [
+    {"name": "Typewriter", "parts": {"body": 1}},
+    {"name": "Roller", "parts": {"roller": 2}, "plate": 2}
+  ],
+  "settings": {"wall_generator": "arachne", "seam_position": "back"}
+}

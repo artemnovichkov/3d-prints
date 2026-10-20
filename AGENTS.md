@@ -8,7 +8,7 @@
 npx skills experimental_install          # restores the bambu-studio-ai skill from skills-lock.json
 python3 -m pip install --user --break-system-packages -r .claude/skills/bambu-studio-ai/requirements.txt
 brew install --cask openscad@snapshot    # the stable `openscad` cask is disabled
-brew install --cask font-nunito          # without it OpenSCAD silently falls back to another font
+brew install --cask font-nunito font-jost  # without them OpenSCAD silently falls back to another font
 ```
 
 - `.mcp.json` sets up the Autodesk Fusion MCP server (`http://127.0.0.1:27182/mcp`). It only works while Fusion is running.
