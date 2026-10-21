@@ -8,7 +8,11 @@ Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
 - **BOM (filaments):** Bambu PLA Matte Scarlet Red 11200 (body, 100.5 g), Bambu PLA Basic Black 10101 (roller, 10 g). Printed with PLA Lite black for the roller, which the BOM does not list.
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 - **Upload:** `models/kindle-typewriter.3mf` + `kindle-typewriter.scad` (Parametric Model Maker: device, case, tilt, fit).
-- **Print profile:** "Paperwhite 6 (2024)": `models/kindle-typewriter.3mf`, P2S, 0.20 mm Standard, 2 h 39 min, 2 plates. Add other devices after publishing (⋮ → Add Print Profile).
+- **Print profiles** (P2S, 0.20 mm Standard, 2 plates). The first goes in with the model, add the others after publishing (⋮ → Add Print Profile), each with the PW6 photo as cover plus its own render:
+  - "Kindle Paperwhite 6 (2024) · 0.2 mm, no AMS": `models/kindle-typewriter.3mf`, 2 h 39 min
+  - "Kindle Paperwhite 5 (2021) · 0.2 mm, no AMS": `models/kindle-typewriter-pw5.3mf`, 2 h 37 min
+  - "Kindle Paperwhite 4 (2018) · 0.2 mm, no AMS": `models/kindle-typewriter-pw4.3mf`, 2 h 31 min
+  - "Kindle Paperwhite 3 (2015) · 0.2 mm, no AMS": `models/kindle-typewriter-pw3.3mf`, 2 h 33 min
 
 ## Pictures
 

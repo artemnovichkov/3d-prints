@@ -8,5 +8,10 @@
     {"name": "Typewriter", "parts": {"body": 1}},
     {"name": "Roller", "parts": {"roller": 2}, "plate": 2}
   ],
-  "settings": {"wall_generator": "arachne", "seam_position": "back"}
+  "settings": {"wall_generator": "arachne", "seam_position": "back"},
+  "variants": {
+    "pw5": {"defines": {"device": "pw5"}},
+    "pw4": {"defines": {"device": "pw4"}},
+    "pw3": {"defines": {"device": "pw3"}}
+  }
 }
