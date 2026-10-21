@@ -38,14 +38,22 @@ Halloween pendants whose shadow shows one word with light from the left and anot
 <a href="https://makerworld.com/en/models/3455788-halloween-shadow-pumpkins-two-word-illusion">MakerWorld</a>
 </td>
 </tr>
+<tr>
+<td width="50%"><a href="designs/kindle-typewriter"><img src="designs/kindle-typewriter/images/photos/01-cover-4x3.jpg" alt="Typewriter Kindle Stand" width="100%"></a></td>
+<td valign="top">
+<h3><a href="designs/kindle-typewriter">Typewriter Kindle Stand</a></h3>
+Kindle and e-reader stand shaped like a tiny typewriter, with a roller that slides on like a carriage return.<br><br>
+<a href="https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable">MakerWorld</a>
+</td>
+</tr>
 </table>
 
 ## Repository layout
 
-Each project lives in its own folder:
+Each project lives in its own folder under `designs/`:
 
 ```
-project-name/
+designs/project-name/
 ├── README.md          description, parameters, print settings
 ├── project-name.scad  OpenSCAD source (if parametric)
 ├── project-name.f3d   Autodesk Fusion source
@@ -59,7 +67,7 @@ project-name/
 `models/` is generated from the `.scad` source, or from STLs exported from Fusion to `parts/` (gitignored) when there is none (needs [OpenSCAD](https://openscad.org), `brew install --cask openscad@snapshot`):
 
 ```sh
-python3 scripts/build-models.py project-name
+python3 scripts/build-models.py designs/project-name
 ```
 
 The 3MF uses Bambu Studio settings from `scripts/templates/<printer>/` (P2S by default). If Bambu Studio is installed, the script also slices the 3MF and refreshes the print time and filament table between `<!-- print-info -->` markers in the project README.

@@ -2,6 +2,8 @@
 
 Your Kindle stands in a tiny typewriter like a sheet of paper. The roller hides the bottom bezel, so you see only the page, and the keys carry debossed QWERTY letters. I made it for my own desk.
 
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable)
+
 ![Kindle Paperwhite in the typewriter stand on a desk](images/photos/01-cover-4x3.jpg)
 
 | Keys | Side view | Roller slides on from the left |

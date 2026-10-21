@@ -1,6 +1,6 @@
 # MakerWorld listing
 
-Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
+Published 2026-10-21: https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable
 
 - **Name:** Typewriter Kindle & E-Reader Stand | Customizable (50 chars max)
 - **Category:** Household → Office
@@ -8,7 +8,7 @@ Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
 - **BOM (filaments, in draft):** PLA Matte Scarlet Red (11200) / Refill / 1kg (body, 100.5 g), PLA Basic Black (10101) / Refill / 1kg (roller, 10 g). Printed with PLA Lite black for the roller, which the BOM does not list.
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 - **Upload:** `models/kindle-typewriter.3mf` + `kindle-typewriter.scad` (Parametric Model Maker: device, case, tilt, fit).
-- **Print profiles** (P2S, 0.20 mm Standard, 2 plates). The first goes in with the model, add the others after publishing (⋮ → Add Print Profile), each with the PW6 photo as cover plus its own render (PW6 profile has `01-cover-4x3` + `03-keys`):
+- **Print profiles** (P2S, 0.20 mm Standard, 2 plates). All four published 2026-10-21. PW6 has `01-cover-4x3` + `03-keys`; PW5/PW4/PW3 were added via ⋮ → Add Print Profile with `01-cover-4x3` and a note that the photo shows the PW6 version:
   - "Kindle Paperwhite 6 (2024) · 0.2 mm, no AMS": `models/kindle-typewriter.3mf`, 2 h 39 min
   - "Kindle Paperwhite 5 (2021) · 0.2 mm, no AMS": `models/kindle-typewriter-pw5.3mf`, 2 h 37 min
   - "Kindle Paperwhite 4 (2018) · 0.2 mm, no AMS": `models/kindle-typewriter-pw4.3mf`, 2 h 31 min
