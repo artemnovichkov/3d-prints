@@ -13,7 +13,7 @@ Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
 ## Pictures
 
 - Cover 4:3: `images/render-desk.png` until photos are shot, then a real photo.
-- Real life photos (≥3, EXIF stripped): pending v2 print.
+- Real life photos (≥3, EXIF stripped): pending v2 print. The draft temporarily holds `render-desk`, `render-assembly`, `render-keys` there to unlock the print profile step: replace them before publishing.
 - Model pictures: `render-desk.png`, `render-assembly.png`, `render-exploded.png`, `render-keys.png`, `render-top.png`.
 
 ## Description
