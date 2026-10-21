@@ -1,0 +1,43 @@
+# MakerWorld listing
+
+- **Name:** Typewriter Kindle Dock | Customizable Paperwhite Stand
+- **Category:** Gadgets → Electronics Accessories (fallback: Household → Office)
+- **Tags:** kindle, kindle stand, kindle dock, kindle paperwhite, paperwhite, e-reader, ereader stand, book stand, typewriter, retro, vintage, mini typewriter, desk accessories, office, reading, book lover, gift, customizable, parametric, openscad, no supports, multicolor
+- **BOM (filaments):** Bambu PLA Matte Scarlet Red 11200 (body, 100.5 g), Bambu PLA Basic Black 10101 (roller, 10 g). Printed with PLA Lite black for the roller, which the BOM does not list.
+- **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
+- **Upload:** `models/kindle-typewriter.3mf` + `kindle-typewriter.scad` (Parametric Model Maker: device, case, tilt, fit).
+- **Print profile:** "Paperwhite 6 (2024)": `models/kindle-typewriter.3mf`, P2S, 0.20 mm Standard, 2 h 39 min, 2 plates. Add other devices after publishing (⋮ → Add Print Profile).
+
+## Pictures
+
+- Cover 4:3: `images/render-desk.png` until photos are shot, then a real photo.
+- Real life photos (≥3, EXIF stripped): pending v2 print.
+- Model pictures: `render-desk.png`, `render-assembly.png`, `render-exploded.png`, `render-keys.png`, `render-top.png`.
+
+## Description
+
+Your Kindle stands in a tiny typewriter like a sheet of paper. ⌨️ The roller hides the bottom bezel, so you see only the page, and the keys carry debossed QWERTY letters.
+
+📖 **Fits**
+- Kindle Paperwhite 3 (2015), 4 (2018), 5 (2021) and 6 (2024), picked from a list.
+- Any other e-reader: choose Custom size and enter its width and thickness.
+- With a cover: set the extra thickness of the case.
+- The device sits 10° back by default; tilt goes from 5° to 18°.
+
+🖨️ **Printing**
+- Two plates: body (2 h 15 min, 100 g) and roller (24 min, 10 g). One colour per plate, no AMS needed.
+- PLA, 0.4 mm nozzle, 0.2 mm layers, no supports. The body prints flat, the roller on its flat side.
+- Arachne walls and back seam are set in the 3MF.
+
+🔧 **Assembly**
+The roller slides onto a dovetail like a carriage return: put it on from the left and push it right with the lever until it clicks. No glue, and it can't lift off.
+
+📐 **Fit**
+- 0.5 mm gap on each side of the device and 0.4 mm front and back.
+- Roller too tight? Raise `dt_gap` by 0.05 mm. Too loose? Lower it.
+- Printed slots come out a bit narrower than modelled: if the Kindle doesn't drop in, raise `side_clearance`.
+
+Without the Kindle it still reads as a typewriter: a curled sheet of paper stands in the slot.
+
+Printed one? Post a make, I'd like to see your colours.
+OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/kindle-typewriter).
