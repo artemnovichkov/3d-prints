@@ -15,17 +15,6 @@ Work in progress.
 Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.
 <!-- /print-info -->
 
-Without AMS (`models/kindle-typewriter-no-ams.3mf`):
-
-<!-- print-info:no-ams -->
-| Plate | Contents | Filament | Time | Weight |
-|---|---|---|---|---|
-| 1 | Typewriter | teal 84.0 g | 1 h 48 min | 84.0 g |
-| 2 | Roller | black 10.3 g | 24 min | 10.3 g |
-
-Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard, Bambu PLA Basic. Times differ on other printers.
-<!-- /print-info:no-ams -->
-
 ## Licence
 
 [CC BY-NC-SA 4.0](../LICENSE). Share and remix for non-commercial use with attribution.

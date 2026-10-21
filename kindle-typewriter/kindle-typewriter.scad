@@ -6,19 +6,21 @@
 // Your e-reader model
 device = "pw6"; // [pw3:Kindle Paperwhite 3 (2015), pw4:Kindle Paperwhite 4 (2018), pw5:Kindle Paperwhite 5 (2021), pw6:Kindle Paperwhite 6 (2024), custom:Custom size]
 // Custom width, mm
-custom_width = 127.6; // [90:0.1:160]
+custom_width = 127.6; // [104:0.1:160]
 // Custom thickness, mm
 custom_thickness = 7.8; // [5:0.1:16]
-// Custom height, mm (preview only)
-custom_height = 176.7; // [120:0.1:220]
 // Extra thickness of a case or cover, mm (0 = bare device)
 case_extra = 0; // [0:0.5:8]
+// Backward lean, degrees
+tilt = 10; // [5:1:18]
+
+/* [Fit] */
 // Gap in front of and behind the device, mm
 clearance = 0.4; // [0.2:0.1:1.5]
 // Gap on each side of the device, mm (printed slots come out narrower than modelled)
 side_clearance = 0.5; // [0.2:0.1:2]
-// Backward lean, degrees
-tilt = 10; // [5:1:18]
+// Gap in the roller's dovetail, mm: raise it if the roller is hard to slide on
+dt_gap = 0.15; // [0.05:0.05:0.4]
 
 /* [Colours (preview only)] */
 body_color = "#DE4343";
@@ -44,7 +46,7 @@ dims = device == "pw3" ? [117, 170, 9.1]
      : device == "pw4" ? [116, 167, 8.18]
      : device == "pw5" ? [124.6, 174.2, 8.1]
      : device == "pw6" ? [127.56, 176.72, 7.83]
-     : [custom_width, custom_height, custom_thickness];
+     : [custom_width, 176.7, custom_thickness];
 DW = dims[0] + case_extra;
 DH = dims[1] + case_extra;
 DT = dims[2] + case_extra;
@@ -83,6 +85,8 @@ key_map = concat(
     [[-5, 1, ""]], [for (i = [0:8]) [i - 4, 1, "ASDFGHJKL"[i]]], [[5, 1, ""]],
     [[-4.25, 0, ""]], [for (i = [0:6]) [i - 2.75, 0, "ZXCVBNM"[i]]], [[4.5, 0, ""]]
 );
+// narrow devices drop the blank keys that would stick out past the body sides
+keys_fit = [for (k = key_map) if (abs(k[0]) * key_pitch + key_d / 2 <= W / 2 - 1) k];
 RR = 6.5;                     // roller radius
 RY = 4;                       // roller axis, y
 RF = 4;                       // flat under the roller axis (prints flat side down)
@@ -93,7 +97,6 @@ peg_x = 35;
 dt_w = 5;                     // dovetail width at the body top
 dt_W = 7.4;                   // dovetail width at its top
 dt_h = 1.8;                   // dovetail height
-dt_gap = 0.15;                // dovetail clearance: slides on easily and holds firm on a P2S
 dt_x0 = -W / 2 + 2;           // left end of the tongue: the roller stops here
 
 module dovetail(w, W2, h, x0, x1, z0) translate([x0, 0, 0]) rotate([90, 0, 90]) linear_extrude(x1 - x0)
@@ -147,7 +150,7 @@ module key(top, legend) {
 }
 
 module keys() {
-    for (k = key_map) translate([k[0] * key_pitch, row_y[k[1]], 0]) key(key_top(k[1]), k[2]);
+    for (k = keys_fit) translate([k[0] * key_pitch, row_y[k[1]], 0]) key(key_top(k[1]), k[2]);
 }
 
 module stadium(l, w) hull() for (s = [-1, 1]) translate([s * (l - w) / 2, 0]) circle(d = w);
@@ -176,7 +179,7 @@ rest_w = 100;                 // width
 rest_t = 2.4;                 // thickness
 rest_h = 27;                  // straight part, from the slot floor along the device
 rest_r = 40;                  // curl radius
-rest_a = 32;                  // curl angle, degrees
+rest_a = min(32, 44 - tilt);  // curl angle, degrees: the curl tip stays within 45° of vertical
 
 module paper_rest() {
     y0 = ST + rest_t / 2;     // centre line of the plate
@@ -261,8 +264,6 @@ translate([0, CY, 0]) {
 }
 // print orientation: flat side down
 if (part == "roller") color(roller_color) translate([0, -RY, -HB]) roller();
-// Full-width strip of the body around the slot, to check the fit before the full print.
-// The slot floor sits 3 mm above the plate; includes the straight part of the paper table.
 // Render helpers (Fusion / Blender scenes): roller and a device mock-up in assembled position
 if (part == "roller_placed") translate([0, CY, 0]) roller();
 if (part == "device_body") translate([0, CY, 0]) slot_frame() translate([-DW / 2, clearance, 0])
@@ -271,6 +272,8 @@ if (part == "device_screen") translate([0, CY, 0]) slot_frame()
     translate([-DW / 2 + 9, clearance - 0.3, 21]) cube([DW - 18, 0.4, DH - 30]);
 if (part == "device_text") translate([0, CY, 0]) slot_frame() for (i = [0:17])
     translate([-DW / 2 + 16, clearance - 0.45, 32 + i * 7.6]) cube([DW - 32 - (i % 5 == 4 ? 40 : (i % 3) * 6), 0.3, 1.6]);
+// Full-width strip of the body around the slot, to check the fit before the full print.
+// The slot floor sits 3 mm above the plate; includes the straight part of the paper table.
 if (part == "fit_test") color(body_color) translate([0, -SY, -(SZ - 3)]) intersection() {
     body();
     translate([-W, SY - 8, SZ - 3]) cube([2 * W, ST + 14, rest_h + 3]);
