@@ -93,11 +93,26 @@ peg_x = 35;
 dt_w = 5;                     // dovetail width at the body top
 dt_W = 7.4;                   // dovetail width at its top
 dt_h = 1.8;                   // dovetail height
-dt_gap = 0.2;                 // dovetail clearance
+dt_gap = 0.15;                // dovetail clearance: slides on easily and holds firm on a P2S
 dt_x0 = -W / 2 + 2;           // left end of the tongue: the roller stops here
 
 module dovetail(w, W2, h, x0, x1, z0) translate([x0, 0, 0]) rotate([90, 0, 90]) linear_extrude(x1 - x0)
     polygon([[RY - w / 2, z0], [RY + w / 2, z0], [RY + W2 / 2, HB + h], [RY - W2 / 2, HB + h]]);
+
+// Tongue on the body top from x0 to x1, with a detent ridge across it 7 mm from its right end:
+// only the end of the groove rides over it, then it clicks into the notch in the groove
+module dt_tongue(x0, x1) {
+    dovetail(dt_w, dt_W, dt_h, x0, x1, HB - 0.01);
+    translate([x1 - 7, RY, HB + dt_h]) rotate([90, 0, 0]) scale([2, 0.6, 1]) cylinder(r = 0.6, h = dt_W - 1, center = true, $fn = 16);
+}
+
+// Groove cut into the roller flat: closed at x0 (the tongue's left end), detent notch at xd, open past x1.
+// The groove ceiling prints as a bridge, so the notch spans its full width: a round dimple left loose strands.
+module dt_groove(x0, xd, x1) {
+    translate([xd - 1.5, RY - (dt_W + 2 * dt_gap) / 2, HB + dt_h + dt_gap - 0.01]) cube([3, dt_W + 2 * dt_gap, 0.5]);
+    dovetail(dt_w + 2 * dt_gap, dt_W + 2 * dt_gap, dt_h + dt_gap, x0 - dt_gap, x1, HB);
+    translate([x0 - dt_gap, RY - dt_w / 2 - dt_gap, HB - 1]) cube([x1 - x0 + dt_gap, dt_w + 2 * dt_gap, 1.01]);
+}
 
 function slope_z(y) = HF + (y - F) * (HB - HF) / (YS - F);
 function key_top(r) = slope_z(row_y[r] + key_d / 2) + 2.5;
@@ -191,12 +206,7 @@ module body() {
             space_bar();
             if (roller_mount == "pegs")
                 for (s = [-1, 1]) translate([s * peg_x, RY, HB - 0.01]) cylinder(d = 3, h = 2.5);
-            if (roller_mount == "dovetail") {
-                dovetail(dt_w, dt_W, dt_h, dt_x0, W / 2 - 1, HB - 0.01);
-                // detent bump near the right end: only the last ~15 mm of the groove rides over it,
-                // then it clicks into the dimple in the groove
-                translate([W / 2 - 8, RY, HB + dt_h]) scale([2, 1, 0.6]) sphere(r = 0.6, $fn = 16);
-            }
+            if (roller_mount == "dovetail") dt_tongue(dt_x0, W / 2 - 1);
         }
         slot_frame() {
             translate([-SW / 2, 0, 0]) cube([SW, ST, DH]);
@@ -231,12 +241,7 @@ module roller() {
         if (roller_mount == "pegs")
             for (s = [-1, 1]) translate([s * peg_x, RY, HB - 0.01]) cylinder(d = 3.4, h = 3);
         // dovetail groove, open at the right knob and closed at the left: the roller slides on from the left
-        if (roller_mount == "dovetail")
-            union() {
-                translate([W / 2 - 8, RY, HB + dt_h + dt_gap]) scale([2, 1, 0.8]) sphere(r = 0.7, $fn = 16);
-                dovetail(dt_w + 2 * dt_gap, dt_W + 2 * dt_gap, dt_h + dt_gap, dt_x0 - dt_gap, W / 2 + knob_l + 1, HB);
-                translate([dt_x0 - dt_gap, RY - dt_w / 2 - dt_gap, HB - 1]) cube([W / 2 + knob_l + 1 - dt_x0 + dt_gap, dt_w + 2 * dt_gap, 1.01]);
-            }
+        if (roller_mount == "dovetail") dt_groove(dt_x0, W / 2 - 8, W / 2 + knob_l + 1);
     }
 }
 
