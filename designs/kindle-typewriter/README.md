@@ -20,6 +20,7 @@ The model is parametric: pick a Kindle Paperwhite from the list or enter any e-r
 | [`models/kindle-typewriter.3mf`](models/kindle-typewriter.3mf) | Ready-to-print Bambu Studio project for a Kindle Paperwhite 6 (2024): plate 1 is the body, plate 2 the roller |
 | `models/kindle-typewriter-pw5.3mf`, `-pw4.3mf`, `-pw3.3mf` | The same for Kindle Paperwhite 5 (2021), 4 (2018) and 3 (2015) |
 | `kindle-typewriter.scad` | OpenSCAD source. Upload it to the MakerWorld Parametric Model Maker or open it in OpenSCAD 2021.01+ |
+| `kindle-typewriter.f3d` | Autodesk Fusion render scene for `images/render-*.png`: meshes exported from the `.scad`, a Kindle mock-up, oak desk and camera. Not a parametric design |
 | `build.json` | Parts, filaments and variants used to build the 3MF |
 | `images/` | Photos and renders used in this README and on MakerWorld |
 
