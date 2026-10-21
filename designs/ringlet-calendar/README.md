@@ -77,4 +77,4 @@ Sliced for Bambu Lab P2S 0.4 nozzle, 0.20mm Standard with 0.12mm layers, Bambu P
 
 ## Licence
 
-[CC BY-NC-SA 4.0](../LICENSE). Share and remix for non-commercial use with attribution.
+[CC BY-NC-SA 4.0](../../LICENSE). Share and remix for non-commercial use with attribution.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build models/<name>.stl (GitHub preview) and models/<name>.3mf (Bambu Studio project).
 
-Usage: python3 scripts/build-models.py <project-folder>
+Usage: python3 scripts/build-models.py designs/<project>
 
 Reads <project>/build.json:
 {

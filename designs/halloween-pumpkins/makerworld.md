@@ -49,4 +49,4 @@ Each pumpkin is a grid of thin slats split lengthwise. Inside a word one half of
 Open it in Parametric Model Maker and type your own two words. Three or four capitals read best; longer words shrink to fit the pumpkin. Under Hanging, keep two small holes for a garland string or switch to one bigger hole for a hook or nail. Or try [ShadowSays](https://shadowsays.vercel.app), my free web app for shadow pendants: type two words, pick a shape and preview the shadow in 3D.
 
 Printed one? Post a make with a photo of the shadow, and tag it #shadowsays. 🦇
-OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/halloween-pumpkins).
+OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/halloween-pumpkins).

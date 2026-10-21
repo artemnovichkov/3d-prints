@@ -23,7 +23,7 @@ Size: 34.6 × 34.6 × 4.6 mm, with a 3 mm tile and a key-ring loop in the corner
 | `build.json` | Parts and filaments used to build the 3MF |
 | `images/` | Render and photos used in this README |
 
-The model is designed in Fusion, so there is no `.scad`. After changing the design, export each body to `parts/<body>.stl` (gitignored; `Base NFC` → `base-nfc.stl`) and run `python3 scripts/build-models.py xcode-keychain`.
+The model is designed in Fusion, so there is no `.scad`. After changing the design, export each body to `parts/<body>.stl` (gitignored; `Base NFC` → `base-nfc.stl`) and run `python3 scripts/build-models.py designs/xcode-keychain`.
 
 ## Parameters
 
@@ -68,4 +68,4 @@ Xcode is a trademark of Apple Inc. This is fan art, not affiliated with or endor
 
 ## Licence
 
-[CC BY-NC-SA 4.0](../LICENSE). Share and remix for non-commercial use with attribution.
+[CC BY-NC-SA 4.0](../../LICENSE). Share and remix for non-commercial use with attribution.

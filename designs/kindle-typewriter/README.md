@@ -90,4 +90,4 @@ The roller slides onto a dovetail like a carriage return: put it on from the lef
 
 ## Licence
 
-[CC BY-NC-SA 4.0](../LICENSE). Share and remix for non-commercial use with attribution.
+[CC BY-NC-SA 4.0](../../LICENSE). Share and remix for non-commercial use with attribution.

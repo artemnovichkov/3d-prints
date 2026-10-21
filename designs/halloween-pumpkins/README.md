@@ -36,7 +36,7 @@ The pumpkin follows the one in [ShadowSays](https://shadowsays.vercel.app), a we
 
 ```sh
 openscad --backend=manifold -D 'part="boo-eek"' -o boo-eek.stl halloween-pumpkins.scad
-python3 ../scripts/shadow-sim.py boo-eek.stl boo.png --angle 30 --lamp 400
+python3 ../../scripts/shadow-sim.py boo-eek.stl boo.png --angle 30 --lamp 400
 ```
 
 ## Parameters

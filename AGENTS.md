@@ -1,6 +1,6 @@
 # AGENTS.md
 
-3D-printable models designed by Artem Novichkov, printed on a Bambu Lab P2S and published on MakerWorld. Each model lives in its own folder, and `scripts/` holds the shared build tooling.
+3D-printable models designed by Artem Novichkov, printed on a Bambu Lab P2S and published on MakerWorld. Each model lives in its own folder under `designs/`, and `scripts/` holds the shared build tooling. Below, `<project>` means `designs/<project>/`.
 
 ## Setup
 
@@ -17,12 +17,12 @@ brew install --cask font-nunito font-jost  # without them OpenSCAD silently fall
 ## Build
 
 ```sh
-python3 scripts/build-models.py <project-folder>
+python3 scripts/build-models.py designs/<project>
 ```
 
 The script reads `<project>/build.json` and `<project>/<project>.scad`, then:
 
-1. Exports every part listed in `build.json` with `openscad --backend=manifold -D part="<part>"`. Without a `.scad` (Fusion-only projects such as `xcode-keychain/`), it reads `<project>/parts/<part>.stl` instead: export one STL per Fusion body there. `parts/` is gitignored. A variant's `sources` swaps a part's STL (e.g. `base` → `base-nfc`), and `pause_above` adds a pause for inserts such as NFC stickers.
+1. Exports every part listed in `build.json` with `openscad --backend=manifold -D part="<part>"`. Without a `.scad` (Fusion-only projects such as `designs/xcode-keychain/`), it reads `<project>/parts/<part>.stl` instead: export one STL per Fusion body there. `parts/` is gitignored. A variant's `sources` swaps a part's STL (e.g. `base` → `base-nfc`), and `pause_above` adds a pause for inserts such as NFC stickers.
 2. Writes `models/<project>.stl`. It is one mesh, placed objects side by side, without the parts in `preview_skip`, and GitHub shows it in its 3D viewer.
 3. Writes `models/<project>.3mf`, a Bambu Studio project. Each object becomes a multi-part object with a filament assigned to each part, and `"plate": N` puts objects on separate plates.
 4. Slices the 3MF with the Bambu Studio CLI and rewrites the table between `<!-- print-info -->` and `<!-- /print-info -->` in the project README.
@@ -37,10 +37,10 @@ To add a printer, slice the same model twice with the bambu-studio-ai skill's `s
 
 ## Model conventions
 
-Use `ringlet-calendar/` as the reference project.
+Use `designs/ringlet-calendar/` as the reference project.
 
 ```
-<project>/
+designs/<project>/
 ├── README.md        description, parameters, printing, <!-- print-info --> markers
 ├── <project>.scad   parametric source; the source of truth for models/
 ├── <project>.f3d    Autodesk Fusion source (optional)
@@ -58,7 +58,7 @@ Use `ringlet-calendar/` as the reference project.
 
 ## Publishing on MakerWorld
 
-Keep the listing (name, category, tags, BOM, profiles, pictures, description) in `<project>/makerworld.md`, and add the MakerWorld link to the project README and the root README table once it's published.
+Keep the listing (name, category, tags, BOM, profiles, pictures, description) in `<project>/makerworld.md`, and add the MakerWorld link to the project README and the root README table once it's published. Link the GitHub folder as `https://github.com/artemnovichkov/3d-prints/tree/main/designs/<project>`.
 
 - Upload `models/<project>.3mf`. MakerWorld lists plates from the plate thumbnails and slice info that Bambu Studio writes; `build-models.py` keeps them.
 - A `.f3d` raw file is rejected without favourite user parameters (MakerWorld turns them into a customizer). Link the GitHub folder in the description instead.
@@ -95,4 +95,4 @@ In zsh, don't keep the shared flags in a `$VAR`: zsh does not split it into sepa
 
 ### Shadow pendants
 
-`scripts/shadow-sim.py <stl> <png> --angle 30 --lamp 400` traces the wall shadow of a flat slat pendant (e.g. `halloween-pumpkins/`) lit by a point lamp, to tune slats and render README images without printing.
+`scripts/shadow-sim.py <stl> <png> --angle 30 --lamp 400` traces the wall shadow of a flat slat pendant (e.g. `designs/halloween-pumpkins/`) lit by a point lamp, to tune slats and render README images without printing.

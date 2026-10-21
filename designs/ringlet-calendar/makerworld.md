@@ -25,4 +25,4 @@ Open it in Parametric Model Maker to change the language (English, Russian or yo
 - Print one ring first. If it doesn't go on, raise `gap` by 0.05 mm in the customizer; if it falls off, lower it.
 
 Printed one? Post a make, I'd like to see your colours and languages.
-OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/ringlet-calendar).
+OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/ringlet-calendar).

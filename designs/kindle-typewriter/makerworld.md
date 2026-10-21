@@ -47,4 +47,4 @@ The roller slides onto a dovetail like a carriage return: put it on from the lef
 Without the Kindle it still reads as a typewriter: a curled sheet of paper stands in the slot.
 
 Printed one? Post a make, I'd like to see your colours.
-OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/kindle-typewriter).
+OpenSCAD source and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/kindle-typewriter).

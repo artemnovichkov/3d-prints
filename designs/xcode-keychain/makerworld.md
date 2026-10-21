@@ -35,6 +35,6 @@ I spend most of my day in Xcode, so I wanted its icon on my keys. A black tile w
 
 Printed one? Post a make, I'd like to see your colours.
 
-Fusion source and build scripts are on GitHub: https://github.com/artemnovichkov/3d-prints/tree/main/xcode-keychain
+Fusion source and build scripts are on GitHub: https://github.com/artemnovichkov/3d-prints/tree/main/designs/xcode-keychain
 
 Fan art. Xcode is a trademark of Apple Inc., and this model is not affiliated with or endorsed by Apple.
