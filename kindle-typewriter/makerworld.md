@@ -19,7 +19,7 @@ Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
 - Cover 4:3: `images/photos/01-cover-4x3.jpg`; app cover 3:4: `images/photos/cover-3x4.jpg`.
 - Real life photos (EXIF stripped, `images/photos/`): `01-cover-4x3`, `02-letter`, `03-keys`, `04-profile`, `05-roller-on`, `06-roller-click`. They replace the 3 temporary renders in the draft. Print profile photo: `01-cover-4x3`.
 - Kindle screen: `Typewriter Pages` EPUB (Special Elite font) opened in KOReader.
-- Model pictures: `render-desk.png`, `render-assembly.png`, `render-exploded.png`, `render-keys.png`, `render-top.png`.
+- Model pictures: `render-assembly.png`, `render-exploded.png`. Desk, keys and top renders dropped: real photos cover them.
 
 ## Description
 
