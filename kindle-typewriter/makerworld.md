@@ -1,7 +1,9 @@
 # MakerWorld listing
 
-- **Name:** Typewriter Kindle Dock | Customizable Paperwhite Stand
-- **Category:** Gadgets → Electronics Accessories (fallback: Household → Office)
+Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
+
+- **Name:** Typewriter Kindle Dock | Paperwhite Stand (50 chars max)
+- **Category:** Electronics
 - **Tags:** kindle, kindle stand, kindle dock, kindle paperwhite, paperwhite, e-reader, ereader stand, book stand, typewriter, retro, vintage, mini typewriter, desk accessories, office, reading, book lover, gift, customizable, parametric, openscad, no supports, multicolor
 - **BOM (filaments):** Bambu PLA Matte Scarlet Red 11200 (body, 100.5 g), Bambu PLA Basic Black 10101 (roller, 10 g). Printed with PLA Lite black for the roller, which the BOM does not list.
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
