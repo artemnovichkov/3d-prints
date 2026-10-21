@@ -2,13 +2,13 @@
 
 Draft: https://makerworld.com/en/my/models/drafts/10122517/edit
 
-- **Name:** Typewriter Kindle Dock | Paperwhite Stand (50 chars max)
-- **Category:** Electronics
-- **Tags:** kindle, kindle stand, kindle dock, kindle paperwhite, paperwhite, e-reader, ereader stand, book stand, typewriter, retro, vintage, mini typewriter, desk accessories, office, reading, book lover, gift, customizable, parametric, openscad, no supports, multicolor
-- **BOM (filaments):** Bambu PLA Matte Scarlet Red 11200 (body, 100.5 g), Bambu PLA Basic Black 10101 (roller, 10 g). Printed with PLA Lite black for the roller, which the BOM does not list.
+- **Name:** Typewriter Kindle & E-Reader Stand | Customizable (50 chars max)
+- **Category:** Household → Office
+- **Tags:** kindle, kindle stand, kindle dock, kindle paperwhite, paperwhite, e-reader, ereader stand, book stand, typewriter, retro, vintage, mini typewriter, desk accessories, office, reading, book lover, gift, customizable, parametric, openscad, no supports, multicolor, ereader, kindle holder, kindle accessory, ereader holder, e-reader stand, paperwhite stand, kobo, reading nook, bookish, bookish accessories, desk accessory, home decor, nightstand, gift idea, typewriter decor, qwerty
+- **BOM (filaments, in draft):** PLA Matte Scarlet Red (11200) / Refill / 1kg (body, 100.5 g), PLA Basic Black (10101) / Refill / 1kg (roller, 10 g). Printed with PLA Lite black for the roller, which the BOM does not list.
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
 - **Upload:** `models/kindle-typewriter.3mf` + `kindle-typewriter.scad` (Parametric Model Maker: device, case, tilt, fit).
-- **Print profiles** (P2S, 0.20 mm Standard, 2 plates). The first goes in with the model, add the others after publishing (⋮ → Add Print Profile), each with the PW6 photo as cover plus its own render:
+- **Print profiles** (P2S, 0.20 mm Standard, 2 plates). The first goes in with the model, add the others after publishing (⋮ → Add Print Profile), each with the PW6 photo as cover plus its own render (PW6 profile has `01-cover-4x3` + `03-keys`):
   - "Kindle Paperwhite 6 (2024) · 0.2 mm, no AMS": `models/kindle-typewriter.3mf`, 2 h 39 min
   - "Kindle Paperwhite 5 (2021) · 0.2 mm, no AMS": `models/kindle-typewriter-pw5.3mf`, 2 h 37 min
   - "Kindle Paperwhite 4 (2018) · 0.2 mm, no AMS": `models/kindle-typewriter-pw4.3mf`, 2 h 31 min
