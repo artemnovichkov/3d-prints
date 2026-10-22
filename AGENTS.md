@@ -25,7 +25,8 @@ The script reads `<project>/build.json` and `<project>/<project>.scad`, then:
 1. Exports every part listed in `build.json` with `openscad --backend=manifold -D part="<part>"`. Without a `.scad` (Fusion-only projects such as `designs/xcode-keychain/`), it reads `<project>/parts/<part>.stl` instead: export one STL per Fusion body there. `parts/` is gitignored. A variant's `sources` swaps a part's STL (e.g. `base` → `base-nfc`), and `pause_above` adds a pause for inserts such as NFC stickers.
 2. Writes `models/<project>.stl`. It is one mesh, placed objects side by side, without the parts in `preview_skip`, and GitHub shows it in its 3D viewer.
 3. Writes `models/<project>.3mf`, a Bambu Studio project. Each object becomes a multi-part object with a filament assigned to each part, and `"plate": N` puts objects on separate plates.
-4. Slices the 3MF with the Bambu Studio CLI and rewrites the table between `<!-- print-info -->` and `<!-- /print-info -->` in the project README.
+4. Writes `models/parts/<part>[-<variant>]-<filament>.stl`, one STL per part for slicers that can't read the Bambu 3MF's filaments (PrusaSlicer, Printables). Parts keep their positions within the object, so loading them together as one multi-part object lines them up. Variants only add parts that differ from the main build.
+5. Slices the 3MF with the Bambu Studio CLI and rewrites the table between `<!-- print-info -->` and `<!-- /print-info -->` in the project README.
 
 The format of `build.json` is documented in the docstring of `scripts/build-models.py`. Commit `models/` whenever the `.scad` source changes.
 
@@ -47,7 +48,7 @@ designs/<project>/
 ├── <project>.scad   parametric source; the source of truth for models/
 ├── <project>.f3d    Autodesk Fusion source (optional)
 ├── build.json       printer, filaments, objects/parts/plates, preview_skip
-├── models/          generated .stl and .3mf (committed)
+├── models/          generated .stl, .3mf and parts/*.stl (committed)
 └── images/          README renders (committed)
 ```
 

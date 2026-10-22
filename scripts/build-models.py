@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Build models/<name>.stl (GitHub preview) and models/<name>.3mf (Bambu Studio project).
+"""Build models/<name>.stl (GitHub preview), models/<name>.3mf (Bambu Studio project) and
+models/parts/<part>[-<variant>]-<filament name>.stl (one STL per part, e.g. for Printables).
 
 Usage: python3 scripts/build-models.py designs/<project>
 
@@ -160,6 +161,27 @@ def preview(objects: list[dict], skip: list[str]) -> trimesh.Trimesh:
         meshes.append(mesh)
         x = mesh.bounds[1][0] + SPACING
     return trimesh.util.concatenate(meshes)
+
+
+def same_mesh(a: trimesh.Trimesh, b: trimesh.Trimesh) -> bool:
+    return a.vertices.shape == b.vertices.shape and a.faces.shape == b.faces.shape \
+        and (a.vertices == b.vertices).all() and (a.faces == b.faces).all()
+
+
+def export_parts(objects: list[dict], names: list[str], folder: Path, variant: str = "",
+                 base: dict | None = None) -> None:
+    """One STL per part, <part>[-<variant>]-<filament name>.stl, for slicers that can't read the
+    Bambu 3MF's filaments (PrusaSlicer, Printables). Parts keep their positions within the object,
+    which sits on z = 0, so loading them as parts of one object lines them up.
+    base: {(part, filament): mesh} of the main build; a variant skips parts identical to it."""
+    for obj in objects:
+        floor = min(m.bounds[0][2] for _, _, m in obj["parts"])
+        for part, filament, mesh in obj["parts"]:
+            if base is not None and (old := base.get((part, filament))) is not None and same_mesh(old, mesh):
+                continue
+            moved = mesh.copy()
+            moved.apply_translation([0, 0, -floor])
+            moved.export(folder / f"{part}{'-' + variant if variant else ''}-{names[filament - 1]}.stl")
 
 
 def layout(boxes: list, bed_w: float) -> list[tuple[float, float]]:
@@ -459,6 +481,12 @@ def main() -> None:
         objects = export_objects(tmp)
         print(f"→ {name}.stl")
         preview(objects, config.get("preview_skip", [])).export(models / f"{name}.stl")
+        print("→ parts/")
+        parts = models / "parts"
+        shutil.rmtree(parts, ignore_errors=True)
+        parts.mkdir()
+        export_parts(objects, names, parts)
+        base = {(p, f): m for o in objects for p, f, m in o["parts"]}
         print(f"→ {name}.3mf")
         model = models / f"{name}.3mf"
         model.write_bytes(build_3mf(objects, printer, colours, name, overrides=config.get("settings")))
@@ -468,6 +496,7 @@ def main() -> None:
         print(f"== variant {variant}")
         with tempfile.TemporaryDirectory() as tmp:
             objects = export_objects(tmp, spec.get("defines"), spec.get("parts"), spec.get("sources"))
+            export_parts(objects, names, parts, variant, base)
             model = models / f"{name}-{variant}.3mf"
             print(f"→ {model.name}")
             model.write_bytes(build_3mf(objects, printer, colours, f"{name} ({variant})", spec.get("change_above"),
