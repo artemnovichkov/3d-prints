@@ -1,11 +1,11 @@
 # Printables listing
 
-Not published yet.
+Draft saved 2026-10-22: https://www.printables.com/model/1886726/edit (not published).
 
 - **Name:** Typewriter Kindle & E-Reader Stand
 - **Summary (120 max):** Your Kindle stands in a tiny typewriter like a sheet of paper. Kindle Paperwhite 3–6 or any e-reader via OpenSCAD.
 - **Category:** Household → Office
-- **Tags:** kindle, kindle stand, kindle paperwhite, e-reader, ereader stand, typewriter, retro, desk accessories, book lover, openscad, parametric, no supports, gift
+- **Tags** (lower-case letters and digits only, one word each): kindle, paperwhite, ereader, stand, typewriter, retro, desk, office, openscad, parametric, gift, books
 - **Model origin:** Original model – I made it
 - **AI:** Yes — AI-assisted creation
 - **Licence:** CC BY-NC-SA 4.0
