@@ -29,6 +29,8 @@ The part STLs are renamed on upload so the device is in the file name (source �
 
 Only the PW6 3MF goes up: the PW5/PW4/PW3 Bambu projects stay on MakerWorld, linked in the description.
 
+Model Files are in folders `Kindle Paperwhite 6 (2024)` … `Kindle Paperwhite 3 (2015)` (body + roller each) and `Bambu Studio` (3MF); `.scad` stays in the root. File notes: body "Body, prints flat", roller "Roller, prints on its flat side", 3MF "Bambu Studio project: both plates and settings ready", .scad "OpenSCAD source: set your e-reader size, case thickness and tilt, then export body and roller."
+
 ## Pictures
 
 `images/photos/01-cover-4x3.jpg` (cover), `02-letter`, `03-keys`, `04-profile`, `05-roller-on`, `06-roller-click`, then `images/render-assembly.png`, `images/render-exploded.png`.
@@ -42,8 +44,8 @@ Your Kindle stands in a tiny typewriter like a sheet of paper. ⌨️ The roller
 - Any other e-reader, or a Kindle in a case: open `kindle-typewriter.scad` in OpenSCAD and set `device = "custom"` with its width and thickness, `case_extra` for a cover, and `tilt` (5–18°, 10° by default). Prefer a web customizer? The same model is customizable on [MakerWorld](https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable).
 
 📁 **Files**
-- `kindle-typewriter-pwN-body.stl` and `kindle-typewriter-pwN-roller.stl`: the two parts for Kindle Paperwhite N, already in print orientation.
-- `kindle-typewriter-pw6-bambu.3mf`: Bambu Studio project for the PW6, both plates and settings ready. Projects for the other Paperwhites are on MakerWorld.
+- **Kindle Paperwhite 3 / 4 / 5 / 6** folders: body and roller for that Kindle, already in print orientation.
+- **Bambu Studio**: project for the PW6 with both plates and settings ready. Projects for the other Paperwhites are on MakerWorld.
 - `kindle-typewriter.scad`: the parametric source (OpenSCAD 2021.01 or newer; export with `part = "body"` or `"roller"`).
 
 🖨️ **Printing**
