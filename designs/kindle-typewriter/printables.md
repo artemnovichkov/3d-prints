@@ -1,6 +1,6 @@
 # Printables listing
 
-Draft saved 2026-10-22: https://www.printables.com/model/1886726/edit (not published).
+Published 2026-10-22: https://www.printables.com/model/1886726-typewriter-kindle-e-reader-stand
 
 - **Name:** Typewriter Kindle & E-Reader Stand
 - **Summary (120 max):** Your Kindle stands in a tiny typewriter like a sheet of paper. Kindle Paperwhite 3–6 or any e-reader via OpenSCAD.

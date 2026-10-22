@@ -2,7 +2,7 @@
 
 Your Kindle stands in a tiny typewriter like a sheet of paper. The roller hides the bottom bezel, so you see only the page, and the keys carry debossed QWERTY letters. I made it for my own desk.
 
-[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable)
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable) [![Download on Printables](https://img.shields.io/badge/Download%20on-Printables-FA6831?logo=printables&logoColor=white)](https://www.printables.com/model/1886726-typewriter-kindle-e-reader-stand)
 
 ![Kindle Paperwhite in the typewriter stand on a desk](images/photos/01-cover-4x3.jpg)
 
@@ -22,7 +22,7 @@ The model is parametric: pick a Kindle Paperwhite from the list or enter any e-r
 | `kindle-typewriter.scad` | OpenSCAD source. Upload it to the MakerWorld Parametric Model Maker or open it in OpenSCAD 2021.01+ |
 | `kindle-typewriter.f3d` | Autodesk Fusion render scene for `images/render-*.png`: meshes exported from the `.scad`, a Kindle mock-up, oak desk and camera. Not a parametric design |
 | `build.json` | Parts, filaments and variants used to build the 3MF |
-| `images/` | Photos and renders used in this README and on MakerWorld |
+| `images/` | Photos and renders used in this README, on MakerWorld and on Printables |
 
 ## Parameters
 

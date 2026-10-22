@@ -2,7 +2,7 @@
 
 Source files for things I design and print: parametric OpenSCAD scripts, Autodesk Fusion designs, and print notes.
 
-Printed on a Bambu Lab printer. Finished models are also published on [MakerWorld](https://makerworld.com/).
+Printed on a Bambu Lab printer. Finished models are also published on [MakerWorld](https://makerworld.com/) and [Printables](https://www.printables.com/).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/artemnovichkov/artemnovichkov/print-heatmap/print-heatmap-dark.svg">
@@ -43,7 +43,7 @@ Halloween pendants whose shadow shows one word with light from the left and anot
 <td valign="top">
 <h3><a href="designs/kindle-typewriter">Typewriter Kindle Stand</a></h3>
 Kindle and e-reader stand shaped like a tiny typewriter, with a roller that slides on like a carriage return.<br><br>
-<a href="https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable">MakerWorld</a>
+<a href="https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable">MakerWorld</a> · <a href="https://www.printables.com/model/1886726-typewriter-kindle-e-reader-stand">Printables</a>
 </td>
 </tr>
 </table>
