@@ -1,0 +1,10 @@
+{
+  "printer": "P2S",
+  "filaments": [
+    {"colour": "#D7262E", "name": "red"}
+  ],
+  "objects": [
+    {"name": "Watch Stool", "parts": {"stool": 1}}
+  ],
+  "settings": {"wall_generator": "arachne", "seam_position": "back", "wall_loops": "3", "sparse_infill_density": "25%"}
+}
