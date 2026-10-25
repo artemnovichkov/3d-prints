@@ -46,6 +46,13 @@ Kindle and e-reader stand shaped like a tiny typewriter, with a roller that slid
 <a href="https://makerworld.com/en/models/3472879-typewriter-kindle-e-reader-stand-customizable">MakerWorld</a> · <a href="https://www.printables.com/model/1886726-typewriter-kindle-e-reader-stand">Printables</a>
 </td>
 </tr>
+<tr>
+<td width="50%"><a href="designs/watch-stool"><img src="designs/watch-stool/images/render-hero.png" alt="Watch Stool" width="100%"></a></td>
+<td valign="top">
+<h3><a href="designs/watch-stool">Watch Stool</a></h3>
+Apple Watch charger stand shaped like a plastic street-food stool, with the cable hidden inside a leg.
+</td>
+</tr>
 </table>
 
 ## Repository layout
