@@ -3,7 +3,7 @@
 Not published yet.
 
 - **Name:** Plastic Stool Apple Watch Charger Stand
-- **Summary (120 max):** A tiny street-food stool for the Apple Watch charger: the puck sits in the seat, the cable hides in a leg.
+- **Summary (120 max):** A tiny street-food stool for the Apple Watch charger: the puck sits in the seat, the watch on top.
 - **Category:** Gadgets → pick the phone/watch accessories subcategory in the form
 - **Tags** (lower-case letters and digits only, one word each): applewatch, watch, charger, stand, dock, stool, miniature, desk, cable, openscad, parametric, gift
 - **Model origin:** Original model – I made it
@@ -26,32 +26,35 @@ Real-life photos from the first full print (cover first), then `images/render-he
 
 ## Description
 
-A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits in the seat, the watch lies on top with its band over the edges, and the cable hides inside a leg and comes out of its foot.
+A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits in the seat, the watch lies on top with its band over the edges, and the cable runs straight out of the side of the seat.
 
 ⌚ **Fits**
 - The Apple Watch magnetic charging puck (Ø 28 mm, 6.7 mm thick) with the braided USB-C cable.
 - Other pucks or cables: open `watch-stool.scad` in OpenSCAD (2021.01 or newer) and set `puck_d`, `puck_h`, `cable_d` and `cable_exit`. Prefer a web customizer? The same model is customizable on MakerWorld.
 - Any Apple Watch charges flat on top, 41–49 mm cases and Ultra. Flat charging only: nightstand mode needs the watch on its side.
 
-🔌 **Hidden cable**
-- The seat shows only a round pocket. The cable leaves the puck under the seat, runs in a clip to the back-right corner and goes down a channel inside the leg.
-- Three clips in the leg keep it in, and it leaves through a cut in the foot at table level.
+🔌 **Cable**
+- The seat shows only a round pocket. The cable leaves the puck under the seat and runs straight out of the middle of the right side, between the bands.
+- It hangs down to the table in a loose arc, so the stiff braided cable can't lift a foot, and a clip keeps it straight under the seat, so it can't lift the puck either.
 - Nothing to thread: the USB-C plug goes down through the 21 mm hole in the pocket.
+
+🪜 **Stacks like the real thing**
+The legs splay to 64 mm and the walls are thin, so a second or third stool slides down over the first and sits just 15 mm higher. Stops under the seat keep them from wedging together.
 
 🖨️ **Printing**
 - PLA, 0.4 mm nozzle, 0.2 mm layers, 25% infill, 3 perimeters, no supports.
 - The STL is already upside down: seat on the bed. The puck rests on a 45° ledge, so the pocket needs no bridge.
-- Bambu Lab P2S: 1 h 10 min, 29 g.
+- Bambu Lab P2S: 49 min, 22 g.
 
 🔧 **Assembly**
 1. Push the USB-C plug down through the hole in the middle of the pocket.
-2. Slide the cable along the slit to the back-right edge of the pocket, push it under the edge and press it up into the clip.
+2. Slide the cable along the slit to the right edge of the pocket, push it under the edge and press it up into the clip, out through the slot in the side.
 3. Tilt the puck, cable side first under the edge, and press it down flush.
-4. Press the cable into the channel in the back-right leg and out of the cut in the foot.
+4. Let the cable hang down to the table in a loose arc.
 
 📐 **Fit**
 - Six crush ribs hold the puck: change `grip` in the .scad if it's too tight or too loose.
-- Cable falls out of the clips? Raise `clip_squeeze`.
+- Cable falls out of the clip? Raise `clip_squeeze`.
 - Export `part = "fit_test"` to print just the seat (about 30 minutes) and check the puck first.
 
 Printed one? Post a make, I'd like to see your colours.

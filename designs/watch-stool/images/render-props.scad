@@ -57,8 +57,8 @@ module face_text(t, size, y, style = "Medium") translate([0, y, back_z + case_t 
 band_w = 22;
 band_t = 3;
 // centreline in the y-z plane on the +y side: out of the lug, over the seat edge, down the face, onto the table
-band_path = [[21, lug_z], [24, lug_z - 0.4], [26.2, lug_z - 2], [27.4, lug_z - 4.8], [27.7, H - 1],
-             [28.0, H - 8], [30.4, 6], [30.9, 3.2], [32.4, 1.8], [35, band_t / 2]];
+band_path = [[21, lug_z], [23, lug_z - 0.4], [25, lug_z - 2], [26.2, lug_z - 4.8], [26.5, H - 1],
+             [26.8, H - 8], [30.4, 6], [30.9, 3.2], [32.4, 1.8], [35, band_t / 2]];
 
 function seg_len(p, i) = norm(p[i + 1] - p[i]);
 function path_len(p, i = 0) = i >= len(p) - 1 ? 0 : seg_len(p, i) + path_len(p, i + 1);
@@ -102,15 +102,12 @@ function bez_pts(c, n = 16) = [for (i = [0:n]) bez(c[0], c[1], c[2], c[3], i / n
 function diag(r, z) = [r / sqrt(2), r / sqrt(2), z];
 
 cable_z = H - pocket_depth + cable_exit; // the cable leaves the side of the puck, no strain relief
-d0 = d_chan(0);
 cable_pts = concat(
-    [diag(10, cable_z)],
-    [diag(pocket_r + run_clip, cable_z)],
-    bez_pts([diag(pocket_r + run_clip, cable_z), diag(pocket_r + run_clip + 5, cable_z),
-             diag(d_chan(top_z - 2), top_z - 1), diag(d_chan(top_z - 8), top_z - 8)], 16),
-    bez_pts([diag(d_chan(4), 4), diag(d_chan(1.6), cable_d / 2), diag(d0 + 3, cable_d / 2), diag(d0 + 8, cable_d / 2)], 10),
-    bez_pts([diag(d0 + 8, cable_d / 2), diag(d0 + 30, cable_d / 2), [60, 90, cable_d / 2], [80, 140, cable_d / 2]], 20),
-    bez_pts([[80, 140, cable_d / 2], [95, 180, cable_d / 2], [130, 210, cable_d / 2], [125, 260, cable_d / 2]], 16));
+    [[10, 0, cable_z]],
+    // straight out of the side of the seat, then a free arc down to the table
+    bez_pts([[B / 2, 0, cable_z], [B / 2 + 25, 0, cable_z], [B / 2 + 32, 0, cable_d / 2], [B / 2 + 60, 0, cable_d / 2]], 20),
+    bez_pts([[B / 2 + 60, 0, cable_d / 2], [B / 2 + 90, 0, cable_d / 2], [110, 60, cable_d / 2], [120, 140, cable_d / 2]], 16),
+    bez_pts([[120, 140, cable_d / 2], [125, 180, cable_d / 2], [150, 210, cable_d / 2], [140, 260, cable_d / 2]], 16));
 
 module cable() for (i = [0:len(cable_pts) - 2]) hull() for (p = [cable_pts[i], cable_pts[i + 1]]) translate(p) sphere(d = cable_d, $fn = 20);
 
