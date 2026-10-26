@@ -47,10 +47,11 @@ Kindle and e-reader stand shaped like a tiny typewriter, with a roller that slid
 </td>
 </tr>
 <tr>
-<td width="50%"><a href="designs/watch-stool"><img src="designs/watch-stool/images/render-hero.png" alt="Watch Stool" width="100%"></a></td>
+<td width="50%"><a href="designs/watch-stool"><img src="designs/watch-stool/images/photos/01-cover-4x3.jpg" alt="Watch Stool" width="100%"></a></td>
 <td valign="top">
 <h3><a href="designs/watch-stool">Watch Stool</a></h3>
-Apple Watch charger stand shaped like a plastic street-food stool, with the cable hidden inside a leg.
+Apple Watch charger stand shaped like a plastic street-food stool. The puck sits flush in the seat, and the stools stack like the real ones.<br><br>
+<a href="https://makerworld.com/en/models/3499007-plastic-stool-apple-watch-charging-stand">MakerWorld</a>
 </td>
 </tr>
 </table>
