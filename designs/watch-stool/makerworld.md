@@ -1,6 +1,6 @@
 # MakerWorld listing
 
-Not published yet. Draft (2026-10-26): https://makerworld.com/en/my/models/drafts/10196116/edit has everything filled in: 3MF, `.scad` with the 6 Customizer parameters, name, category, tags, licence, description and the print profile. Covers (4:3 and 3:4) and the 5 real-life photos are the photos in `images/photos/` (EXIF stripped); the 3 model pictures are renders. Still to do before publishing: swap the print profile pictures (cover + seat + cable renders) for photos. Research of similar models: `plans/watch-stool/makerworld-research.md` (local, gitignored).
+Not published yet. Draft (2026-10-26): https://makerworld.com/en/my/models/drafts/10196116/edit has everything filled in: 3MF, `.scad` with the 6 Customizer parameters, name, category, tags, licence, description and the print profile. Covers (4:3 and 3:4) and the 5 real-life photos are the photos in `images/photos/` (EXIF stripped); the 3 model pictures are the 64 mm-feet renders (`render-hero`, `-seat`, `-cable`); the print profile pictures are photos 01, 04 and 02. Ready to publish: tick the Print Profile Guidelines box on step 3 and press Publish. Research of similar models: `plans/watch-stool/makerworld-research.md` (local, gitignored).
 
 - **Name:** Plastic Stool Apple Watch Charging Stand (40 of 50 chars: keeps the exact search phrase "Apple Watch Charging Stand", which almost every popular stand has in its title)
 - **Category:** Household → Office (as the two most downloaded Apple Watch stands; alternative: Tools → Gadgets)
