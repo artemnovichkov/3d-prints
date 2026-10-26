@@ -32,11 +32,7 @@ The format of `build.json` is documented in the docstring of `scripts/build-mode
 
 ### Printer settings templates
 
-`scripts/templates/<printer>/` holds `project_settings.config`, the Bambu Studio settings for one filament, plus `per_filament_keys.json`, which maps each per-filament key to its block size. On the P2S, per-filament keys hold 3 values (one per extruder variant), not 1.
-
-`scripts/templates/P2S/end-gcode-melody.txt` is the author's personal end G-code with a finish melody. Keep it out of `project_settings.config` when building models to publish.
-
-To add a printer, slice the same model twice with the bambu-studio-ai skill's `slice.py --printer <model>`: once with one filament and once with `--load-filaments` patched to load two. Store the one-filament config, then diff the two configs: the keys whose length doubled are the per-filament keys. Don't assume a block size of 1 per filament.
+`scripts/templates/<printer>/` holds the Bambu Studio settings per printer. `scripts/templates/P2S/end-gcode-melody.txt` is the author's personal end G-code with a finish melody: keep it out of `project_settings.config` when building models to publish. Format and adding a printer: `docs/printer-templates.md`.
 
 ## Model conventions
 
@@ -59,47 +55,10 @@ designs/<project>/
 - Keep parts that print in different colours at different heights on separate plates. For example, white rings beside a green base force a filament change on every layer the two have in common.
 - Generated G-code (`*.gcode`, `*.gcode.3mf`) is gitignored. Licence: CC BY-NC-SA 4.0 unless a project says otherwise.
 
-## Publishing on MakerWorld
+## More docs
 
-Keep the listing (name, category, tags, BOM, profiles, pictures, description) in `<project>/makerworld.md`, and add the MakerWorld link to the project README and the root README table once it's published. Link the GitHub folder as `https://github.com/artemnovichkov/3d-prints/tree/main/designs/<project>`.
+Read these only when the task needs them:
 
-- Upload `models/<project>.3mf`. MakerWorld lists plates from the plate thumbnails and slice info that Bambu Studio writes; `build-models.py` keeps them.
-- A `.f3d` raw file is rejected without favourite user parameters (MakerWorld turns them into a customizer). Link the GitHub folder in the description instead.
-- At least 3 real-life photos are required, plus a 4:3 cover (3:4 app cover optional). Strip EXIF/GPS from phone photos (`sips` to JPEG, then re-save with Pillow).
-- The model form takes one print profile; add the others after publishing via ⋮ → Add Print Profile on the model page.
-
-## Publishing on Printables
-
-Keep the Printables listing in `<project>/printables.md` and link it next to MakerWorld in both READMEs. Printables has no customizer, so upload the `models/parts/` STLs, copied with names like `<project>-<variant>-<part>.stl`, in one folder per variant, plus the `.scad` and the main 3MF for Bambu users. Mention the `.scad` and the MakerWorld customizer in the description. Tags take only lower-case letters and digits.
-
-## Rendering README images
-
-Use a full render: in preview mode, flush inlays z-fight and show up as black patches.
-
-```sh
-OS=/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
-# hero, perspective
-$OS --backend=manifold --render --colorscheme=Tomorrow --imgsize=1600,1100 --projection=p \
-    --camera=2.85,-8.5,0,52,0,28,462 -D 'part="all"' -o images/hero.png <project>.scad
-# top view, orthographic, auto-framed
-$OS --backend=manifold --render --colorscheme=Tomorrow --imgsize=1000,1150 --projection=o \
-    --camera=0,0,0,0,0,0,0 --viewall --autocenter -D 'part="all"' -D 'language="ru"' -o images/top-ru.png <project>.scad
-```
-
-The hero camera (translation and distance) is tuned for a plate of roughly 147 × 176 mm with the layout centred on the origin, so adjust it for other sizes.
-
-`<project>/images/scenes.scad` (if present) includes the model and shows it in use, e.g. rings set to a date. It renders the MakerWorld covers and pictures, takes the same `-D` overrides, and centres the plate on the origin:
-
-```sh
-# 4:3 cover / picture, 3:4 app cover, close-up
-$OS --backend=manifold --render --colorscheme=Tomorrow --projection=p --imgsize=1600,1200 \
-    --camera=0,-8,0,52,0,28,462 -o images/cover-4x3.png images/scenes.scad
-$OS ... --imgsize=1200,1600 --camera=-6,-4,0,38,0,12,594 -o images/cover-3x4.png images/scenes.scad
-$OS ... --imgsize=1600,1200 --camera=31,24,4,50,0,20,165 -o images/closeup.png images/scenes.scad
-```
-
-In zsh, don't keep the shared flags in a `$VAR`: zsh does not split it into separate arguments.
-
-### Shadow pendants
-
-`scripts/shadow-sim.py <stl> <png> --angle 30 --lamp 400` traces the wall shadow of a flat slat pendant (e.g. `designs/halloween-pumpkins/`) lit by a point lamp, to tune slats and render README images without printing.
+- `docs/publishing.md`: MakerWorld and Printables listings and uploads.
+- `docs/rendering.md`: OpenSCAD README images, MakerWorld covers, shadow pendant simulation.
+- `docs/printer-templates.md`: printer settings templates, adding a printer.
