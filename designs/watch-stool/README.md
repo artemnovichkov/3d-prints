@@ -2,7 +2,7 @@
 
 A tiny plastic street-food stool for the Apple Watch charger. The puck sits in the seat, the watch lies on top with its bands over the edges or tucked through a window so they don't dangle, and the cable runs straight out of the side of the seat and hangs down to the table.
 
-[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3499007-plastic-stool-apple-watch-charging-stand)
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3499007-plastic-stool-apple-watch-charging-stand) [![Download on Printables](https://img.shields.io/badge/Download%20on-Printables-FA6831?logo=printables&logoColor=white)](https://www.printables.com/model/1891899-plastic-stool-apple-watch-charger-stand)
 
 ![Apple Watch charging on the red stool, band hanging to the desk](images/render-hero.png)
 

@@ -1,6 +1,6 @@
 # Printables listing
 
-Not published yet. Draft (2026-10-26): https://www.printables.com/model/1891899/edit has everything filled in: files with notes, 5 photos + 3 renders (cover first), name, summary, category, tags, origin, AI, licence, description. Publishing stays with the user.
+Published 2026-10-26: https://www.printables.com/model/1891899-plastic-stool-apple-watch-charger-stand
 
 - **Name:** Plastic Stool Apple Watch Charger Stand
 - **Summary (120 max):** A tiny street-food stool for the Apple Watch charger: the puck sits in the seat, the watch on top.
