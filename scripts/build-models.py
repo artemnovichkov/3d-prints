@@ -14,7 +14,7 @@ Reads <project>/build.json:
   ],
   "preview_skip": ["labels"]
 }
-"preview_skip" lists parts left out of the STL preview (default: none).
+"preview_skip" lists parts left out of the STL preview (default: none); an object with every part skipped is left out.
 An object's "ranges" (optional) are Bambu Studio height range modifiers: print settings for a band of
 its layers, e.g. "ranges": [{"from_z": 41.2, "settings": {"fuzzy_skin": "external"}}] gives the layers
 from 41.2 mm above the bottom of the object to its top a fuzzy skin. "to_z" defaults to the top.
@@ -155,7 +155,10 @@ def preview(objects: list[dict], skip: list[str]) -> trimesh.Trimesh:
     which would fill their pockets and hide the text in a colourless STL)."""
     meshes, x = [], 0.0
     for obj in objects:
-        mesh = trimesh.util.concatenate([m for p, _, m in obj["parts"] if p not in skip])
+        kept = [m for p, _, m in obj["parts"] if p not in skip]
+        if not kept:
+            continue
+        mesh = trimesh.util.concatenate(kept)
         low = mesh.bounds[0]
         mesh.apply_translation([x - low[0], 0, -low[2]])
         meshes.append(mesh)
