@@ -27,30 +27,14 @@ Two red stools are printed, so the gallery has a stack photo; no colour variants
 
 ## Description
 
-A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits flush in the seat, the watch charges on top with its band draped over the edges or tucked through a window so it doesn't dangle, and the cable leaves through the side of the seat.
+A mini version of the plastic stools you see at street-food stalls, made to hold the Apple Watch charger.
 
-⌚ **Fits**
-- The Apple Watch magnetic charger with the braided USB-C cable (puck Ø 28 mm, 6.7 mm thick). Older USB-A charger or another puck: set its size in the customizer.
-- Every Apple Watch, 38–49 mm, Ultra included. Flat charging only: nightstand mode needs the watch on its side.
+The puck sits flush in the seat and the cable comes out of the side. Tuck the band through a window or let it hang over the edge. Print two or three and they stack like the real ones.
 
-🔌 **Clean cable**
-- Only a round pocket shows on the seat. Under the seat a clip holds the cable straight out to the side, so it can't lift the puck, and it hangs down clear of the feet.
-- Nothing to thread: the USB-C plug drops through the 21 mm hole in the pocket.
+Fits the Apple Watch magnetic charger with the braided USB-C cable and any Apple Watch from 38 to 49 mm, Ultra included. Flat charging only, no nightstand mode. Different puck or cable? Change the sizes in the customizer.
 
-🪜 **Stacks like the real thing**
-Print a few: they slide into each other 15 mm apart, and stops under the seat keep them from wedging.
+Printing: one plate, 49 min, 22 g of PLA, 0.2 mm layers, no supports. It prints upside down, seat on the plate.
 
-🖨️ **Printing**
-- One plate, 49 min, 22 g. PLA, 0.4 mm nozzle, 0.2 mm layers, no supports, no AMS.
-- The stool prints upside down, seat on the plate. The puck rests on a 45° ledge, so nothing bridges over the pocket.
+Assembly: push the USB-C plug down through the hole in the seat, press the cable into the slot under the seat so it comes out of the side, then press the puck in. Puck too loose or too tight? Change grip in the customizer, or print fit_test first: just the seat, about 30 minutes.
 
-🔧 **Assembly**
-1. Push the USB-C plug down through the hole in the pocket.
-2. Slide the cable along the slit to the edge of the pocket and press it up into the clip, out through the side.
-3. Tilt the puck in, cable side first, and press it down flush.
-
-📐 **Fit**
-Six crush ribs hold the puck. Too tight, or lifts off with the watch? Change `grip` in the customizer. Cable falls out of the clip? Raise `clip_squeeze`. Not sure? Print `part = fit_test` first: the seat alone, about 30 minutes.
-
-Printed one? Post a make, I'd like to see your colours.
-OpenSCAD source, Fusion render scene and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/watch-stool).
+Source files are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/watch-stool). If you print one, post a make, I'd like to see your colours.
