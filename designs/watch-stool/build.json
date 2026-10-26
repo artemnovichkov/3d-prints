@@ -1,7 +1,7 @@
 {
   "printer": "P2S",
   "filaments": [
-    {"colour": "#D7262E", "name": "red"}
+    {"colour": "#DE4343", "name": "red"}
   ],
   "objects": [
     {"name": "Watch Stool", "parts": {"stool": 1}}

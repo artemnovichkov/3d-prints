@@ -42,19 +42,20 @@ Flat charging only: nightstand mode needs the watch on its side.
 |---|---|---|---|
 | Charger | `puck_d` | `28` mm | Puck diameter, from the [iFixit Apple Watch teardown](https://www.ifixit.com/Teardown/Apple+Watch+Teardown/40655). Apple doesn't publish it, and people measure 27.5–28 mm: check yours with calipers |
 | | `puck_h` | `6.7` mm | Puck thickness, also from iFixit |
-| | `puck_proud` | `0` mm | How far the puck sticks out above the seat. Raising it thins the seat over the cable |
 | | `cable_d` | `4` mm | Diameter of the braided cable, measured from a photo: check yours. Sets the clip under the seat |
-| | `plug_w` | `14` mm | Diagonal of the USB-C plug's housing. The hole inside the ledge is at least 2 mm wider, and 21 mm by default |
-| | `cable_exit` | `3.35` mm | Height of the cable centre above the bottom of the puck. OpenSCAD warns if less than 0.8 mm of seat is left over the cable |
 | Fit | `grip` | `0.5` mm | How much the crush ribs squeeze the puck. Raise it if the puck lifts off with the watch, lower it if the puck doesn't go in |
 | | `clip_squeeze` | `0.4` mm | How much narrower than the cable the opening of the clip is. Raise it if the cable falls out of the clip |
-| Stool | `height` | `64` mm | Total height |
-| | `top_w` | `48` mm | Width at the top, which is also the seat |
-| | `bottom_w` | `64` mm | Width at the feet: wider is steadier, and stacks deeper |
-| | `wall` | `1.6` mm | Wall thickness. Thicker walls make the stools stack further apart: OpenSCAD echoes the step |
-| Output | `part` | `stool` | `stool`, `fit_test` (the seat only) and `stack_test` come upside down, ready to print. `stack_test` is the seat beside the ring of the stool above it: push the seat up into the ring and it stops on the corner stops. `all` shows the stool with a puck, cable and watch, `stack` three stacked stools |
+| Output | `part` | `stool` | `stool` or `fit_test` (the seat only), both upside down, ready to print |
 
-Print `fit_test` first to check the puck fit and the run under the seat, and `stack_test` to check how the stools stack: each takes a fraction of the filament.
+Print `fit_test` first to check the puck fit and the run under the seat: it takes a fraction of the filament.
+
+The Customizer shows only what a printer may need to change. The rest sits under `/* [Hidden] */` in the `.scad`:
+
+- `puck_proud` (`0` mm): how far the puck sticks out above the seat. Raising it thins the seat over the cable.
+- `cable_exit` (`3.35` mm): height of the cable centre above the bottom of the puck. OpenSCAD warns if less than 0.8 mm of seat is left over the cable.
+- `plug_w` (`14` mm): diagonal of the USB-C plug's housing. The hole inside the ledge is at least 2 mm wider, and 21 mm by default.
+- `height` (`64` mm), `top_w` (`48` mm, also the seat), `bottom_w` (`64` mm: wider is steadier and stacks deeper), `wall` (`1.6` mm: thicker walls stack further apart, OpenSCAD echoes the step).
+- More `part` values: `stack_test` is the seat beside the ring of the stool above it, upside down: push the seat up into the ring and it stops on the corner stops. `all` shows the stool with a puck, cable and watch, `stack` three stacked stools.
 
 ## Printing
 

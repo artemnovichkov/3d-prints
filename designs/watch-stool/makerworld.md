@@ -1,52 +1,56 @@
 # MakerWorld listing
 
-Not published yet. Research of similar models: `plans/watch-stool/makerworld-research.md` (local, gitignored).
+Not published yet. Draft (2026-10-26): https://makerworld.com/en/my/models/drafts/10196116/edit has everything filled in: 3MF, `.scad` with the 6 Customizer parameters, render cover, 3 model pictures, name, category, tags, licence, description and the print profile (name, description, cover + seat + cable renders). The 3 "real-life photos" are temporary renders (`render-hero`, `-seat`, `-cable`): replace them, the cover and the profile pictures with real photos before publishing. Step 3 (print profile) opens only after 3 real-life photos. Research of similar models: `plans/watch-stool/makerworld-research.md` (local, gitignored).
 
 - **Name:** Plastic Stool Apple Watch Charging Stand (40 of 50 chars: keeps the exact search phrase "Apple Watch Charging Stand", which almost every popular stand has in its title)
 - **Category:** Household → Office (as the two most downloaded Apple Watch stands; alternative: Tools → Gadgets)
-- **Tags:** apple watch, apple watch charging stand, apple watch charger, apple watch stand, apple watch dock, apple watch charger stand, apple watch accessories, apple watch ultra, apple watch 11, apple watch 10, watch stand, watch charger, watch charger stand, charging stand, charging dock, charging station, smartwatch stand, cable management, desk accessories, home office, nightstand, bedside, plastic stool, stool, mini stool, miniature furniture, street food, vietnamese stool, red stool, funny, cute, gift, customizable, parametric, no supports
-- **BOM (filaments):** fill in from the AMS slot used for the first full print (red PLA, 29.3 g)
+- **Tags (50):** apple watch, apple watch charging stand, apple watch charger, apple watch stand, apple watch dock, apple watch charger stand, apple watch holder, apple watch accessories, apple watch ultra, apple watch 11, apple watch 10, watch stand, watch charger, watch charger stand, watch dock, charging stand, charging dock, charging station, smartwatch stand, usb-c, cable management, hidden cable, desk accessories, desk decor, desk gadget, home office, nightstand, nightstand charger, bedside, plastic stool, stool, mini stool, miniature, miniature furniture, street food, street food stool, vietnamese stool, red stool, stackable, funny, cute, gift, gift idea, customizable, parametric, openscad, no supports, no ams, easy print, quick print
+- **BOM (filaments, in draft):** PLA Matte Scarlet Red (11200) / Refill / 1kg, 21.6 g
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no)
-- **Upload:** `models/watch-stool.3mf` + `watch-stool.scad` (Parametric Model Maker: puck size, cable, grip, stool size; `part = "fit_test"` gives the seat alone). The `.scad` has top-level geometry, so PMM can offer STL download. `watch-stool.f3d` is a render scene only: kept in the repo, not uploaded.
-- **Print profile** (P2S, 0.20 mm Standard, 1 plate): "Watch Stool · 0.2 mm, no AMS": `models/watch-stool.3mf`, 1 h 10 min, 29.3 g.
+- **Upload:** `models/watch-stool.3mf` + `watch-stool.scad` (Parametric Model Maker: puck diameter and thickness, cable, grip, clip; `part = "fit_test"` gives the seat alone). The `.scad` has top-level geometry, so PMM can offer STL download. `watch-stool.f3d` is a render scene only: kept in the repo, not uploaded.
+- **Print profile** (P2S, 0.20 mm Standard): "Watch Stool · 0.2 mm, no AMS": `models/watch-stool.3mf`, 1 plate, 49 min, 21.6 g. Only one: no fit-test or USB-A profiles (decided 2026-10-26). Replace the 3MF with the latest version after the test print.
 
 ## Pictures
 
-- Cover 4:3 and at least 3 real-life photos: take them after the first full print (watch charging on the stool, cable leaving the side, puck in the seat, hand holding it). Strip EXIF, save to `images/photos/`.
-- Model pictures: `images/render-hero.png`, `images/render-seat.png`, `images/render-cable.png`.
+Every top stand's cover shows the watch on the stand, charging (green ring on the screen), in warm desk or nightstand light. Galleries have 5–11 pictures; the staff-picked Retro Radio draws yellow arrows on photos to show what moves.
+
+Only one red stool is printed: no colour variants or stack photos.
+
+- **Cover 4:3:** photo of the watch charging on the red stool on a desk or nightstand. Until the photos: `images/render-hero.png`. App cover 3:4: crop of the same photo.
+- **Gallery, in order:**
+  1. Cover.
+  2. Seat with the puck flush, watch lifted off (photo; render: `images/render-seat.png`).
+  3. Cable leaving the side of the seat and hanging to the table (photo; render: `images/render-cable.png`).
+  4. Assembly: plug through the hole, cable pressed into the clip, with arrows.
+  5. In hand, two fingers through a window, for scale.
+- At least 3 real-life photos, EXIF stripped, in `images/photos/`. `render-stack.png` (three colours) and `render-stack-compare.png` (internal before/after) are not uploaded.
 
 ## Description
 
-A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits in the seat, the watch lies on top with its band over the edges, and the cable runs straight out of the side of the seat.
+A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits flush in the seat, the watch charges on top with its band draped over the edges, and the cable leaves through the side of the seat.
 
 ⌚ **Fits**
-- The Apple Watch magnetic charging puck (Ø 28 mm, 6.7 mm thick) with the braided USB-C cable. Older USB-A chargers and other pucks: set the diameter, thickness and cable size in the customizer.
-- Every Apple Watch size, 38–49 mm, Ultra included, charges flat on top. The seat is 48 mm wide, about the size of the watch, so the band drapes over the edges.
-- Flat charging only: nightstand mode needs the watch on its side.
+- The Apple Watch magnetic charger with the braided USB-C cable (puck Ø 28 mm, 6.7 mm thick). Older USB-A charger or another puck: set its size in the customizer.
+- Every Apple Watch, 38–49 mm, Ultra included. Flat charging only: nightstand mode needs the watch on its side.
 
-🔌 **Cable**
-- The seat shows only a round pocket. The cable leaves the puck under the seat and runs straight out of the middle of the right side, between the bands.
-- It hangs down to the table in a loose arc, so the stiff braided cable can't lift a foot, and a clip keeps it straight under the seat, so it can't lift the puck either.
-- Nothing to thread: the USB-C plug goes down through the 21 mm hole in the pocket.
+🔌 **Clean cable**
+- Only a round pocket shows on the seat. Under the seat a clip holds the cable straight out to the side, so it can't lift the puck, and it hangs down clear of the feet.
+- Nothing to thread: the USB-C plug drops through the 21 mm hole in the pocket.
 
 🪜 **Stacks like the real thing**
-The legs splay to 64 mm and the walls are thin, so a second or third stool slides down over the first and sits just 15 mm higher. Stops under the seat keep them from wedging together. Print a few in different colours.
+Print a few: they slide into each other 15 mm apart, and stops under the seat keep them from wedging.
 
 🖨️ **Printing**
-- One plate, 49 min, 22 g. PLA, 0.4 mm nozzle, 0.2 mm layers, no supports.
-- The stool prints upside down, seat on the plate. The puck rests on a 45° ledge, so the pocket needs no bridge.
-- 3 walls, 25% infill, Arachne walls and back seam are set in the 3MF.
+- One plate, 49 min, 22 g. PLA, 0.4 mm nozzle, 0.2 mm layers, no supports, no AMS.
+- The stool prints upside down, seat on the plate. The puck rests on a 45° ledge, so nothing bridges over the pocket.
 
 🔧 **Assembly**
-1. Push the USB-C plug down through the hole in the middle of the pocket.
-2. Slide the cable along the slit to the right edge of the pocket, push it under the edge and press it up into the clip, out through the slot in the side.
-3. Tilt the puck, cable side first under the edge, and press it down flush.
-4. Let the cable hang down to the table in a loose arc.
+1. Push the USB-C plug down through the hole in the pocket.
+2. Slide the cable along the slit to the edge of the pocket and press it up into the clip, out through the side.
+3. Tilt the puck in, cable side first, and press it down flush.
 
 📐 **Fit**
-- Six crush ribs hold the puck. Too tight? Lower `grip`. Lifts off with the watch? Raise it.
-- Cable falls out of the clip? Raise `clip_squeeze`.
-- Print `part = fit_test` first: just the seat, about 30 minutes, to check the puck and the cable clip.
+Six crush ribs hold the puck. Too tight, or lifts off with the watch? Change `grip` in the customizer. Cable falls out of the clip? Raise `clip_squeeze`. Not sure? Print `part = fit_test` first: the seat alone, about 30 minutes.
 
 Printed one? Post a make, I'd like to see your colours.
 OpenSCAD source, Fusion render scene and build scripts are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/watch-stool).

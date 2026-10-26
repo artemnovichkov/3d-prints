@@ -30,7 +30,7 @@ A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sit
 
 ⌚ **Fits**
 - The Apple Watch magnetic charging puck (Ø 28 mm, 6.7 mm thick) with the braided USB-C cable.
-- Other pucks or cables: open `watch-stool.scad` in OpenSCAD (2021.01 or newer) and set `puck_d`, `puck_h`, `cable_d` and `cable_exit`. Prefer a web customizer? The same model is customizable on MakerWorld.
+- Other pucks or cables: open `watch-stool.scad` in OpenSCAD (2021.01 or newer) and set `puck_d`, `puck_h` and `cable_d`. Prefer a web customizer? The same model is customizable on MakerWorld.
 - Any Apple Watch charges flat on top, 41–49 mm cases and Ultra. Flat charging only: nightstand mode needs the watch on its side.
 
 🔌 **Cable**

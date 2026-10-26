@@ -7,39 +7,32 @@
 puck_d = 28.0; // [26:0.1:30]
 // Thickness of the puck, mm: 6.7 per the iFixit teardown
 puck_h = 6.7; // [5:0.1:10]
-// How far the puck sticks out above the seat, mm. Flush is fine: the dome on the watch back keeps the watch off the seat
-puck_proud = 0; // [0:0.25:2]
 // Cable diameter, mm: the braided cable is about 4 mm, and the clip under the seat grips it
 cable_d = 4.0; // [2.5:0.1:5]
-// Height of the cable centre above the bottom of the puck, mm (the cable leaves the side of the puck)
-cable_exit = 3.35; // [1.5:0.05:6]
-// Diagonal of the USB-C plug's housing, mm: the plug goes down through the hole in the pocket floor
-plug_w = 14; // [8:0.5:20]
 
 /* [Fit] */
 // How much the crush ribs squeeze the puck, mm: raise it if the puck lifts off with the watch
 grip = 0.5; // [0:0.05:1]
-// How much narrower than the cable the opening of the clip under the seat is, mm (a braided cable barely squashes)
+// How much narrower than the cable the opening of the clip under the seat is, mm: raise it if the cable falls out
 clip_squeeze = 0.4; // [0.2:0.1:1.2]
 
-/* [Stool] */
-// Total height, mm
-height = 64; // [45:1:100]
-// Width at the top, mm: the seat is the top of the legs, with no overhang
-top_w = 48; // [42:0.5:60]
-// Width at the feet, mm: wider is steadier, and the more the legs splay, the deeper the stools stack
-bottom_w = 64; // [46:0.5:80]
-// Wall thickness, mm
-wall = 1.6; // [1.6:0.2:4]
-
 /* [Output] */
-// stool, fit_test and stack_test come in print orientation, upside down
-part = "stool"; // [stool:Stool, fit_test:Fit test (seat only), stack_test:Stack test (seat and the ring that takes it), all:Preview with charger and watch, stack:Preview of three stacked stools]
-
-/* [Colours (preview only)] */
-stool_color = "#D7262E";
+// Print a fit test first to check the puck and the cable clip. Both come upside down, ready to print
+part = "stool"; // [stool:Stool, fit_test:Fit test (seat only)]
 
 /* [Hidden] */
+// Also: part = "stack_test" (seat and the ring that takes it), "all" (preview with charger and watch), "stack" (three stacked stools)
+// How far the puck sticks out above the seat, mm. Flush is fine: the dome on the watch back keeps the watch off the seat
+puck_proud = 0;
+// Height of the cable centre above the bottom of the puck, mm (the cable leaves the side of the puck)
+cable_exit = 3.35;
+// Diagonal of the USB-C plug's housing, mm: the plug goes down through the hole in the pocket floor
+plug_w = 14;
+height = 64;                    // total height
+top_w = 48;                     // width at the top: the seat is the top of the legs, with no overhang
+bottom_w = 64;                  // width at the feet: the more the legs splay, the deeper the stools stack
+wall = 1.6;
+stool_color = "#DE4343";        // preview only
 $fn = 96;
 H = height;
 T = top_w;
