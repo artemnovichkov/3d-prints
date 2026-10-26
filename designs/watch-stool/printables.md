@@ -1,10 +1,10 @@
 # Printables listing
 
-Not published yet.
+Not published yet. Draft (2026-10-26): https://www.printables.com/model/1891899/edit has everything filled in: files with notes, 5 photos + 3 renders (cover first), name, summary, category, tags, origin, AI, licence, description. Publishing stays with the user.
 
 - **Name:** Plastic Stool Apple Watch Charger Stand
 - **Summary (120 max):** A tiny street-food stool for the Apple Watch charger: the puck sits in the seat, the watch on top.
-- **Category:** Gadgets → pick the phone/watch accessories subcategory in the form
+- **Category:** Gadgets → Portable Devices (Printables has no watch accessories subcategory)
 - **Tags** (lower-case letters and digits only, one word each): applewatch, watch, charger, stand, dock, stool, miniature, desk, cable, openscad, parametric, gift
 - **Model origin:** Original model – I made it
 - **AI:** Yes — AI-assisted creation
