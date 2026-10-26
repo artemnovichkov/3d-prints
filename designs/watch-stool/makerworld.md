@@ -1,6 +1,6 @@
 # MakerWorld listing
 
-Not published yet. Draft (2026-10-26): https://makerworld.com/en/my/models/drafts/10196116/edit has everything filled in: 3MF, `.scad` with the 6 Customizer parameters, render cover, 3 model pictures, name, category, tags, licence, description and the print profile (name, description, cover + seat + cable renders). The 3 "real-life photos" are temporary renders (`render-hero`, `-seat`, `-cable`): replace them, the cover and the profile pictures with real photos before publishing. Step 3 (print profile) opens only after 3 real-life photos. Research of similar models: `plans/watch-stool/makerworld-research.md` (local, gitignored).
+Not published yet. Draft (2026-10-26): https://makerworld.com/en/my/models/drafts/10196116/edit has everything filled in: 3MF, `.scad` with the 6 Customizer parameters, name, category, tags, licence, description and the print profile. Covers (4:3 and 3:4) and the 5 real-life photos are the photos in `images/photos/` (EXIF stripped); the 3 model pictures are renders. Still to do before publishing: swap the print profile pictures (cover + seat + cable renders) for photos. Research of similar models: `plans/watch-stool/makerworld-research.md` (local, gitignored).
 
 - **Name:** Plastic Stool Apple Watch Charging Stand (40 of 50 chars: keeps the exact search phrase "Apple Watch Charging Stand", which almost every popular stand has in its title)
 - **Category:** Household → Office (as the two most downloaded Apple Watch stands; alternative: Tools → Gadgets)
@@ -14,7 +14,7 @@ Not published yet. Draft (2026-10-26): https://makerworld.com/en/my/models/draft
 
 Every top stand's cover shows the watch on the stand, charging (green ring on the screen), in warm desk or nightstand light. Galleries have 5–11 pictures; the staff-picked Retro Radio draws yellow arrows on photos to show what moves.
 
-Only one red stool is printed: no colour variants or stack photos.
+Two red stools are printed, so the gallery has a stack photo; no colour variants.
 
 - **Cover 4:3:** photo of the watch charging on the red stool on a desk or nightstand. Until the photos: `images/render-hero.png`. App cover 3:4: crop of the same photo.
 - **Gallery, in order:**
@@ -27,7 +27,7 @@ Only one red stool is printed: no colour variants or stack photos.
 
 ## Description
 
-A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits flush in the seat, the watch charges on top with its band draped over the edges, and the cable leaves through the side of the seat.
+A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits flush in the seat, the watch charges on top with its band draped over the edges or tucked through a window so it doesn't dangle, and the cable leaves through the side of the seat.
 
 ⌚ **Fits**
 - The Apple Watch magnetic charger with the braided USB-C cable (puck Ø 28 mm, 6.7 mm thick). Older USB-A charger or another puck: set its size in the customizer.

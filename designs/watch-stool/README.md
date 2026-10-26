@@ -1,12 +1,16 @@
 # Watch Stool — Apple Watch Charger Stand
 
-A tiny plastic street-food stool for the Apple Watch charger. The puck sits in the seat, the watch lies on top with its bands over the edges, and the cable runs straight out of the side of the seat and hangs down to the table.
+A tiny plastic street-food stool for the Apple Watch charger. The puck sits in the seat, the watch lies on top with its bands over the edges or tucked through a window so they don't dangle, and the cable runs straight out of the side of the seat and hangs down to the table.
 
 ![Apple Watch charging on the red stool, band hanging to the desk](images/render-hero.png)
 
 | Seat with the puck | Cable leaves the side of the seat |
 |---|---|
 | ![Puck in the round pocket, nothing else on the seat](images/render-seat.png) | ![Cable leaving the side of the seat](images/render-cable.png) |
+
+| Printed, charging | Two stools stacked | Watch off, puck stays |
+|---|---|---|
+| ![Printed red stool with the watch charging, band tucked through a window](images/photos/01-cover-4x3.jpg) | ![Two printed stools stacked, the watch on top](images/photos/02-stack.jpg) | ![Lifting the watch off, the puck stays in the seat](images/photos/03-lift-off.jpg) |
 
 ## How it works
 
@@ -34,7 +38,7 @@ Flat charging only: nightstand mode needs the watch on its side.
 | `watch-stool.scad` | OpenSCAD source. Upload it to the MakerWorld Parametric Model Maker or open it in OpenSCAD 2021.01+ |
 | `watch-stool.f3d` | Autodesk Fusion render scene for `images/render-*.png`: meshes from the `.scad`, a watch, band, puck and cable, oak desk. Not a parametric design |
 | `build.json` | Parts, filament and print settings used to build the 3MF |
-| `images/` | Renders used in this README. `render-props.scad` builds the props for the Fusion scene: Apple Watch Series 11 46 mm after Apple's dimensional drawing, sport band, puck and cable |
+| `images/` | Renders and, in `photos/`, photos of the print used in this README and on MakerWorld. `render-props.scad` builds the props for the Fusion scene: Apple Watch Series 11 46 mm after Apple's dimensional drawing, sport band, puck and cable |
 
 ## Parameters
 

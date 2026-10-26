@@ -26,7 +26,7 @@ Real-life photos from the first full print (cover first), then `images/render-he
 
 ## Description
 
-A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits in the seat, the watch lies on top with its band over the edges, and the cable runs straight out of the side of the seat.
+A tiny plastic street-food stool for your Apple Watch charger. 🪑 The puck sits in the seat, the watch lies on top with its band over the edges or tucked through a window so it doesn't dangle, and the cable runs straight out of the side of the seat.
 
 ⌚ **Fits**
 - The Apple Watch magnetic charging puck (Ø 28 mm, 6.7 mm thick) with the braided USB-C cable.
