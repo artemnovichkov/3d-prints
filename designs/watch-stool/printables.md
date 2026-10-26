@@ -22,7 +22,7 @@ File notes: STL "The stool, already upside down for printing", 3MF "Bambu Studio
 
 ## Pictures
 
-Real-life photos from the first full print (cover first), then `images/render-hero.png`, `images/render-seat.png`, `images/render-cable.png`.
+`images/photos/01-cover-4x3.jpg` (cover), `02-stack`, `03-lift-off`, `04-seat`, `05-hand`, then `images/render-hero.png`, `images/render-seat.png`, `images/render-cable.png`.
 
 ## Description
 
@@ -30,7 +30,7 @@ A mini version of the plastic stools you see at street-food stalls, made to hold
 
 The puck sits flush in the seat and the cable comes out of the side. Tuck the band through a window or let it hang over the edge. Print two or three and they stack like the real ones.
 
-Fits the Apple Watch magnetic charger with the braided USB-C cable and any Apple Watch from 38 to 49 mm, Ultra included. Flat charging only, no nightstand mode. Different puck or cable? Open watch-stool.scad in OpenSCAD and change the sizes, or use the customizer on MakerWorld.
+Fits the Apple Watch magnetic charger with the braided USB-C cable and any Apple Watch from 38 to 49 mm, Ultra included. Flat charging only, no nightstand mode. Different puck or cable? Open watch-stool.scad in OpenSCAD and change the sizes, or use the [customizer on MakerWorld](https://makerworld.com/en/models/3499007-plastic-stool-apple-watch-charging-stand).
 
 Printing: 49 min, 22 g of PLA, 0.2 mm layers, no supports. The STL is already upside down, seat on the bed.
 
