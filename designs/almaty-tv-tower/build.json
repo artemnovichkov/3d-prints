@@ -1,0 +1,8 @@
+{
+  "printer": "P2S",
+  "filaments": [{"colour": "#F2F2F2", "name": "white"}],
+  "objects": [
+    {"name": "Kok-Tobe", "parts": {"terrain": 1}}
+  ],
+  "settings": {"wall_generator": "arachne", "sparse_infill_pattern": "lightning", "sparse_infill_density": "15%"}
+}
