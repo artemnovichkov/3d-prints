@@ -1,6 +1,6 @@
 # MakerWorld listing
 
-Draft saved 2026-11-03, not published: https://makerworld.com/en/my/models/drafts/10326286/edit (draft id 10326286). Filled via Claude in Chrome: name, category, 44 tags, CC BY-NC-SA, description, 4:3 cover + 3 gallery renders, one print profile from the 3MF. Still to do before publishing: real-life photos (see Pictures), then the user publishes.
+Draft saved 2026-11-03, not published: https://makerworld.com/en/my/models/drafts/10326286/edit (draft id 10326286). Filled via Claude in Chrome: name, category, 44 tags, CC BY-NC-SA, description, 4:3 cover + 3 gallery renders, one print profile from the 3MF, BOM (Ivory White + Charcoal, user-approved). Still to do before publishing: real-life photos (see Pictures), then the user publishes.
 
 Uploaded only `models/almaty-tv-tower.3mf`. The `.scad` was **not** kept on MakerWorld: `almaty-tv-tower.scad` `include`s `terrain.scad`, and MakerWorld's raw-file slicer marks `terrain.scad` (a heightmap data file, no geometry) as Failed, so a working MW customizer isn't possible. Source stays on GitHub (linked in the description).
 
@@ -17,7 +17,7 @@ Uploaded only `models/almaty-tv-tower.3mf`. The `.scad` was **not** kept on Make
 - **Name (≤50):** `Almaty TV Tower & Kok-Tobe Hill — 3D City Relief` — keeps the searchable landmark + city name up front.
 - **Category:** Miniatures → Architecture (where the NYC / Eiffel / Colosseum city minis sit). Alt: Education → Geography (real place, real elevation).
 - **Tags (~45):** almaty, kazakhstan, kok-tobe, koktobe, tv tower, almaty tower, central asia, city, cityscape, miniature, mini city, 3d map, city map, relief, relief map, topographic, topography, terrain, elevation, contour, landmark, souvenir, travel, gift, keepsake, decor, desk decor, wall art, display, skyline, architecture, buildings, openstreetmap, dem, geography, model, scale model, parametric, openscad, customizable, two color, sand, frame, no ams, hill
-- **BOM (filaments):** sand / beige PLA Matte #CBC6B8 (terrain + tower) + black PLA (frame). 2-colour, no AMS needed (parts print on separate plates).
+- **BOM (filaments, in draft):** Bambu PLA Matte Ivory White (11100) for terrain + tower (closest official match to the real sand #CBC6B8, which has no exact Bambu SKU) + PLA Matte Charcoal (11101) for the frame. 2-colour, no AMS (separate plates).
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no).
 - **Upload:** `models/almaty-tv-tower.3mf` only. No `.scad` on MakerWorld (include → terrain.scad fails MW slicing); source + regeneration via GitHub, linked in the description.
 
