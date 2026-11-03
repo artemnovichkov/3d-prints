@@ -47,16 +47,32 @@ Photos not used: IMG_5532–5539 (first batch, glittery wall + clutter); IMG_554
 
 ## Description (draft)
 
-A desk model of Kok-Tobe, the hill above Almaty, with its 372 m TV tower.
+Formatted 2026-11-03 with rich markdown (headings + bold-lead bullets + a table), styled after the Maker Watch listing (makerworld.com/en/models/3538797). Set in the MW CKEditor via setData with `<h2>`, `<ul>`, `<strong>` and a `<figure class="table">`; all survive. Source of truth below.
 
-The hill, its terraces, the roads, footpaths and buildings all come from open map and elevation data, so the shape is the real one, not a stylised skyline. The tower is measured from the original drawings — the stepped shaft, both pods and the antenna at their real heights.
+A desk model of Kok-Tobe — the hill above Almaty — with its 372 m TV tower. The hill, its terraces, the roads, footpaths and buildings all come from open map and elevation data, so the shape is the real place, not a stylised skyline.
 
-It prints as a separate piece that drops over a peg on the hill. The thin antenna is the fiddly part, so you can dial it in on the tower alone — about 20 minutes — instead of reprinting the whole 2-hour terrain, and if it ever breaks you just reprint the tower. Add a drop of glue on the peg so it sits tight and doesn't wobble.
+### Highlights
 
-It sits in a black frame that prints on its own plate. Bone-white hill and tower, black frame — no AMS, the parts print on separate plates and go together after.
+- **A real place, from real data:** elevation from the Copernicus DEM, with roads, paths and buildings from OpenStreetMap — at their true positions and heights.
+- **The measured tower:** the 372 m TV tower is traced from the original drawings — the stepped shaft, both pods and the antenna at their real heights.
+- **Removable tower:** it prints on its own and drops over a peg on the hill, so you can dial in the thin antenna on the tower alone (about 20 min) instead of reprinting the whole 2-hour terrain — and if it ever breaks, you just reprint the tower.
+- **Two colours, no AMS:** bone-white hill and tower, black frame — each part prints on its own plate and goes together after, with no filament changes.
+- **Fully parametric:** change the size, the height of the hill or the tower, turn the frame or the buildings off — or point it at any coordinates to print another place.
 
-Printing: three plates — terrain (about 2 h, 59 g), frame (under 1 h), tower (about 20 min). 0.2 mm layers, bone-white and black PLA, no supports needed. The relief is stepped into 0.4 mm contour terraces, so each step lands on a layer line.
+### Printing
 
-It is parametric. The OpenSCAD source and the script that pulls the map data are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/almaty-tv-tower) — change the size, the height exaggeration of the hill or the tower, turn the frame or the buildings off, or point it at any coordinates to print another place.
+Three plates, 0.2 mm layers, no supports needed. The relief is stepped into 0.4 mm contour terraces, so every step lands on a layer line.
+
+| Plate | Part | Filament | Time & weight |
+|---|---|---|---|
+| 1 | Kok-Tobe terrain | Bone White PLA | ~2 h · 59 g |
+| 2 | Frame | Charcoal PLA | ~1 h · 46 g |
+| 3 | Tower | Bone White PLA | ~20 min · 1 g |
+
+Add a drop of glue on the peg so the tower sits tight and doesn't wobble.
+
+### Make it your own
+
+The model is parametric. The OpenSCAD source and the script that pulls the map data are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/almaty-tv-tower) — regenerate it at any size, tweak the exaggeration of the hill or the tower, or point it at any coordinates to print your own city.
 
 If you print one, post a make — I'd like to see it.
