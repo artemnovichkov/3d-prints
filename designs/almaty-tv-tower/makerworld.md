@@ -33,14 +33,15 @@ One profile per plate, added after publishing via ⋮ → Add Print Profile:
 
 **Real photos of the Bone White print in its frame (2026-11-03).** 6 images, EXIF/GPS stripped, 4032×3024 (4:3). Source HEIC in `~/Downloads` (IMG_5540–5551); cleaned JPEGs built in the session scratchpad (`mw-photos/`), not committed to the repo. These replace the earlier OpenSCAD renders in the draft.
 
-- **Cover 4:3:** `01-cover` (IMG_5547) — three-quarter on a plain grey backdrop, tower clear of the wall.
-- **Gallery:**
-  1. `01-cover` (cover).
-  2. `02-angle` (IMG_5546) — three-quarter, alternate.
-  3. `03-terraces` (IMG_5543) — low macro, contour terraces + roads.
-  4. `04-detail` (IMG_5544) — corner macro, buildings + paths.
-  5. `05-top` (IMG_5550) — straight down, the whole map.
-  6. `06-tower-in-hand` (IMG_5551) — tower lifted off the peg, shows it is removable.
+- **Cover 4:3:** `01-cover` (IMG_5547) — three-quarter on a plain grey backdrop, tower clear of the wall. The cover is NOT also in the gallery: MakerWorld renders the 4:3 cover as gallery slot 1/N, so putting the same shot in "real life photos" shows it twice (the dup was removed 2026-11-03).
+- **Gallery (real life photos, 5):**
+  1. `02-angle` (IMG_5546) — three-quarter, alternate.
+  2. `03-terraces` (IMG_5543) — low macro, contour terraces + roads.
+  3. `04-detail` (IMG_5544) — corner macro, buildings + paths.
+  4. `05-top` (IMG_5550) — straight down, the whole map.
+  5. `06-tower-in-hand` (IMG_5551) — tower lifted off the peg, shows it is removable.
+
+All photos are full 4:3 (4032×3024) as shot, so no reframing was needed beyond the 4:3 cover crop.
 
 Photos not used: IMG_5532–5539 (first batch, glittery wall + clutter); IMG_5540–5542, 5545, 5548, 5549 (weaker angle/lighting).
 
