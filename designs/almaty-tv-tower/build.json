@@ -1,6 +1,6 @@
 {
   "printer": "P2S",
-  "filaments": [{"colour": "#CBC6B8", "name": "sand"}, {"colour": "#000000", "name": "black"}],
+  "filaments": [{"colour": "#CBC6B8", "name": "bone-white"}, {"colour": "#000000", "name": "black"}],
   "objects": [
     {"name": "Kok-Tobe", "parts": {"terrain": 1}},
     {"name": "Frame", "parts": {"frame": 2}, "plate": 2},
