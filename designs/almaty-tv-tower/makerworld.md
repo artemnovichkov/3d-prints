@@ -6,7 +6,7 @@ Uploaded only `models/almaty-tv-tower.3mf`. The `.scad` was **not** kept on Make
 
 ## Ready-to-publish check (2026-11-03)
 
-All required fields pass. Step 1: model file `almaty-tv-tower.3mf` (726 KB). Step 2: type Original, cover 4:3 (real photo), 5 real-life photos, name, category Architecture, 44 tags, CC BY-NC-SA, Public, formatted description, BOM (Bone White + Charcoal). Step 3: print profile "0.2mm layer, 2 walls, 15% infill" with **2 real photos** — the print-profile picture had been a render (MW warns a render can get the profile taken down), replaced with real photos. The only step left is the user's: tick "I've read Print Profile Guidelines" on step 3, then Publish.
+All required fields pass. Step 1: model file `almaty-tv-tower.3mf` (726 KB). Step 2: type Original, cover 4:3 (real photo) + optional 3:4 app cover (portrait crop of the hero, tower-forward — the app prioritises 3:4 and shows it larger), 5 real-life photos, name, category Architecture, 44 tags, CC BY-NC-SA, Public, formatted description, BOM (Bone White + Charcoal). Step 3: print profile "0.2mm layer, 2 walls, 15% infill" with **2 real photos** — the print-profile picture had been a render (MW warns a render can get the profile taken down), replaced with real photos. The only step left is the user's: tick "I've read Print Profile Guidelines" on step 3, then Publish.
 
 ## Competitor research (2026-11-03)
 
