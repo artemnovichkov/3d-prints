@@ -4,6 +4,10 @@ Draft saved 2026-11-03, not published: https://makerworld.com/en/my/models/draft
 
 Uploaded only `models/almaty-tv-tower.3mf`. The `.scad` was **not** kept on MakerWorld: `almaty-tv-tower.scad` `include`s `terrain.scad`, and MakerWorld's raw-file slicer marks `terrain.scad` (a heightmap data file, no geometry) as Failed, so a working MW customizer isn't possible. Source stays on GitHub (linked in the description).
 
+## Ready-to-publish check (2026-11-03)
+
+All required fields pass. Step 1: model file `almaty-tv-tower.3mf` (726 KB). Step 2: type Original, cover 4:3 (real photo), 5 real-life photos, name, category Architecture, 44 tags, CC BY-NC-SA, Public, formatted description, BOM (Bone White + Charcoal). Step 3: print profile "0.2mm layer, 2 walls, 15% infill" with **2 real photos** — the print-profile picture had been a render (MW warns a render can get the profile taken down), replaced with real photos. The only step left is the user's: tick "I've read Print Profile Guidelines" on step 3, then Publish.
+
 ## Competitor research (2026-11-03)
 
 - **No Almaty, Kok-Tobe or Almaty TV tower model on MakerWorld.** Searches: "Almaty" (Tank Almaz, Viktor Tsoi bust, Kairat coaster, name keychains), "Kazakhstan" (flag, yurt, country-outline topography flag, Borat), "city relief map", "topographic". The niche is empty — this is the only Almaty city landmark.
