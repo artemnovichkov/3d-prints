@@ -1,6 +1,8 @@
 # MakerWorld listing
 
-Draft, not published. Upload `models/almaty-tv-tower.3mf` + `almaty-tv-tower.scad`.
+Draft saved 2026-11-03, not published: https://makerworld.com/en/my/models/drafts/10326286/edit (draft id 10326286). Filled via Claude in Chrome: name, category, 44 tags, CC BY-NC-SA, description, 4:3 cover + 3 gallery renders, one print profile from the 3MF. Still to do before publishing: real-life photos (see Pictures), then the user publishes.
+
+Uploaded only `models/almaty-tv-tower.3mf`. The `.scad` was **not** kept on MakerWorld: `almaty-tv-tower.scad` `include`s `terrain.scad`, and MakerWorld's raw-file slicer marks `terrain.scad` (a heightmap data file, no geometry) as Failed, so a working MW customizer isn't possible. Source stays on GitHub (linked in the description).
 
 ## Competitor research (2026-11-03)
 
@@ -17,7 +19,7 @@ Draft, not published. Upload `models/almaty-tv-tower.3mf` + `almaty-tv-tower.sca
 - **Tags (~45):** almaty, kazakhstan, kok-tobe, koktobe, tv tower, almaty tower, central asia, city, cityscape, miniature, mini city, 3d map, city map, relief, relief map, topographic, topography, terrain, elevation, contour, landmark, souvenir, travel, gift, keepsake, decor, desk decor, wall art, display, skyline, architecture, buildings, openstreetmap, dem, geography, model, scale model, parametric, openscad, customizable, two color, sand, frame, no ams, hill
 - **BOM (filaments):** sand / beige PLA Matte #CBC6B8 (terrain + tower) + black PLA (frame). 2-colour, no AMS needed (parts print on separate plates).
 - **Licence:** CC BY-NC-SA 4.0 (adaptations: share alike; commercial: no).
-- **Upload:** `models/almaty-tv-tower.3mf` + `almaty-tv-tower.scad`. The `.scad` has a `part` parameter and top-level geometry, so Parametric Model Maker can offer a customizer (model_size, relief_scale, tower_scale, frame on/off, etc.). Mention regenerating other places via the GitHub `terrain-data.py` in the description.
+- **Upload:** `models/almaty-tv-tower.3mf` only. No `.scad` on MakerWorld (include → terrain.scad fails MW slicing); source + regeneration via GitHub, linked in the description.
 
 ### Print profiles (P2S, 0.20 mm Standard, Bambu PLA Basic)
 
@@ -46,8 +48,8 @@ The hill, its terraces, the roads, footpaths and buildings all come from open ma
 
 It sits in a black frame that prints on its own plate. Sand hill and tower, black frame — no AMS, the parts print on separate plates and go together after.
 
-Printing: three plates — terrain (about 2 h, 59 g), frame (under 1 h), tower (about 20 min). 0.2 mm layers, sand and black PLA. The relief is stepped into 0.4 mm contour terraces so every step lands on a layer line. The antenna is thin: print `tower-top` once to check it comes out straight, and `fit-test` to check the peg before the full hill.
+Printing: three plates — terrain (about 2 h, 59 g), frame (under 1 h), tower (about 20 min). 0.2 mm layers, sand and black PLA, no supports needed. The relief is stepped into 0.4 mm contour terraces, so each step lands on a layer line.
 
-It is parametric. In the customizer you can change the size, the height exaggeration of the hill, the tower, and turn the frame or the buildings off. The OpenSCAD source and the script that pulls the map data are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/almaty-tv-tower) — point it at any coordinates to print another place.
+It is parametric. The OpenSCAD source and the script that pulls the map data are on [GitHub](https://github.com/artemnovichkov/3d-prints/tree/main/designs/almaty-tv-tower) — change the size, the height exaggeration of the hill or the tower, turn the frame or the buildings off, or point it at any coordinates to print another place.
 
 If you print one, post a make — I'd like to see it.
