@@ -1,8 +1,10 @@
 {
   "printer": "P2S",
-  "filaments": [{"colour": "#F2F2F2", "name": "white"}],
+  "filaments": [{"colour": "#CBC6B8", "name": "sand"}, {"colour": "#000000", "name": "black"}],
   "objects": [
-    {"name": "Kok-Tobe", "parts": {"terrain": 1}}
+    {"name": "Kok-Tobe", "parts": {"terrain": 1}},
+    {"name": "Frame", "parts": {"frame": 2}, "plate": 2},
+    {"name": "Tower", "parts": {"tower": 1}, "plate": 3}
   ],
   "settings": {"wall_generator": "arachne", "sparse_infill_pattern": "lightning", "sparse_infill_density": "15%"}
 }
