@@ -47,6 +47,8 @@ One profile per plate, added after publishing via ⋮ → Add Print Profile:
 
 All photos are full 4:3 (4032×3024) as shot, so no reframing was needed beyond the 4:3 cover crop.
 
+**EXIF-strip rotation bug (fixed 2026-11-03):** `04-detail` (IMG_5544) uploaded upside-down. Its HEIC stored an orientation flag (180°) that `sips` did NOT bake into the pixels on JPEG conversion, and `strip_jpeg.py` then removed the flag → it displayed rotated. Fixed by `sips -r 180` and re-upload (it moved to the end of the gallery). The other four baked fine. Lesson: when stripping EXIF, bake orientation first (or `sips -r`/verify each), because any photo that relies on an orientation flag will display rotated once the flag is gone. Gallery order is now angle / terraces / top / tower-in-hand / detail.
+
 Photos not used: IMG_5532–5539 (first batch, glittery wall + clutter); IMG_5540–5542, 5545, 5548, 5549 (weaker angle/lighting).
 
 ## Description (draft)
