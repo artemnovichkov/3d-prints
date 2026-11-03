@@ -59,7 +59,7 @@ Apple Watch charger stand shaped like a plastic street-food stool. The puck sits
 <td valign="top">
 <h3><a href="designs/almaty-tv-tower">Almaty TV Tower</a></h3>
 Desk model of Kok-Tobe hill in Almaty with its TV tower. Relief, roads and buildings come from open elevation and OpenStreetMap data.<br><br>
-<a href="https://makerworld.com/en/models/3541684-almaty-tv-tower-kok-tobe-hill-3d-city-relief">MakerWorld</a>
+<a href="https://makerworld.com/en/models/3541684-almaty-tv-tower-kok-tobe-hill-3d-city-relief">MakerWorld</a> · <a href="https://www.printables.com/model/1901000-almaty-tv-tower-kok-tobe-hill-3d-city-relief">Printables</a>
 </td>
 </tr>
 </table>

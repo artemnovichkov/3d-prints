@@ -1,6 +1,6 @@
 # Printables listing
 
-**Draft saved 2026-11-03, not published:** https://www.printables.com/model/1901000/edit (model 1901000). Filled via Claude in Chrome (the built-in browser hits Cloudflare). The user publishes.
+**Published 2026-11-03:** https://www.printables.com/model/1901000-almaty-tv-tower-kok-tobe-hill-3d-city-relief (model 1901000). Filled via Claude in Chrome (the built-in browser hits Cloudflare); the user published.
 
 - **Name:** Almaty TV Tower & Kok-Tobe Hill — 3D City Relief
 - **Summary (≤120):** Desk relief of Kok-Tobe hill in Almaty with its 372 m TV tower, from real elevation and map data.

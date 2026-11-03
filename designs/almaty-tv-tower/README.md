@@ -2,7 +2,7 @@
 
 A desk model of Kok-Tobe hill in Almaty with its 372 m TV tower. The relief, roads, paths and buildings come from open data; the tower prints apart and drops over a peg on the hill, so a broken one reprints without the terrain. The model sits in a black frame, printed separately.
 
-[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3541684-almaty-tv-tower-kok-tobe-hill-3d-city-relief)
+[![Print on MakerWorld](https://img.shields.io/badge/Print%20on-MakerWorld-00AE42?logo=bambulab&logoColor=white)](https://makerworld.com/en/models/3541684-almaty-tv-tower-kok-tobe-hill-3d-city-relief) [![Download on Printables](https://img.shields.io/badge/Download%20on-Printables-FA6831?logo=printables&logoColor=white)](https://www.printables.com/model/1901000-almaty-tv-tower-kok-tobe-hill-3d-city-relief)
 
 ![Almaty TV Tower on Kok-Tobe hill, printed in Bone White in its black frame](images/photos/01-cover-4x3.jpg)
 
