@@ -44,7 +44,9 @@ One profile per plate, added after publishing via ⋮ → Add Print Profile:
 
 A desk model of Kok-Tobe, the hill above Almaty, with its 372 m TV tower.
 
-The hill, its terraces, the roads, footpaths and buildings all come from open map and elevation data, so the shape is the real one, not a stylised skyline. The tower is measured from the original drawings — the stepped shaft, both pods and the antenna at their real heights — and prints as a separate piece that drops over a peg on the hill, so if the thin antenna fails you reprint the tower alone, not the whole terrain.
+The hill, its terraces, the roads, footpaths and buildings all come from open map and elevation data, so the shape is the real one, not a stylised skyline. The tower is measured from the original drawings — the stepped shaft, both pods and the antenna at their real heights.
+
+It prints as a separate piece that drops over a peg on the hill. The thin antenna is the fiddly part, so you can dial it in on the tower alone — about 20 minutes — instead of reprinting the whole 2-hour terrain, and if it ever breaks you just reprint the tower. Add a drop of glue on the peg so it sits tight and doesn't wobble.
 
 It sits in a black frame that prints on its own plate. Sand hill and tower, black frame — no AMS, the parts print on separate plates and go together after.
 
