@@ -1,6 +1,6 @@
 # MakerWorld listing
 
-Draft saved 2026-11-03, not published: https://makerworld.com/en/my/models/drafts/10326286/edit (draft id 10326286). Filled via Claude in Chrome: name, category, 44 tags (sand → bone white), CC BY-NC-SA, description, 4:3 cover + 6 real-life photos of the Bone White print, one print profile from the 3MF, BOM = Bambu PLA Matte Bone White (11103) + Charcoal (11101). The model was printed in **Bambu PLA Matte Bone White (11103, #CBC6B8)** — which is exactly the hex that was in build.json, so the colour everywhere is now named "bone white", not "sand". The user publishes.
+**Published 2026-11-03:** https://makerworld.com/en/models/3541684-almaty-tv-tower-kok-tobe-hill-3d-city-relief (model 3541684; was draft 10326286). Filled via Claude in Chrome: name, category Architecture, 44 tags (sand → bone white), CC BY-NC-SA, formatted description, 4:3 + 3:4 covers, 5 real-life photos, one print profile from the 3MF with 2 real photos, BOM = Bambu PLA Matte Bone White (11103) + Charcoal (11101). The model was printed in **Bambu PLA Matte Bone White (11103, #CBC6B8)** — exactly the hex already in build.json, so the colour everywhere is named "bone white", not "sand".
 
 Uploaded only `models/almaty-tv-tower.3mf`. The `.scad` was **not** kept on MakerWorld: `almaty-tv-tower.scad` `include`s `terrain.scad`, and MakerWorld's raw-file slicer marks `terrain.scad` (a heightmap data file, no geometry) as Failed, so a working MW customizer isn't possible. Source stays on GitHub (linked in the description).
 
